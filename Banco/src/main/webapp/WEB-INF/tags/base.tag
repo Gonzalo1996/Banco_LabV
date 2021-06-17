@@ -24,7 +24,7 @@
       <i class="fas fa-lg fa-bars"></i>
     </button>
     <a class="navbar-brand" href="">
-      <h3 id="logo">Banco-utn</h3>
+      <h3 id="logo">Banco-UTN</h3>
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse"   data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"  aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -61,7 +61,10 @@
           <a href=""><i class="fas fa-user-cog"></i>Alta Cliente</a>
         </li>
         <li>
-          <a href=""><i class="fas fa-clipboard"></i>Listado Clientes</a>
+          <a href=""><i class="fa fa-address-book"></i>Listado Clientes</a>
+        </li>
+        <li>
+          <a href=""><i class="fas fa-clipboard"></i>Listado Cuentas</a>
         </li>
         <li>
           <a href=""><i class="fas fa-hands-helping"></i>Services</a>
