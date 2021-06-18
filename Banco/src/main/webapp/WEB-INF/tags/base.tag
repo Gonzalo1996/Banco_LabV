@@ -61,10 +61,10 @@
           <a href=""><i class="fas fa-user-cog"></i>Alta Cliente</a>
         </li>
         <li>
-          <a href=""><i class="fa fa-address-book"></i>Listado Clientes</a>
+          <a href="listadoUsuarioAdmin.jsp"><i class="fa fa-address-book"></i>Listado Clientes</a>
         </li>
         <li>
-          <a href=""><i class="fas fa-clipboard"></i>Listado Cuentas</a>
+          <a href="listadoCuentasAdmin.jsp"><i class="fas fa-clipboard"></i>Listado Cuentas</a>
         </li>
         <li>
           <a href=""><i class="fas fa-hands-helping"></i>Services</a>
@@ -80,10 +80,6 @@
     </div>
    
   </div>
-    
-
- 
-    
     
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

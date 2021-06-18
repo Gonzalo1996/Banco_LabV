@@ -3,23 +3,33 @@
 <t:base>
     <link rel="stylesheet" type="text/css" href="content/dataTable/datatables/datatables.min.css"/>
     <link rel="stylesheet"  type="text/css" href="content/dataTable/datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">
-
-     <div class="container">
-     
-     	<div class="row">
-		<div class="col-md-12">
-		<form method="get" action="x">
-		<div class="form-group row">
-				<label class="col-md-1 col-form-label" for="txtNombre" >Nombre:</label>
-				<div class="col-md-4">
-					<input id="txtNombre" type="text" class="form-control" placeholder="Nombre">
-				</div>
+	
+	<!-- Fonts -->
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@100&display=swap" rel="stylesheet">
 		
-			<div class="col-md-4">
-				<button type="submit" class="btn btn-primary">Filtrar <span class="fa fa-filter"></span></button>
-				<button type="submit" class="btn btn-info">Quitar <span class="fa fa-times"></span></button>				
-'			</div>
-		</div>
+     <div class="container"> 
+     	<div class="row">
+     		<div class="col-md-12">
+				<h3 style="font-family: 'Barlow', sans-serif">Listado de usuarios:</h3>				
+			</div>
+     	</div>
+     
+   	<div class="row">
+		<div class="col-md-12">
+		
+		<form method="get" action="x">
+			<div class="form-group row">
+					<label class="col-md-1 col-form-label" for="txtLocalidad">Localidad:</label>
+					<div class="col-md-4">
+						<input id="txtLocalidad" type="text" class="form-control" placeholder="Localidad">
+					</div>
+			
+				<div class="col-md-4">
+					<button type="submit" class="btn btn-primary">Filtrar <span class="fa fa-filter"></span></button>
+					<button type="submit" class="btn btn-info">Quitar <span class="fa fa-times"></span></button>				
+				</div>
+			</div>
 			  
 		<div class="form-group row">
 			<label class="col-md-1 col-form-label" for="txtDni" >DNI:</label>
