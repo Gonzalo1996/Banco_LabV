@@ -20,7 +20,7 @@
 			<form method="get" action="x">
 				<div class="form-group row">
 						<label class="col-md-1 col-form-label" for="txtCuil">CUIL:</label>
-						<div class="col-md-4">
+						<div class="col-sm-12 col-md-4">
 							<input id="txtCuil" type="text" class="form-control" placeholder="CUIL">
 						</div>
 					
@@ -32,8 +32,17 @@
 					  
 				<div class="form-group row">
 					<label class="col-md-1 col-form-label" for="txtMoneda" >Tipo cuenta:</label>
-					<div class="col-md-4">
-					 	 <input id="txtMoneda" type="text" class="form-control" placeholder="Tipo cuenta"> 			 	 						
+					<div class="col-xs-12 col-md-4">
+					 	 <!--<input id="txtMoneda" type="text" class="form-control" placeholder="Tipo cuenta">   -->	
+ 						<div class="dropdown ">
+						  <button class="btn btn-outline-info  dropdown-toggle btn-md" style="width: 100%" type="submit"  id="ddpTipoCuenta" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						    Tipo de cuenta
+						  </button>
+						  <div class="dropdown-menu" aria-labelledby="ddpTipoCuenta">
+						    <a class="dropdown-item" href="#">Peso</a>
+						    <a class="dropdown-item" href="#">Dolar</a>
+						  </div>
+						</div>	 	 		 	 		 	 						
 					</div>
 				
 				<div class="col-md-4">
