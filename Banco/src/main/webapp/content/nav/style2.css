@@ -74,15 +74,15 @@ i { margin: 0 7px; }
     font-weight: bold;
 }
 #sidebar ul li a:hover {
-    color: #6240bd;
+    color: #1d0d44;
     background: #fff;
     text-decoration: none;
 }
 
 #sidebar ul li.active>a,
 a[aria-expanded="true"] {
-    color: #fff;
-    background: #8a5fff;
+    /*color: #fff;*/
+    background: transparent;
 }
 a[data-toggle="collapse"] {
     position: relative;
