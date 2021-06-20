@@ -34,4 +34,16 @@
 		<nature>org.eclipse.wst.common.project.facet.core.nature</nature>
 		<nature>org.eclipse.wst.jsdt.core.jsNature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>src/main/webapp/content/images/fondo.jpg</name>
+			<type>1</type>
+			<location>C:/Users/Marcos/Desktop/fondo.jpg</location>
+		</link>
+		<link>
+			<name>src/main/webapp/content/images/logo.png</name>
+			<type>1</type>
+			<location>C:/Users/Marcos/Downloads/logo.png</location>
+		</link>
+	</linkedResources>
 </projectDescription>
