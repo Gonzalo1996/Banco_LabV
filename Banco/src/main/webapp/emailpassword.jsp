@@ -27,7 +27,7 @@
   <div class="login-logo">
     <a href=""><b>UTN</b>Bank</a>
     <div class= "col-md-12">
-    	<img src="content/images/logo.png" width="300px" height="300"></img>
+    	<img src="content/images/logo.png" width="160px" height="160px"></img>
     </div>
     
   </div>
