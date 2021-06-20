@@ -1,3 +1,7 @@
+.content{
+	background: #dedfe2;
+}
+
 *, *:after, *:before {
   box-sizing:border-box;
   -moz-box-sizing:border-box;
@@ -8,7 +12,7 @@
   color: #fff;
 }
 .navbar {
-  padding: 10px 10%;
+  padding: 11px 5% 0px 0px;
 }
 #logo {
   display: inline-block;

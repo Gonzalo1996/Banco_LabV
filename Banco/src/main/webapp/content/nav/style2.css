@@ -10,6 +10,9 @@
 .navbar {
   padding: 10px 10%;
 }
+.navbar-toggler{
+	background-color: white;
+}
 #logo {
   display: inline-block;
   margin-top: 7px;

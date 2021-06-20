@@ -55,27 +55,27 @@
 
       <ul class="list-unstyled components">
         <li>
-          <a href=""><i class="fas fa-home"></i>Inicio</a>
+         	<a href=""><i class="fas fa-home"></i>Inicio</a>
         </li>
         <li>
-          <a href=""><i class="fas fa-user-cog"></i>Alta Cliente</a>
+          	<a href="altaCliente.jsp"><i class="fas fa-user-cog"></i>Alta Cliente</a>
         </li>
         <li>
-          <a href="listadoUsuarioAdmin.jsp"><i class="fa fa-address-book"></i>Listado Clientes</a>
+       		<a href="altaCuenta.jsp"><i class="fas fa-hands-helping"></i>Alta cuenta</a>          
         </li>
         <li>
-          <a href="listadoCuentasAdmin.jsp"><i class="fas fa-clipboard"></i>Listado Cuentas</a>
+          	<a href="listadoCuentasAdmin.jsp"><i class="fas fa-clipboard"></i>Listado Cuentas</a>
         </li>
         <li>
-          <a href=""><i class="fas fa-hands-helping"></i>Services</a>
+          	<a href="listadoUsuarioAdmin.jsp"><i class="fa fa-address-book"></i>Listado Clientes</a>
         </li>
         <li>
-          <a href=""><i class="fas fa-info"></i>About</a>
+          	<a href=""><i class="fas fa-info"></i>About</a>
         </li>
       </ul>
     </nav>
 
-    <div id="content">
+    <div id="content" class="content">
 			<jsp:doBody/>
     </div>
    
