@@ -57,10 +57,10 @@
           <a href=""><i class="fas fa-home"></i>Inicio</a>
         </li>
         <li>
-          <a href=""><i class="fa fa-university"></i>Cuentas</a>
+          <a href="cuentasCliente.jsp"><i class="fa fa-university"></i>Cuentas</a>
         </li>
         <li>
-          <a href="listadoUsuarioAdmin.jsp"><i class="fa fa-exchange"></i>Transferencias</a>
+          <a href="transferencias.jsp"><i class="fa fa-exchange"></i>Transferencias</a>
         </li>
         <li>
           <a href=""><i class="fa fa-question"></i>Ayuda</a>

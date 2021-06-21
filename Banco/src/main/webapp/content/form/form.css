@@ -1,7 +1,7 @@
 :root{
     --primary_color: rgb(57, 118, 168);
     --secundary_color: rgb(19, 132, 150);
-    --terciary_color: rgb(187, 187, 187); 
+    --terciary_color: fff; 
 }
 .body{
     background-color: rgb(57, 149, 142);    

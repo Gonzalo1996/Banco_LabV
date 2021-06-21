@@ -7,7 +7,11 @@
 
 <div class="card">
 	 <div class="card-header">
-	    <h4 style="font-family: 'Barlow', sans-serif">Cuenta: 246-6666666-1 <a href="cuentasCliente.jsp" class="btn btn-primary float-right" role="button">Volver</a></h4>
+	    <h4 style="font-family: 'Barlow', sans-serif">Cuenta: 246-6666666-1
+	     <a href="cuentasCliente.jsp" class="btn btn-primary float-right" role="button">
+	     <span class="fa fa-arrow-left"></span>
+	      Volver
+	     </a></h4>
 	 	CBU: 0246666666610012
 	 </div>
 	 

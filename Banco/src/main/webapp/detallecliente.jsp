@@ -14,36 +14,37 @@
 		                    <hr>
 		                </div>
 		            </div>
+		            
 		            <div class="row">
 		                <div class="col-md-12">
 		                    <form>
                               <div class="form-group row">
-                                <label for="username" class="col-4 col-form-label">Nombres</label> 
+                                <label for="username" class="col-4 col-form-label">Nombres:</label> 
                                 <div class="col-8">
-                                  <input   class="form-control here"  type="text" readonly value="Homero J.">
+                                  <input   class="form-control"  type="text" readonly value="Homero J.">
                                 </div>
                               </div>
                               <div class="form-group row">
-                                <label for="name" class="col-4 col-form-label">Apellidos</label> 
+                                <label for="name" class="col-4 col-form-label">Apellidos:</label> 
                                 <div class="col-8">
-                                  <input  class="form-control here" type="text" readonly value="Simpson">
+                                  <input  class="form-control" type="text" readonly value="Simpson">
                                 </div>
                               </div>
                               <div class="form-group row">
-                                <label for="lastname" class="col-4 col-form-label">DNI</label> 
+                                <label for="lastname" class="col-4 col-form-label">DNI:</label> 
                                 <div class="col-8">
                                   <input   class="form-control here" type="text" readonly value="44.444.444">
                                 </div>
                               </div>
                               <div class="form-group row">
-                                <label for="text" class="col-4 col-form-label">CUIL</label> 
+                                <label for="text" class="col-4 col-form-label">CUIL:</label> 
                                 <div class="col-8">
                                   <input   class="form-control here"  type="text" readonly value="21-44444444-4">
                                 </div>
                               </div>
                               
                               <div class="form-group row">
-                                <label for="email" class="col-4 col-form-label">Email</label> 
+                                <label for="email" class="col-4 col-form-label">Email:</label> 
                                 <div class="col-8">
                                   <input   class="form-control here"  type="email" readonly value="amantedelacomida53@aol.com">
                                 </div>
@@ -55,7 +56,7 @@
                                 </div>
                               </div>
                               <div class="form-group row">
-                                <label for="publicinfo" class="col-4 col-form-label">Numero total de cuentas</label> 
+                                <label for="publicinfo" class="col-4 col-form-label">Numero total de cuentas:</label> 
                                 <div class="col-8">
                                    <input  class="form-control here" type="text" readonly value="4">
                                 </div>

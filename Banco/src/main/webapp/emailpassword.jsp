@@ -34,11 +34,10 @@
   <!-- /.login-logo -->
   <div class="card" >
     <div class="card-body login-card-body" style="border-radius: 44px">
-      <p class="login-box-msg">Completa tus datos para iniciar sesion</p>
+      <p class="login-box-msg">Completa tus datos para iniciar sesión</p>
 
-      <form method="post">
-     
-               
+      <form method="post" action="forgotPassword.jsp">
+             
         <div class="input-group mb-3">
           <input type="password" class="form-control" placeholder="Dirección de correo electronico">
           <div class="input-group-append">
@@ -72,7 +71,10 @@
           
           <!-- /.col -->
           <div class="col-md-6">
-            <button type="submit" class="btn btn-primary btn-block">Verificar</button>
+            <button type="submit" class="btn btn-primary btn-block">
+            Verificar
+            <span class="fa fa-check"></span>
+            </button>
           </div>
           <!-- /.col -->
         </div>

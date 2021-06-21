@@ -34,7 +34,7 @@
   <!-- /.login-logo -->
   <div class="card" >
     <div class="card-body login-card-body" style="border-radius: 44px">
-      <p class="login-box-msg">Completa tus datos para iniciar sesion</p>
+      <p class="login-box-msg">Completa tus datos para iniciar sesión</p>
 
       <form method="post">
       
@@ -58,7 +58,9 @@
           
           <!-- /.col -->
           <div class="col-md-6">
-            <button type="submit" class="btn btn-primary btn-block">Iniciar sesion</button>
+            <button type="submit" class="btn btn-primary btn-block">Iniciar sesion
+            <span class="fa fa-sign-in"></span>
+            </button>
           </div>
           <!-- /.col -->
         </div>
@@ -68,10 +70,7 @@
       <!-- /.social-auth-links -->
 
       <p class="mb-1">
-        <a href="forgotPassword.jsp">Olvide mi contraseña</a>
-      </p>
-      <p class="mb-1">
-        <a href="emailpassword.jsp">Email</a>
+        <a href="emailpassword.jsp">Olvide mi contraseña</a>
       </p>
      
     </div>

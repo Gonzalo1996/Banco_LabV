@@ -40,7 +40,7 @@
       
         
         <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Ingrese nueva constraseña">
+          <input type="password" class="form-control" placeholder="Nueva constraseña">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fa fa-lock"></span>
@@ -48,7 +48,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Ingrese nueva contraseña otra vez">
+          <input type="password" class="form-control" placeholder="Repetir contraseña">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fa fa-lock"></span>

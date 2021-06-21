@@ -54,7 +54,9 @@
           </div>       
         </div>
         <div class="btn-form">
-          <button type="submit" class="btn-register">Registrar</button>
+          <button type="submit" class="btn btn-primary">Registrar
+          <span class="fa fa-user"></span>
+          </button>
         </div>
       </div>
     </form>
