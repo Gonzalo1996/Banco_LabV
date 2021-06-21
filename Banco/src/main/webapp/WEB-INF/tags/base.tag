@@ -24,7 +24,7 @@
       <i class="fas fa-lg fa-bars"></i>
     </button>
     <a class="navbar-brand" href="">
-      <h3 id="logo">Banco-utn</h3>
+      <h3 id="logo">Banco-UTN</h3>
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse"   data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"  aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -55,32 +55,31 @@
 
       <ul class="list-unstyled components">
         <li>
-          <a href=""><i class="fas fa-home"></i>Inicio</a>
+         	<a href=""><i class="fas fa-home"></i>Inicio</a>
         </li>
         <li>
-          <a href=""><i class="fas fa-user-cog"></i>Alta Cliente</a>
+          	<a href="altaCliente.jsp"><i class="fas fa-user-cog"></i>Alta Cliente</a>
         </li>
         <li>
-          <a href=""><i class="fas fa-clipboard"></i>Listado Clientes</a>
+       		<a href="altaCuenta.jsp"><i class="fas fa-hands-helping"></i>Alta cuenta</a>          
         </li>
         <li>
-          <a href=""><i class="fas fa-hands-helping"></i>Services</a>
+          	<a href="listadoCuentasAdmin.jsp"><i class="fas fa-clipboard"></i>Listado Cuentas</a>
         </li>
         <li>
-          <a href=""><i class="fas fa-info"></i>About</a>
+          	<a href="listadoUsuarioAdmin.jsp"><i class="fa fa-address-book"></i>Listado Clientes</a>
+        </li>
+        <li>
+          	<a href=""><i class="fas fa-info"></i>About</a>
         </li>
       </ul>
     </nav>
 
-    <div id="content">
+    <div id="content" class="content">
 			<jsp:doBody/>
     </div>
    
   </div>
-    
-
- 
-    
     
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
