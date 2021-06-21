@@ -14,9 +14,15 @@ public class Cliente {
     private String apellido;
     private Date fechaNacimiento;
     private String correo;
-    private Localidad localidad;
-    private Provincia provincia;
     private String direccion;
+    
+    @OneToMany(cascade = {CascadeType.ALL})
+    @JoinColumn(name = "idLocalidad")
+    private Localidad localidad;
+    
+    @OneToMany(cascade = {CascadeType.ALL})
+    @JoinColumn(name = "idGenero")
+    private Genero genero;
     
     @OneToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name="idUsuario")
@@ -27,7 +33,7 @@ public class Cliente {
     }
     
 	public Cliente(Integer dni, Integer cuil, String nombre, String apellido, Date fechaNacimiento, String correo,
-			Localidad localidad, Provincia provincia, Usuario usuario, String direccion) {
+			Localidad localidad, Usuario usuario, String direccion, Genero genero) {
 		super();
 		this.dni = dni;
 		this.cuil = cuil;
@@ -36,9 +42,9 @@ public class Cliente {
 		this.fechaNacimiento = fechaNacimiento;
 		this.correo = correo;
 		this.localidad = localidad;
-		this.provincia = provincia;
 		this.usuario = usuario;
 		this.direccion = direccion;
+		this.genero = genero;
 	}
 
 
@@ -99,14 +105,6 @@ public class Cliente {
 		this.localidad = localidad;
 	}
 
-	public Provincia getProvincia() {
-		return provincia;
-	}
-
-	public void setProvincia(Provincia provincia) {
-		this.provincia = provincia;
-	}
-
 	public Usuario getUsuario() {
 		return usuario;
 	}
@@ -121,6 +119,14 @@ public class Cliente {
 
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
+	}
+
+	public Genero getGenero() {
+		return genero;
+	}
+
+	public void setGenero(Genero genero) {
+		this.genero = genero;
 	}
 
 	@Override
