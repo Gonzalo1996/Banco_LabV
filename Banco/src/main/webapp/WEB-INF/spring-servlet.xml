@@ -16,6 +16,4 @@
 	<property name="prefix" value="WEB-INF/vistas/"></property>
 	<property name="suffix" value=".jsp"></property>
 </bean>
-
-
 </beans>
