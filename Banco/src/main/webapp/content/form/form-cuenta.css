@@ -100,15 +100,7 @@ form{
     outline: 0px;
 }
 
-#prov,#localidad{
-	width: 190px;
-	margin-left: 23px; 
-}
 
-#prov{
-	width: 190px;
-	margin-left: 33px; 
-}
 
 .drop-list{
 	margin-top:5px;
@@ -186,16 +178,6 @@ form{
         width: 215px;
         margin-left: 0px;
     }
-    
-    #prov,#localidad{
-		 width: 215px;
-		margin-left: 0px; 
-	}
-
-	#prov{
-	 width: 215px;
-		margin-left: 0px; 
-	}
     .row-form > input{
         font-size: 17px;
         background: transparent;
