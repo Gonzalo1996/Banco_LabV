@@ -10,7 +10,7 @@ public class PaginaController {
 	@RequestMapping("inicio.html")
 	public ModelAndView inicio() {
 		ModelAndView MV = new ModelAndView();
-		MV.setViewName("altaCuenta");
+		MV.setViewName("transferencias");
 		return MV;
 	}
 
