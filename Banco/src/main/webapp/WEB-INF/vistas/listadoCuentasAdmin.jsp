@@ -66,7 +66,7 @@
 						<th>Moneda</th>
 						<th>Nombre</th>
 						<th>Apellido</th>
-						<th>CUIL</th>
+						<th>Monto</th>
 						<th>Editar</th>
 						<th>Bloquear</th>
                      </tr>
@@ -80,7 +80,7 @@
 						<td>Peso</td>
 						<td>Mauricio</td>
 						<td>Molina</td>
-						<td>1132724000</td>								
+						<td>5000</td>								
 						<td><button type="submit" class="btn btn-primary"><span class="fa fa-pencil"></span></button></td>
 						<td><button type="submit" class="btn btn-info"><span class="fa fa-ban"></span></button></td>
                      </tr>                       
@@ -92,7 +92,7 @@
 						<td>Peso</td>
 						<td>Juan</td>
 						<td>Gonzalez</td>
-						<td>1132724000</td>
+						<td>1331</td>
 						<td><button type="submit" class="btn btn-primary"><span class="fa fa-pencil"></span></button></td>
 						<td><button type="submit" class="btn btn-info"><span class="fa fa-ban"></span></button></td>
                      </tr>
@@ -104,7 +104,7 @@
 						<td>Dolar</td>
 						<td>Gonza</td>
 						<td>Alderete</td>
-						<td>1132724000</td>
+						<td>9000</td>
 						<td><button type="submit" class="btn btn-primary"><span class="fa fa-pencil"></span></button></td>
 						<td><button type="submit" class="btn btn-info"><span class="fa fa-ban"></span></button></td>
                      </tr>
@@ -115,7 +115,7 @@
 						<td>Peso</td>
 						<td>Jose</td>
 						<td>Rodriguez</td>
-						<td>1132724000</td>
+						<td>25000</td>
 						<td><button type="submit" class="btn btn-primary"><span class="fa fa-pencil"></span></button></td>
 						<td><button type="submit" class="btn btn-info"><span class="fa fa-ban"></span></button></td>
                      </tr>
@@ -127,7 +127,7 @@
 						<td>Dolar</td>
 						<td>Marcos</td>
 						<td>Vera</td>
-						<td>1132724000</td>
+						<td>30000</td>
 						<td><button type="submit" class="btn btn-primary"><span class="fa fa-pencil"></span></button></td>
 						<td><button type="submit" class="btn btn-info"><span class="fa fa-ban"></span></button></td>
                      </tr>

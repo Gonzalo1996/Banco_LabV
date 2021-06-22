@@ -59,7 +59,7 @@
 								<th>CUIL</th>
 								<th>Localidad</th>
 								<th>Dirección</th>
-								<th>Telefono</th>
+								<th>Correo</th>
 								<th>Editar</th>
 								<th>Borrar</th>
                             </tr>
@@ -73,7 +73,7 @@
 								<td>20413333</td>
 								<td>Garin</td>
 								<td>Calle falsa 123</td>
-								<td>1132724000</td>
+								<td>gonza@gmail.com</td>
 								<td><button type="submit" class="btn btn-primary"><span class="fa fa-pencil"></span></button></td>
 								<td><button type="submit" class="btn btn-info"><span class="fa fa-trash"></span></button></td>
                             </tr>                       
@@ -85,7 +85,7 @@
 								<td>204301015</td>
 								<td>Don torcuato</td>
 								<td>Calle falsa 456</td>
-								<td>1132724000</td>
+								<td>marcos@gmail.com</td>
 								<td><button type="submit" class="btn btn-primary"><span class="fa fa-pencil"></span></button></td>
 								<td><button type="submit" class="btn btn-info"><span class="fa fa-trash"></span></button></td>
                             </tr>
@@ -97,7 +97,7 @@
 								<td>204018015</td>
 								<td>José c paz</td>
 								<td>Calle falsa 768</td>
-								<td>1132724000</td>
+								<td>mauricio@gmail.com</td>
 								<td><button type="submit" class="btn btn-primary"><span class="fa fa-pencil"></span></button></td>
 								<td><button type="submit" class="btn btn-info"><span class="fa fa-trash"></span></button></td>
                             </tr>
@@ -108,7 +108,7 @@
 								<td>20421847635</td>
 								<td>San miguel</td>
 								<td>Calle falsa 678</td>
-								<td>1132724000</td>
+								<td>juan@gmail.com</td>
 								<td><button type="submit" class="btn btn-primary"><span class="fa fa-pencil"></span></button></td>
 								<td><button type="submit" class="btn btn-info"><span class="fa fa-trash"></span></button></td>
                             </tr>
@@ -120,22 +120,11 @@
 								<td>20421847635</td>
 								<td>San miguel</td>
 								<td>Calle falsa 123</td>
-								<td>1132724000</td>
+								<td>jose@gmail.com</td>
 								<td><button type="submit" class="btn btn-primary"><span class="fa fa-pencil"></span></button></td>
 								<td><button type="submit" class="btn btn-info"><span class="fa fa-trash"></span></button></td>
                             </tr>
 
-                             <tr>
-								<td>Homero</td>
-								<td>Simpson</td>
-								<td>33184763</td>
-								<td>20421847635</td>
-								<td>Springfiel</td>
-								<td>Calle falsa 123</td>
-								<td>1132724000</td>
-								<td><button type="submit" class="btn btn-primary"><span class="fa fa-pencil"></span></button></td>
-								<td><button type="submit" class="btn btn-info"><span class="fa fa-trash"></span></button></td>
-                            </tr>
                         </tbody>        
                        </table>                  
                     </div>
