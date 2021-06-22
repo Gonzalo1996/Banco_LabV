@@ -11,13 +11,13 @@
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="hbm2ddl.auto">create</property>
         <property name="show_sql">true</property>
-        <mapping class="dominio.Cliente"/>
-        <mapping class="dominio.Cuenta"/>
-        <mapping class="dominio.Genera"/>
-        <mapping class="dominio.Localidad"/>
-        <mapping class="dominio.Movimiento"/>
-        <mapping class="dominio.Pais"/>
         <mapping class="dominio.Provincia"/>
-        <mapping class="dominio.Usuario"/>
+        <mapping class="dominio.Localidad"/>
+        <mapping class="dominio.Genero"/>
+        <mapping class="dominio.Cliente"/>  
+        <mapping class="dominio.Usuario"/>    
+        <mapping class="dominio.Pais"/>
+        <mapping class="dominio.Cuenta"/>
+        <mapping class="dominio.Movimiento"/>
     </session-factory>
 </hibernate-configuration>

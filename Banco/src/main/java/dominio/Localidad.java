@@ -1,26 +1,27 @@
 package dominio;
 
+import java.io.Serializable;
+
 import javax.persistence.*;
 
-public class Localidad {
+@Entity
+public class Localidad implements Serializable
+{
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
 	private Integer id;
 	
 	private String nombre;
 	
-	@OneToMany(cascade = {CascadeType.ALL})
+	@ManyToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name = "idProvincia")
 	private Provincia provincia;
-	
 	
 	public Localidad() {
 		
 	}
 
-
-	public Localidad(Integer id, String nombre, Provincia provincia) {
-		super();
-		this.id = id;
+	public Localidad(String nombre, Provincia provincia) {
 		this.nombre = nombre;
 		this.provincia = provincia;
 	}

@@ -1,41 +1,43 @@
 package dominio;
 
-import java.sql.Date;
+import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Cuenta {
+public class Cuenta implements Serializable{
 	@Id
+	@Column(unique=true)
 	private Integer nroCuenta;
 	private String nombreCuenta;
-	private String CBU;
+	
+	@Column(unique=true)
+	private String cbu;
 	private String alias;
 	private Integer moneda;
 	private Double saldo;
 	private Boolean estado;
 	private Date fechaCreacion;
 	
-	
-	@OneToMany(cascade = {CascadeType.ALL})
+	@ManyToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name="dni")
 	private Cliente cliente;
-	
 	
 	public Cuenta(){
 	
 	}
 
-
-	public Cuenta(Integer nroCuenta, String cBU, String alias, Integer moneda, Double saldo, Boolean estado,
+	public Cuenta(Integer nroCuenta, String cbu, String alias, Integer moneda, Double saldo, Boolean estado,
 			Cliente cliente, Date fechacreacion, String nombreCuenta) {
-		super();
 		this.nroCuenta = nroCuenta;
-		CBU = cBU;
+		this.cbu = cbu;
 		this.alias = alias;
 		this.moneda = moneda;
 		this.saldo = saldo;
@@ -45,6 +47,12 @@ public class Cuenta {
 		this.nombreCuenta =  nombreCuenta;
 	}
 	
+	public Cuenta(Integer nroCuenta, Integer moneda, Double saldo) {
+		this.nroCuenta = nroCuenta;
+		this.moneda = moneda;
+		this.saldo = saldo;
+	}
+
 	public String getNombreCuenta() {
 		return nombreCuenta;
 	}
@@ -69,12 +77,12 @@ public class Cuenta {
 		this.nroCuenta = nroCuenta;
 	}
 
-	public String getCBU() {
-		return CBU;
+	public String getCbu() {
+		return cbu;
 	}
 
-	public void setCBU(String cBU) {
-		CBU = cBU;
+	public void setCbu(String cbu) {
+		this.cbu = cbu;
 	}
 
 	public String getAlias() {

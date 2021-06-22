@@ -1,31 +1,35 @@
 package dominio;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.*;
 
 @Entity
-public class Provincia {
+	public class Provincia implements Serializable
+	{
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
 	private Integer id;
 	
+	@Column
 	private String nombre;
+	
+	@OneToOne(cascade = {CascadeType.ALL})
+	private Pais pais;
 	
 //	@ManyToOne(cascade = {CascadeType.ALL})
 //	private List<Localidad> localidades;
-	
 	
 	public Provincia() {
 		
 	}
 	
-	public Provincia(Integer id, String nombre) {
-		super();
-		this.id = id;
+	public Provincia(String nombre, Pais pais) 
+	{
 		this.nombre = nombre;
+		this.pais = pais;
 	}
-	
-	
 	
 	public Integer getId() {
 		return id;
@@ -39,7 +43,14 @@ public class Provincia {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+	
+	public Pais getPais() {
+		return pais;
+	}
 
+	public void setPais(Pais pais) {
+		this.pais = pais;
+	}
 
 	@Override
 	public String toString() {

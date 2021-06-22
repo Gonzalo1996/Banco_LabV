@@ -1,13 +1,14 @@
 package dominio;
 
-import java.sql.Date;
+import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.*;
 
 @Entity
-public class Cliente {
-	
+public class Cliente implements Serializable{
 	@Id
+	@Column(unique=true)
     private Integer dni;
     private Integer cuil;
     private String nombre;
@@ -16,13 +17,21 @@ public class Cliente {
     private String correo;
     private String direccion;
     
-    @OneToMany(cascade = {CascadeType.ALL})
+    @ManyToOne(cascade = {CascadeType.ALL})
+    @JoinColumn(name = "idProvincia")
+    private Provincia provincia;
+    
+    @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "idLocalidad")
     private Localidad localidad;
     
-    @OneToMany(cascade = {CascadeType.ALL})
+    @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "idGenero")
     private Genero genero;
+    
+    @ManyToOne(cascade = {CascadeType.ALL})
+    @JoinColumn(name = "idPais")
+    private Pais pais;
     
     @OneToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name="idUsuario")
@@ -31,23 +40,22 @@ public class Cliente {
     public Cliente() {
     	
     }
-    
+
 	public Cliente(Integer dni, Integer cuil, String nombre, String apellido, Date fechaNacimiento, String correo,
-			Localidad localidad, Usuario usuario, String direccion, Genero genero) {
-		super();
+			String direccion, Pais pais, Localidad localidad, Provincia provincia, Genero genero, Usuario usuario) {
 		this.dni = dni;
 		this.cuil = cuil;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.fechaNacimiento = fechaNacimiento;
 		this.correo = correo;
-		this.localidad = localidad;
-		this.usuario = usuario;
 		this.direccion = direccion;
+		this.pais = pais;
+		this.localidad = localidad;
+		this.provincia = provincia;
 		this.genero = genero;
+		this.usuario = usuario;
 	}
-
-
 
 	public Integer getDni() {
 		return dni;
@@ -103,6 +111,15 @@ public class Cliente {
 
 	public void setLocalidad(Localidad localidad) {
 		this.localidad = localidad;
+	}
+	
+
+	public Provincia getProvincia() {
+		return provincia;
+	}
+
+	public void setProvincia(Provincia provincia) {
+		this.provincia = provincia;
 	}
 
 	public Usuario getUsuario() {

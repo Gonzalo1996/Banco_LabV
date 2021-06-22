@@ -1,11 +1,12 @@
 package dominio;
 
-import java.sql.Date;
+import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.*;
 
 @Entity
-public class Movimiento {
+public class Movimiento implements Serializable{
 	
 	@Id
 	private Integer id;
@@ -14,7 +15,7 @@ public class Movimiento {
 	private Date fecha;
 	private String detalle;
 	
-	@OneToMany (cascade ={CascadeType.ALL})
+	@ManyToOne(cascade ={CascadeType.ALL})
 	@JoinColumn(name = "nroCuenta")
 	private Cuenta cuenta;
 	
@@ -23,13 +24,18 @@ public class Movimiento {
 	}
 	
 	public Movimiento(Integer id, Double monto, Double saldo, Date fecha, String detalle, Cuenta cuenta) {
-		super();
 		this.id = id;
 		this.monto = monto;
 		this.saldo = saldo;
 		this.fecha = fecha;
 		this.detalle = detalle;
 		this.cuenta = cuenta;
+	}
+	
+	public Movimiento(Integer id, Double monto, Double saldo) {
+		this.id = id;
+		this.monto = monto;
+		this.saldo = saldo;
 	}
 
 	public Integer getId() {

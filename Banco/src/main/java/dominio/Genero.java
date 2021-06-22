@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 public class Genero {
-	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
 	private Integer id;
 	private String nombre;
@@ -13,9 +13,7 @@ public class Genero {
 		
 	}
 	
-	public Genero(Integer id, String nombre) {
-		super();
-		this.id = id;
+	public Genero(String nombre) {
 		this.nombre = nombre;
 	}
 

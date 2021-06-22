@@ -1,10 +1,12 @@
 package dominio;
 
+import java.io.Serializable;
+
 import javax.persistence.*;
 
 @Entity
-public class Pais {
-	
+public class Pais implements Serializable{
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id 
 	private Integer id;
 	private String nombre;
@@ -13,9 +15,7 @@ public class Pais {
 		
 	}
 	
-	public Pais(Integer id, String nombre) {
-		super();
-		this.id = id;
+	public Pais(String nombre) {
 		this.nombre = nombre;
 	}
 

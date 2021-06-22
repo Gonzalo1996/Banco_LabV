@@ -1,14 +1,19 @@
 package dominio;
 
+import java.io.Serializable;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 @Entity
-public class Usuario 
+public class Usuario implements Serializable
 {
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
 	private Integer idUsuario;
 	private String contrasenia;
@@ -20,12 +25,12 @@ public class Usuario
 	@JoinColumn(name="dni")
 	private Cliente cliente;
 	
+	
 	public Usuario() {
 	}
 	
-	public Usuario(Integer idUsuario, Cliente cliente, String contrasenia, Integer tipoUsuario, String nombreUsuario, Boolean estado) {
+	public Usuario(Cliente cliente, String contrasenia, Integer tipoUsuario, String nombreUsuario, Boolean estado) {
 		super();
-		this.idUsuario = idUsuario;
 		this.cliente = cliente;
 		this.contrasenia = contrasenia;
 		this.tipoUsuario = tipoUsuario;
@@ -83,6 +88,7 @@ public class Usuario
 
 	@Override
 	public String toString() {
-		return "Usuario [cliente=" + cliente + "]";
+		//return "Usuario [cliente=" + cliente + "]";
+		return "a";
 	}
 }

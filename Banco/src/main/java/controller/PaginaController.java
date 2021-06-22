@@ -10,7 +10,7 @@ public class PaginaController {
 	@RequestMapping("inicio.html")
 	public ModelAndView inicio() {
 		ModelAndView MV = new ModelAndView();
-		MV.setViewName("Pagina1");
+		MV.setViewName("login");
 		return MV;
 	}
 
@@ -20,5 +20,4 @@ public class PaginaController {
 		MV.setViewName("Pagina2");
 		return MV;
 	}
-	
 }
