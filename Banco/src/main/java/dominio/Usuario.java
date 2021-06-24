@@ -88,7 +88,14 @@ public class Usuario implements Serializable
 
 	@Override
 	public String toString() {
-		//return "Usuario [cliente=" + cliente + "]";
-		return "a";
+		return "Usuario [idUsuario=" + idUsuario + ", contrasenia=" + contrasenia + ", tipoUsuario=" + tipoUsuario
+				+ ", nombreUsuario=" + nombreUsuario + ", estado=" + estado + ", cliente=" + cliente + "]";
 	}
+
+//	@Override
+//	public String toString() {
+//		//return "Usuario [cliente=" + cliente + "]";
+//		return "a";
+//	}
+	
 }
