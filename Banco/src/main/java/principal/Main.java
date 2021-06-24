@@ -1,6 +1,10 @@
 package principal;
 
 import org.hibernate.Session;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
 import java.util.Date;
 import dao.ConfigHibernate;
 import dominio.Cliente;
@@ -11,12 +15,27 @@ import dominio.Movimiento;
 import dominio.Pais;
 import dominio.Provincia;
 import dominio.Usuario;
+import servicio.UsuarioServicio;
+import resources.Config;
 
 public class Main {
 
 	public static void main(String[] args)
 	{
-		agregarRegistros();
+
+		ApplicationContext appContext = new AnnotationConfigApplicationContext(Config.class); // con comas se pueden agregar mas archivos de appcontext
+		
+		UsuarioServicio s = (UsuarioServicio)appContext.getBean("serviceBean");
+		
+//		Usuario u = new Usuario(null, "ADMIN", 1, "admin", true);
+//		s.insertarUsuario(u);
+//		System.out.println("insertado");
+		
+		System.out.println(s.obtenerUsuarios().get(0).toString());
+		
+		 ((ConfigurableApplicationContext)(appContext)).close();
+		
+//		agregarRegistros();
 	}
 
 	public static void agregarRegistros() 
