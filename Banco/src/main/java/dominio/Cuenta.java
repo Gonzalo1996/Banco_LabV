@@ -127,7 +127,8 @@ public class Cuenta implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Cuenta [nroCuenta=" + nroCuenta + ", nombreCuenta=" + nombreCuenta + "]";
+		return "Cuenta [nroCuenta=" + nroCuenta + ", nombreCuenta=" + nombreCuenta + ", cbu=" + cbu + ", alias=" + alias
+				+ ", moneda=" + moneda + ", saldo=" + saldo + ", estado=" + estado + ", fechaCreacion=" + fechaCreacion
+				+ ", cliente=" + cliente + "]";
 	}
-	
 }

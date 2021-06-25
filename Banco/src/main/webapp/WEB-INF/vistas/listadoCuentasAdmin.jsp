@@ -17,7 +17,7 @@
 	
 	<div class="row">
 		<div class="col-md-12">
-			<form method="get" action="x">
+			<form method="get" action="redireccionar_pag2.html">
 				<div class="form-group row">
 						<label class="col-md-1 col-form-label" for="txtCuil">CUIL:</label>
 						<div class="col-sm-12 col-md-4">

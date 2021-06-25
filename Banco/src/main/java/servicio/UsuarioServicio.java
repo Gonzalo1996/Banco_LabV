@@ -23,7 +23,6 @@ public class UsuarioServicio{
 
 	public void insertarUsuario(Usuario usuario) {
 		 dataAccess.insertarUsuario(usuario);
-		
 	}
 
 	public void eliminarUsuario(Integer idUser) {
@@ -33,7 +32,5 @@ public class UsuarioServicio{
 
 	public void actualizarUsuario(Usuario usuario) {
 		dataAccess.actualizarUsuario(usuario);
-		
 	}
-
 }

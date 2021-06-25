@@ -6,6 +6,8 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.util.Date;
+import java.util.List;
+
 import dao.ConfigHibernate;
 import dominio.Cliente;
 import dominio.Cuenta;
@@ -15,27 +17,29 @@ import dominio.Movimiento;
 import dominio.Pais;
 import dominio.Provincia;
 import dominio.Usuario;
-import servicio.UsuarioServicio;
+import servicio.CuentaServicio;
+import servicio.MovimientoServicio;
 import resources.Config;
 
 public class Main {
 
 	public static void main(String[] args)
 	{
-
+		Date date = new Date("12/12/2020");
 		ApplicationContext appContext = new AnnotationConfigApplicationContext(Config.class); // con comas se pueden agregar mas archivos de appcontext
 		
-		UsuarioServicio s = (UsuarioServicio)appContext.getBean("serviceBean");
+		//Prueba listado cuentas
+		//CuentaServicio service = (CuentaServicio)appContext.getBean("serviceBeanCuenta");
+
+		 //System.out.println(service.obtenerCuenta(9999).get(0));
 		
-//		Usuario u = new Usuario(null, "ADMIN", 1, "admin", true);
-//		s.insertarUsuario(u);
-//		System.out.println("insertado");
-		
-		System.out.println(s.obtenerUsuarios().get(0).toString());
+		/*
+		for(Object[] obj: service.obtenerCuentaAtributo(9999)) {
+			System.out.println(obj[0] + " " + obj[1]);
+		}
+		*/
 		
 		 ((ConfigurableApplicationContext)(appContext)).close();
-		
-//		agregarRegistros();
 	}
 
 	public static void agregarRegistros() 

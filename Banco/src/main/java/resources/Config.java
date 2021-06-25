@@ -9,7 +9,12 @@ import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import dao.CuentaDao;
+import dao.MovimientoDao;
 import dao.UsuarioDao;
+import dominio.Movimiento;
+import servicio.CuentaServicio;
+import servicio.MovimientoServicio;
 import servicio.UsuarioServicio;
 
 @Configuration
@@ -24,6 +29,20 @@ public class Config {
 	}
 	
 	@Bean
+	public CuentaServicio serviceBeanCuenta() {
+		CuentaServicio c = new CuentaServicio();
+		c.setDataAccess(dataAccessBeanCuenta());
+		return c;
+	}
+	
+	@Bean
+	public MovimientoServicio serviceBeanMovimiento() {
+		MovimientoServicio m = new MovimientoServicio();
+		m.setDataAccess(dataAccessBeanMovimiento());;
+		return m;
+	}
+	
+	@Bean
 	public HibernateTransactionManager transactionManager() {
 		return new HibernateTransactionManager(sessionFactoryBean().getObject());
 	}
@@ -33,6 +52,20 @@ public class Config {
 		UsuarioDao u = new UsuarioDao();
 		u.setSessionFactory(sessionFactoryBean().getObject());
 		return u;
+	}
+	
+	@Bean
+	public CuentaDao dataAccessBeanCuenta() {
+		CuentaDao c = new CuentaDao();
+		c.setSessionFactory(sessionFactoryBean().getObject());
+		return c;
+	}
+	
+	@Bean
+	public MovimientoDao dataAccessBeanMovimiento(){
+		MovimientoDao m = new MovimientoDao();
+		m.setSessionFactory(sessionFactoryBean().getObject());
+		return m;
 	}
 	
 	@Bean
@@ -52,10 +85,9 @@ public class Config {
 	
 	@Bean
 	public DriverManagerDataSource dataSourceBean() {
-		DriverManagerDataSource r = new DriverManagerDataSource("jdbc:mysql://localhost:3306/Banco?createDatabaseIfNotExist=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "admin", "passw0rd");
+		DriverManagerDataSource r = new DriverManagerDataSource("jdbc:mysql://localhost:3306/Banco?createDatabaseIfNotExist=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "ROOT");
 		r.setDriverClassName("com.mysql.jdbc.Driver");
 		
 		return r;
 	}
-	
 }

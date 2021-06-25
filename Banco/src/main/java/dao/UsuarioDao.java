@@ -20,7 +20,6 @@ public class UsuarioDao {
 	@Transactional(propagation=Propagation.REQUIRED)
 	public void insertarUsuario(Usuario usuario) {
 		this.hibernateTemplate.save(usuario);
-		
 	}
 
 	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)

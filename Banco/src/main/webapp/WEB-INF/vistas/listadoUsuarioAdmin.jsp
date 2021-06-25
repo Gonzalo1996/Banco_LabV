@@ -65,65 +65,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                        
-                            <tr>
-								<td>Gonzalo</td>
-								<td>Alderete</td>
-								<td>410001</td>
-								<td>20413333</td>
-								<td>Garin</td>
-								<td>Calle falsa 123</td>
-								<td>gonza@gmail.com</td>
-								<td><button type="submit" class="btn btn-primary"><span class="fa fa-pencil"></span></button></td>
-								<td><button type="submit" class="btn btn-info"><span class="fa fa-trash"></span></button></td>
-                            </tr>                       
-                         
-                            <tr>
-								<td>Marcos</td>
-								<td>Vera</td>
-								<td>430101</td>
-								<td>204301015</td>
-								<td>Don torcuato</td>
-								<td>Calle falsa 456</td>
-								<td>marcos@gmail.com</td>
-								<td><button type="submit" class="btn btn-primary"><span class="fa fa-pencil"></span></button></td>
-								<td><button type="submit" class="btn btn-info"><span class="fa fa-trash"></span></button></td>
-                            </tr>
-
-                            <tr>
-								<td>Mauricio</td>
-								<td>Molina</td>
-								<td>40184763</td>
-								<td>204018015</td>
-								<td>José c paz</td>
-								<td>Calle falsa 768</td>
-								<td>mauricio@gmail.com</td>
-								<td><button type="submit" class="btn btn-primary"><span class="fa fa-pencil"></span></button></td>
-								<td><button type="submit" class="btn btn-info"><span class="fa fa-trash"></span></button></td>
-                            </tr>
-                            <tr>
-								<td>Juan</td>
-								<td>Gonzalez</td>
-								<td>42184763</td>
-								<td>20421847635</td>
-								<td>San miguel</td>
-								<td>Calle falsa 678</td>
-								<td>juan@gmail.com</td>
-								<td><button type="submit" class="btn btn-primary"><span class="fa fa-pencil"></span></button></td>
-								<td><button type="submit" class="btn btn-info"><span class="fa fa-trash"></span></button></td>
-                            </tr>
-                            
-                             <tr>
-								<td>Jose</td>
-								<td>Rodriguez</td>
-								<td>41184763</td>
-								<td>20421847635</td>
-								<td>San miguel</td>
-								<td>Calle falsa 123</td>
-								<td>jose@gmail.com</td>
-								<td><button type="submit" class="btn btn-primary"><span class="fa fa-pencil"></span></button></td>
-								<td><button type="submit" class="btn btn-info"><span class="fa fa-trash"></span></button></td>
-                            </tr>
+							<c:forEach items="${listaUsuarios}" var="item">
+							<tr class="w3-hover-orange">
+									<td>${item.getContrasenia}</td>
+									<td>${item.getEstado}</td>
+									<td><button type="submit" class="btn btn-primary"><span class="fa fa-pencil"></span></button></td>
+									<td><button type="submit" class="btn btn-info"><span class="fa fa-trash"></span></button></td>
+							</tr>
+							</c:forEach>
 
                         </tbody>        
                        </table>                  
