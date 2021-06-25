@@ -2,16 +2,12 @@ package dao;
 
 import java.util.*;
 import java.util.ArrayList;
-import dao.ConfigHibernate;
 
 import org.hibernate.SessionFactory;
 import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.mysql.cj.Query;
-
-import org.hibernate.Session;
 
 
 import dominio.Cuenta;

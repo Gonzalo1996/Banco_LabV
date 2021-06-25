@@ -8,7 +8,6 @@ import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import dominio.Cuenta;
 import dominio.Movimiento;
 
 public class MovimientoDao {
