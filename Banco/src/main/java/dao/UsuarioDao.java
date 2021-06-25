@@ -23,25 +23,19 @@ public class UsuarioDao {
 	}
 
 	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
-	public Usuario obtenerUsuarioPorNombre(String nombreUser) {
-		return this.hibernateTemplate.get(Usuario.class, nombreUser);
-	}
-
-	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
 	public ArrayList<Usuario> obtenerUsuarios() {
 		return (ArrayList<Usuario>) this.hibernateTemplate.loadAll(Usuario.class);
 	}
-
+	
+	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
+	public Usuario obtenerUsuarioPorId(Integer id) {
+		return this.hibernateTemplate.get(Usuario.class, id);
+	}
 	
 	@Transactional(propagation=Propagation.REQUIRES_NEW)
-	public void eliminarUsuario(Integer idUsuario) {
-		Usuario user = new Usuario();
-		user.setIdUsuario(idUsuario);
-		this.hibernateTemplate.delete(user);
-	}
-
-	@Transactional(propagation=Propagation.REQUIRED)
-	public void actualizarUsuario(Usuario persona) {
-		this.hibernateTemplate.update(persona);
+	public void actualizarEstadoUsuario(Integer idUsuario, Boolean estado) {
+		Usuario user = obtenerUsuarioPorId(idUsuario);
+		user.setEstado(estado);
+		this.hibernateTemplate.update(user);
 	}
 }

@@ -26,11 +26,15 @@ public class MovimientoServicio {
 		return dataAccess.obtenerMovimientosAtributos();
 	}
 	
-	public List<Object[]> obtenerMovimiento(int id) {
+	public Movimiento obtenerMovimiento(Integer id){
 		return dataAccess.obtenerMovimiento(id);
 	}
 	
 	public List<Object[]> obtenerMovimientoAtributo(int id){
 		return dataAccess.obtenerMovimientoAtributo(id);
+	}
+	
+	public void actualizarDetalleMovimiento(Integer id, String detalle) {
+		dataAccess.actualizarDetalleMovimiento(id, detalle);
 	}
 }

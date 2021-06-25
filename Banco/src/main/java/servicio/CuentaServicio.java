@@ -26,12 +26,20 @@ public class CuentaServicio {
 		return dataAccess.obtenerCuentasAtributos();
 	}
 	
-	public List<Object[]> obtenerCuenta(Integer nroCuenta) {
+	public  Cuenta obtenerCuenta(Integer nroCuenta) {
 		return dataAccess.obtenerCuenta(nroCuenta);
 	}
 	
 	public List<Object[]> obtenerCuentaAtributo(Integer nroCuenta){
 		return dataAccess.obtenerCuentaAtributo(nroCuenta);
+	}
+	
+	public void actualizarEstadoCuenta(Integer nroCuenta, Boolean estado) {
+		dataAccess.actualizarEstadoCuenta(nroCuenta, estado);
+	}
+	
+	public void actualizarAlias(Integer nroCuenta, String alias) {
+		dataAccess.actualizarAlias(nroCuenta, alias);
 	}
 
 }

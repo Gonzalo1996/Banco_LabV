@@ -8,6 +8,7 @@ import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import dominio.Cuenta;
 import dominio.Movimiento;
 
 public class MovimientoDao {
@@ -36,10 +37,8 @@ public class MovimientoDao {
 	}
 	
 	@Transactional(propagation=Propagation.REQUIRED)
-	public List<Object[]> obtenerMovimiento(int id) {
-		String query = "FROM Movimiento WHERE id= ?";
-		Object[] queryParam = {id};
-		return (List<Object[]>) this.hibernateTemplate.find(query, queryParam);
+	public Movimiento obtenerMovimiento(Integer id) {
+		return this.hibernateTemplate.get(Movimiento.class, id);
 	}
 	
 	@Transactional(propagation=Propagation.REQUIRED)
@@ -47,5 +46,12 @@ public class MovimientoDao {
 		String query = "SELECT m.detalle, m.monto FROM Movimiento m WHERE id= ?";
 		Object[] queryParam = {id};
 		return (List<Object[]>) this.hibernateTemplate.find(query, queryParam);
+	}
+	
+	@Transactional(propagation=Propagation.REQUIRES_NEW)
+	public void actualizarDetalleMovimiento(Integer id, String detalle) {
+		Movimiento movimiento = obtenerMovimiento(id);
+		movimiento.setDetalle(detalle);
+		this.hibernateTemplate.update(movimiento);
 	}
 }

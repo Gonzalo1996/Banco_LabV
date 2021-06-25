@@ -17,20 +17,15 @@ public class UsuarioServicio{
 		return dataAccess.obtenerUsuarios();
 	}
 
-	public Usuario obtenerUnRegistro(String nombreUser) {
-		return dataAccess.obtenerUsuarioPorNombre(nombreUser);
-	}
-
 	public void insertarUsuario(Usuario usuario) {
 		 dataAccess.insertarUsuario(usuario);
 	}
 
-	public void eliminarUsuario(Integer idUser) {
-		dataAccess.eliminarUsuario(idUser);
-		
+	public Usuario obtenerUsuarioPorId(Integer id) {
+		return dataAccess.obtenerUsuarioPorId(id);
 	}
-
-	public void actualizarUsuario(Usuario usuario) {
-		dataAccess.actualizarUsuario(usuario);
+	
+	public void actualizarEstadoUsuario(Integer idUsuario, Boolean estado) {
+		dataAccess.actualizarEstadoUsuario(idUsuario, estado);
 	}
 }

@@ -19,6 +19,7 @@ import dominio.Provincia;
 import dominio.Usuario;
 import servicio.CuentaServicio;
 import servicio.MovimientoServicio;
+import servicio.UsuarioServicio;
 import resources.Config;
 
 public class Main {
@@ -27,6 +28,10 @@ public class Main {
 	{
 		Date date = new Date("12/12/2020");
 		ApplicationContext appContext = new AnnotationConfigApplicationContext(Config.class); // con comas se pueden agregar mas archivos de appcontext
+		MovimientoServicio service = (MovimientoServicio)appContext.getBean("serviceBeanMovimiento");
+
+		service.actualizarDetalleMovimiento(2, "Nuevo detalle");
+		System.out.println("Actualizado");
 		
 		//Prueba listado cuentas
 		//CuentaServicio service = (CuentaServicio)appContext.getBean("serviceBeanCuenta");
