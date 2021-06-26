@@ -9,11 +9,15 @@ import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import dao.ClienteDao;
 import dao.CuentaDao;
+import dao.GeneroDao;
 import dao.MovimientoDao;
 import dao.UsuarioDao;
 import dominio.Movimiento;
+import servicio.ClienteServicio;
 import servicio.CuentaServicio;
+import servicio.GeneroServicio;
 import servicio.MovimientoServicio;
 import servicio.UsuarioServicio;
 
@@ -33,6 +37,20 @@ public class Config {
 		CuentaServicio c = new CuentaServicio();
 		c.setDataAccess(dataAccessBeanCuenta());
 		return c;
+	}
+	
+	@Bean
+	public ClienteServicio serviceBeanCliente() {
+		ClienteServicio f = new ClienteServicio();
+		f.setDataAccess(dataAccessBeanCliente());
+		return f;
+	}
+	
+	@Bean
+	public GeneroServicio serviceBeanGenero() {
+		GeneroServicio a = new GeneroServicio();
+		a.setDataAccess(dataAccessBeanGenero());
+		return a;
 	}
 	
 	@Bean
@@ -59,6 +77,21 @@ public class Config {
 		CuentaDao c = new CuentaDao();
 		c.setSessionFactory(sessionFactoryBean().getObject());
 		return c;
+	}
+	
+	
+	@Bean
+	public ClienteDao dataAccessBeanCliente() {
+		ClienteDao c = new ClienteDao();
+		c.setSessionFactory(sessionFactoryBean().getObject());
+		return c;
+	}
+	
+	@Bean
+	public GeneroDao dataAccessBeanGenero() {
+		GeneroDao a = new GeneroDao();
+		a.setSessionFactory(sessionFactoryBean().getObject());
+		return a;
 	}
 	
 	@Bean

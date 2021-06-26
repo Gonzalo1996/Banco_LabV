@@ -26,6 +26,7 @@ public class Main {
 
 	public static void main(String[] args)
 	{
+		
 		Date date = new Date("12/12/2020");
 		ApplicationContext appContext = new AnnotationConfigApplicationContext(Config.class); // con comas se pueden agregar mas archivos de appcontext
 		MovimientoServicio service = (MovimientoServicio)appContext.getBean("serviceBeanMovimiento");
