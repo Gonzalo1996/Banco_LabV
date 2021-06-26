@@ -16,6 +16,7 @@ import dao.LocalidadDao;
 import dao.MovimientoDao;
 import dao.ProvinciaDao;
 import dao.UsuarioDao;
+import dao.PaisDao;
 import dominio.Movimiento;
 import servicio.ClienteServicio;
 import servicio.CuentaServicio;
@@ -24,6 +25,7 @@ import servicio.LocalidadServicio;
 import servicio.MovimientoServicio;
 import servicio.ProvinciaServicio;
 import servicio.UsuarioServicio;
+import servicio.PaisServicio;
 
 @Configuration
 @EnableTransactionManagement
@@ -78,11 +80,17 @@ public class Config {
 		return loc;
 	}
 	
+	public PaisServicio serviceBeanPais() {
+		PaisServicio p = new PaisServicio();
+		p.setDataAccess(dataAccessBeanPais());
+		return p;
+}
+	
 	@Bean
 	public HibernateTransactionManager transactionManager() {
 		return new HibernateTransactionManager(sessionFactoryBean().getObject());
 	}
-	
+/*------------------------------- DATA ACCESS------------------------------*/
 	@Bean
 	public UsuarioDao dataAccessBean() {
 		UsuarioDao u = new UsuarioDao();
@@ -131,6 +139,12 @@ public class Config {
 		LocalidadDao loc = new LocalidadDao();
 		loc.setSessionFactory(sessionFactoryBean().getObject());
 		return loc;
+	}
+	
+	public PaisDao dataAccessBeanPais(){
+		PaisDao pais = new PaisDao();
+		pais.setSessionFactory(sessionFactoryBean().getObject());
+		return pais;
 	}
 	
 	@Bean
