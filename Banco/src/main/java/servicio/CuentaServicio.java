@@ -34,6 +34,14 @@ public class CuentaServicio {
 		return dataAccess.obtenerCuentaAtributo(nroCuenta);
 	}
 	
+	public List<Object[]> obtenerCuentasPorCliente(Integer dni) {
+		return dataAccess.obtenerCuentasPorCliente(dni);
+	}
+	
+	public ArrayList<Cuenta> obtenerCuentasPorTipo(Integer moneda) { 
+		return (ArrayList<Cuenta>) dataAccess.obtenerCuentasPorTipo(moneda);
+	}
+	
 	public void actualizarEstadoCuenta(Integer nroCuenta, Boolean estado) {
 		dataAccess.actualizarEstadoCuenta(nroCuenta, estado);
 	}
@@ -41,5 +49,4 @@ public class CuentaServicio {
 	public void actualizarAlias(Integer nroCuenta, String alias) {
 		dataAccess.actualizarAlias(nroCuenta, alias);
 	}
-
 }

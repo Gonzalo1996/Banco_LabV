@@ -8,10 +8,7 @@ import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-
-
 import dominio.Cuenta;
-import dominio.Usuario;
 
 public class CuentaDao {
 	
@@ -49,6 +46,21 @@ public class CuentaDao {
 		Object[] queryParam = {p_nroCuenta};
 		
 		return (List<Object[]>) this.hibernateTemplate.find(query, queryParam);
+	}
+	
+	@Transactional(propagation=Propagation.REQUIRED)
+	public List<Object[]> obtenerCuentasPorCliente(Integer dni) {
+		String query = "FROM Cuenta as c INNER JOIN c.cliente WHERE c.cliente.dni = ?";
+		//String query = "SELECT c.nroCuenta, c.alias FROM Cuenta as c INNER JOIN c.cliente WHERE c.cliente.dni = ?";
+		Object[] queryParam = {dni};
+		return (List<Object[]>) this.hibernateTemplate.find(query, queryParam);
+	}
+	
+	@Transactional(propagation=Propagation.REQUIRED)
+	public ArrayList<Cuenta> obtenerCuentasPorTipo(Integer moneda) {
+		String query = "FROM Cuenta as c WHERE c.moneda=?";
+		Object[] queryParam = {moneda};
+		return (ArrayList<Cuenta>) this.hibernateTemplate.find(query, queryParam);
 	}
 	
 	@Transactional(propagation=Propagation.REQUIRES_NEW)

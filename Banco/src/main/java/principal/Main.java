@@ -6,7 +6,6 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.util.Date;
-import java.util.List;
 
 import dao.ConfigHibernate;
 import dominio.Cliente;
@@ -17,9 +16,7 @@ import dominio.Movimiento;
 import dominio.Pais;
 import dominio.Provincia;
 import dominio.Usuario;
-import servicio.CuentaServicio;
 import servicio.MovimientoServicio;
-import servicio.UsuarioServicio;
 import resources.Config;
 
 public class Main {
@@ -31,21 +28,12 @@ public class Main {
 		ApplicationContext appContext = new AnnotationConfigApplicationContext(Config.class); // con comas se pueden agregar mas archivos de appcontext
 		MovimientoServicio service = (MovimientoServicio)appContext.getBean("serviceBeanMovimiento");
 
-		service.actualizarDetalleMovimiento(2, "Nuevo detalle");
-		System.out.println("Actualizado");
-		
-		//Prueba listado cuentas
-		//CuentaServicio service = (CuentaServicio)appContext.getBean("serviceBeanCuenta");
-
-		 //System.out.println(service.obtenerCuenta(9999).get(0));
-		
-		/*
-		for(Object[] obj: service.obtenerCuentaAtributo(9999)) {
+		for(Object[] obj: service.obtenerMovimientoPorCuenta(13310)) {
 			System.out.println(obj[0] + " " + obj[1]);
 		}
-		*/
-		
-		 ((ConfigurableApplicationContext)(appContext)).close();
+
+		 ((ConfigurableApplicationContext)(appContext)).close(); 
+		 
 	}
 
 	public static void agregarRegistros() 
@@ -133,18 +121,20 @@ public class Main {
     	Cuenta cuenta6 = new Cuenta (17710, "1010177010", "winrar.rawson", 1, 1004.5, true, cliente6, date, "C/ahorro");
     	Cuenta cuenta7 = new Cuenta (18110, "19181010", "winrar.doc", 1, 1004.5, true, cliente7, date, "C/ahorro");
     	Cuenta cuenta8 = new Cuenta (18419, "19171010", "winrar.rar", 1, 1004.5, true, cliente8, date, "C/ahorro");
-    	Cuenta cuenta9 = new Cuenta (18810, "101071910", "winrar.png", 1, 1094.5, true, cliente9, date, "C/ahorro");
+    	Cuenta cuenta9 = new Cuenta (18810, "101071910", "winrar.png", 1, 1094.5, true, cliente4, date, "C/ahorro");
 
+    	
     	Movimiento movimiento = new Movimiento(1, 10101.7 , 50005.7 , date, "deuda", cuenta);
     	Movimiento movimiento1 = new Movimiento(2, 12001.7 , 50005.7 , date, "prestamo", cuenta1);
     	Movimiento movimiento2 = new Movimiento(3, 13001.7 , 50005.7 , date, "ayuda", cuenta2);
     	Movimiento movimiento3 = new Movimiento(4, 10401.7 , 50005.7 , date, "aporte", cuenta3);
     	Movimiento movimiento4 = new Movimiento(5, 14001.7 , 50005.7 , date, "pack futbol", cuenta4);
-    	Movimiento movimiento5 = new Movimiento(6, 15001.7 , 50005.7 , date, "deuda 2", cuenta5);
+    	Movimiento movimiento5 = new Movimiento(6, 15001.7 , 50005.7 , date, "deuda 2", cuenta4);
     	Movimiento movimiento6 = new Movimiento(7, 10501.7 , 50005.7 , date, "particular", cuenta6);
     	Movimiento movimiento7 = new Movimiento(8, 10401.7 , 50005.7 , date, "bono", cuenta7);
     	Movimiento movimiento8 = new Movimiento(9, 1031.7 , 50005.7 , date, "Cuota tusi", cuenta8);
     	Movimiento movimiento9 = new Movimiento(0, 10101.7 , 50005.7 , date, "deuda", cuenta9);
+    	
 
 		session.save(movimiento);
 		session.save(movimiento1);
