@@ -12,13 +12,17 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import dao.ClienteDao;
 import dao.CuentaDao;
 import dao.GeneroDao;
+import dao.LocalidadDao;
 import dao.MovimientoDao;
+import dao.ProvinciaDao;
 import dao.UsuarioDao;
 import dominio.Movimiento;
 import servicio.ClienteServicio;
 import servicio.CuentaServicio;
 import servicio.GeneroServicio;
+import servicio.LocalidadServicio;
 import servicio.MovimientoServicio;
+import servicio.ProvinciaServicio;
 import servicio.UsuarioServicio;
 
 @Configuration
@@ -61,6 +65,20 @@ public class Config {
 	}
 	
 	@Bean
+	public ProvinciaServicio serviceBeanProvincia() {
+		ProvinciaServicio prov = new ProvinciaServicio();
+		prov.setDataAccess(dataAccessBeanProvincia());;
+		return prov;
+	}
+	
+	@Bean
+	public LocalidadServicio serviceBeanLocalidad() {
+		LocalidadServicio loc = new LocalidadServicio();
+		loc.setDataAccess(dataAccessBeanLocalidad());;
+		return loc;
+	}
+	
+	@Bean
 	public HibernateTransactionManager transactionManager() {
 		return new HibernateTransactionManager(sessionFactoryBean().getObject());
 	}
@@ -99,6 +117,20 @@ public class Config {
 		MovimientoDao m = new MovimientoDao();
 		m.setSessionFactory(sessionFactoryBean().getObject());
 		return m;
+	}
+	
+	@Bean
+	public ProvinciaDao dataAccessBeanProvincia(){
+		ProvinciaDao prov = new ProvinciaDao();
+		prov.setSessionFactory(sessionFactoryBean().getObject());
+		return prov;
+	}
+	
+	@Bean
+	public LocalidadDao dataAccessBeanLocalidad(){
+		LocalidadDao loc = new LocalidadDao();
+		loc.setSessionFactory(sessionFactoryBean().getObject());
+		return loc;
 	}
 	
 	@Bean
