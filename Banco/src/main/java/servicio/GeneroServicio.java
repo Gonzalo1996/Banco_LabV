@@ -22,6 +22,6 @@ public class GeneroServicio {
 	
 	public  Genero obtenerGenero(Integer nroGenero) {
 		return dataAccess.obtenerGenero(nroGenero);
-	}
+	} 
 	
 }
