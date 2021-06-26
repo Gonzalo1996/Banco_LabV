@@ -48,5 +48,4 @@ public class ClienteDao {
 		
 		return (List<Object[]>) this.hibernateTemplate.find(query, queryParam);
 	}
-	
 }

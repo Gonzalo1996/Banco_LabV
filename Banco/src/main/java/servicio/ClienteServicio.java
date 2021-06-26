@@ -35,5 +35,4 @@ private ClienteDao dataAccess = null;
 		return dataAccess.obtenerClienteAtributos(dni);
 	}
 
-	
 }

@@ -31,4 +31,5 @@ public class GeneroDao {
 	public Genero obtenerGenero(Integer codGenero) {
 		return this.hibernateTemplate.get(Genero.class, codGenero);
 	}
+	
 }
