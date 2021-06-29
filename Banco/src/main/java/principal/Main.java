@@ -8,6 +8,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import java.util.Date;
 
 import dao.ConfigHibernate;
+import dao.UsuarioDao;
 import dominio.Cliente;
 import dominio.Cuenta;
 import dominio.Genero;
@@ -16,8 +17,9 @@ import dominio.Movimiento;
 import dominio.Pais;
 import dominio.Provincia;
 import dominio.Usuario;
+import servicio.CuentaServicio;
 import servicio.MovimientoServicio;
-import resources.Config;
+//import resources.Config;
 
 public class Main {
 
@@ -27,11 +29,12 @@ public class Main {
 		Date date = new Date("12/12/2020");
 		ApplicationContext appContext = new AnnotationConfigApplicationContext(Config.class); // con comas se pueden agregar mas archivos de appcontext
 		MovimientoServicio service = (MovimientoServicio)appContext.getBean("serviceBeanMovimiento");
-
-		for(Object[] obj: service.obtenerMovimientoPorCuenta(13310)) {
-			System.out.println(obj[0] + " " + obj[1]);
-		}
-
+		CuentaServicio service2 = (CuentaServicio)appContext.getBean("serviceBeanCuenta");
+		
+		Movimiento movimiento = new Movimiento(10, 100.0, 100.1, date, "MovimientoPrueba", service2.obtenerCuenta(18810));
+		service.insertarMovimiento(movimiento);
+		System.out.println("Insertado");
+		
 		 ((ConfigurableApplicationContext)(appContext)).close(); 
 		 
 	}

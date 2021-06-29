@@ -2,6 +2,14 @@ package servicio;
 
 import java.util.ArrayList;
 
+import javax.transaction.Transactional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+
 import dao.UsuarioDao;
 import dominio.Usuario;
 
@@ -16,7 +24,7 @@ public class UsuarioServicio{
 	public ArrayList<Usuario> obtenerUsuarios() {
 		return dataAccess.obtenerUsuarios();
 	}
-
+	
 	public void insertarUsuario(Usuario usuario) {
 		 dataAccess.insertarUsuario(usuario);
 	}

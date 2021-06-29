@@ -20,7 +20,6 @@
   
    <!-- Bootstrap CSS -->
     <script src="content/nav/icons.js"></script>
-    
 </head>
 <body class="hold-transition login-page" background="content/images/fondo.jpg" style="background-size: cover">
 <div class="login-box">
@@ -29,8 +28,8 @@
     <div class= "col-md-12">
     	<img src="content/images/logo.png" width="160px" height="160px"></img>
     </div>
-    
-  </div>
+
+		</div>
   <!-- /.login-logo -->
   <div class="card" >
     <div class="card-body login-card-body" style="border-radius: 44px">
