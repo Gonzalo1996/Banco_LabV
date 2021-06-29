@@ -45,7 +45,12 @@
 				<beans:value>banco.model.Cuenta</beans:value>
 				<beans:value>banco.model.Movimiento</beans:value>
 				<beans:value>banco.model.Usuario</beans:value>
-				<beans:value>banco.model.Cliente</beans:value>																					
+				<beans:value>banco.model.Cliente</beans:value>	
+				
+				
+				<beans:value>banco.model.Pais</beans:value>
+				<beans:value>banco.model.Provincia</beans:value>
+				<beans:value>banco.model.Localidad</beans:value>																				
 			</beans:list>
 		</beans:property>
 		<beans:property name="hibernateProperties">
@@ -104,6 +109,31 @@
 	
 	<beans:bean id="clienteService" class="banco.service.ClienteServiceImpl">
 		<beans:property name="clienteDao" ref="clienteDAO"></beans:property>
+	</beans:bean>
+	
+	<!-- José -->
+	<beans:bean id="paisDAO" class="banco.dao.PaisDAOImpl">
+		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</beans:bean>
+	
+	<beans:bean id="paisService" class="banco.service.PaisServiceImpl">
+		<beans:property name="paisDao" ref="paisDAO"></beans:property>
+	</beans:bean>
+	
+	<beans:bean id="provinciaDAO" class="banco.dao.ProvinciaDAOImpl">
+		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</beans:bean>
+	
+	<beans:bean id="provinciaService" class="banco.service.ProvinciaServiceImpl">
+		<beans:property name="provinciaDao" ref="provinciaDAO"></beans:property>
+	</beans:bean>
+	
+	<beans:bean id="localidadDAO" class="banco.dao.LocalidadDAOImpl">
+		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</beans:bean>
+	
+	<beans:bean id="localidadService" class="banco.service.LocalidadServiceImpl">
+		<beans:property name="localidadDao" ref="localidadDAO"></beans:property>
 	</beans:bean>
 	
 	<context:component-scan base-package="banco" />

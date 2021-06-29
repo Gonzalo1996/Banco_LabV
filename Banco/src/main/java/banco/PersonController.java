@@ -8,16 +8,26 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import banco.model.Person;
 import banco.service.GeneroService;
+import banco.service.LocalidadService;
+import banco.service.PaisService;
 import banco.service.PersonService;
+import banco.service.ProvinciaService;
 
 @Controller
 public class PersonController {
 	
 	private PersonService personService;
 	private GeneroService generoService;
+	
+	// José
+	private PaisService paisService;
+	private ProvinciaService provinciaService;
+	private LocalidadService localidadService;
+	
 	
 	@Autowired(required=true)
 	@Qualifier(value="personService")
@@ -31,10 +41,42 @@ public class PersonController {
 		this.generoService = g;
 	}
 	
+	//----------------------------------------------//
+	//José
+	@Autowired(required=true)
+	@Qualifier(value="paisService")
+	public void setPaisService(PaisService paisService) {
+		this.paisService = paisService;
+	}
+	
+	@Autowired(required=true)
+	@Qualifier(value="provinciaService")
+	public void setProvinciaService(ProvinciaService provinciaService) {
+		this.provinciaService = provinciaService;
+	}
+	
+	@Autowired(required=true)
+	@Qualifier(value="localidadService")
+	public void setLocalidadService(LocalidadService localidadService) {
+		this.localidadService = localidadService;
+	}
+	//----------------------------------------------//
+	
 	@RequestMapping(value="/inicio.html",method = RequestMethod.GET)
 	public String inicio(Model model) {
 		model.addAttribute("listGeneros", this.generoService.listGeneros());
 		model.addAttribute("generoUnico", this.generoService.obtenerGenero(2));
+		
+		model.addAttribute("listPais", this.paisService.listPais());
+		model.addAttribute("paisUnico", this.paisService.obtenerPais(1));
+		
+		model.addAttribute("listProvincias", this.provinciaService.listProvincias());
+		model.addAttribute("listProvincias2", this.provinciaService.listProvincias_x_Pais(1));
+		model.addAttribute("provinciaUnica", this.provinciaService.obtenerProvincia(1));
+		
+		model.addAttribute("listLocalidades", this.localidadService.listLocalidades());
+		model.addAttribute("listLocalidades2", this.localidadService.listLocalidades_x_Prov(3));
+		model.addAttribute("localidadUnica", this.localidadService.obtenerLocalidad(1));
 		return "test";
 	}
 	
