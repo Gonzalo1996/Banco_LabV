@@ -1,3 +1,6 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <t:base>
@@ -61,77 +64,33 @@
                  <thead>
                      <tr>
 						<th>Cuenta</th>
+						<th>Nombre</th>
+						<th>DNI dueño</th>
 						<th>CBU</th>
 						<th>Alias</th>
+						<th>Saldo</th>
 						<th>Moneda</th>
-						<th>Nombre</th>
-						<th>Apellido</th>
-						<th>Monto</th>
+						<th>Estado</th>
 						<th>Editar</th>
 						<th>Bloquear</th>
                      </tr>
                  </thead>
-                 <tbody>
-                 
-                     <tr>
-						<td>088-3863/4</td>
-						<td>0720088511</td>
-						<td>batman.robin.dc</td>
-						<td>Peso</td>
-						<td>Mauricio</td>
-						<td>Molina</td>
-						<td>5000</td>								
-						<td><button type="submit" class="btn btn-primary"><span class="fa fa-pencil"></span></button></td>
-						<td><button type="submit" class="btn btn-info"><span class="fa fa-ban"></span></button></td>
-                     </tr>                       
-                  
-                     <tr>
-						<td>088-3863/4</td>
-						<td>07100118</td>
-						<td>gato.perro.sapo</td>
-						<td>Peso</td>
-						<td>Juan</td>
-						<td>Gonzalez</td>
-						<td>1331</td>
-						<td><button type="submit" class="btn btn-primary"><span class="fa fa-pencil"></span></button></td>
-						<td><button type="submit" class="btn btn-info"><span class="fa fa-ban"></span></button></td>
-                     </tr>
-
-                     <tr>
-						<td>088-3863/4</td>
-						<td>07270111</td>
-						<td>boca.grande.primera</td>
-						<td>Dolar</td>
-						<td>Gonza</td>
-						<td>Alderete</td>
-						<td>9000</td>
-						<td><button type="submit" class="btn btn-primary"><span class="fa fa-pencil"></span></button></td>
-						<td><button type="submit" class="btn btn-info"><span class="fa fa-ban"></span></button></td>
-                     </tr>
-                     <tr>
-						<td>087-3863/4</td>
-						<td>07270221</td>
-						<td>river.nacional.b</td>
-						<td>Peso</td>
-						<td>Jose</td>
-						<td>Rodriguez</td>
-						<td>25000</td>
-						<td><button type="submit" class="btn btn-primary"><span class="fa fa-pencil"></span></button></td>
-						<td><button type="submit" class="btn btn-info"><span class="fa fa-ban"></span></button></td>
-                     </tr>
-                     
-                      <tr>
-						<td>081-3863/4</td>
-						<td>02273111</td>
-						<td>windows.pirata.siempre</td>
-						<td>Dolar</td>
-						<td>Marcos</td>
-						<td>Vera</td>
-						<td>30000</td>
-						<td><button type="submit" class="btn btn-primary"><span class="fa fa-pencil"></span></button></td>
-						<td><button type="submit" class="btn btn-info"><span class="fa fa-ban"></span></button></td>
-                     </tr>
-                 </tbody>        
+                 	<tbody>
+						<c:forEach items="${listCuentas}" var="c">
+							<tr>
+								<td>${c.nroCuenta}</td>
+								<td>${c.nombreCuenta}</td>
+								<td>${c.cliente.dni}</td>						
+								<td>${c.cbu}</td>
+								<td>${c.alias}</td>
+								<td>${c.saldo}</td>
+								<td>${c.moneda}</td>
+								<td>${c.estado}</td>
+								<td><button type="submit" class="btn btn-primary"><span class="fa fa-pencil"></span></button></td>
+								<td><button type="submit" class="btn btn-info"><span class="fa fa-trash"></span></button></td>
+							</tr>
+						</c:forEach>
+					</tbody>        
                 </table>                  
              </div>
          </div>

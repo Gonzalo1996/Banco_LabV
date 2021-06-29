@@ -128,6 +128,6 @@ public class Cuenta implements Serializable{
 
 	@Override
 	public String toString() {
-		return nroCuenta + " " + alias;
+		return nroCuenta + alias + cbu;
 	}
 }

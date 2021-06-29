@@ -26,13 +26,9 @@ public class PersonController {
 	
 	private PersonService personService;
 	private GeneroService generoService;
-	
-	// José
 	private PaisService paisService;
 	private ProvinciaService provinciaService;
 	private LocalidadService localidadService;
-	
-	//Mauricio
 	private UsuarioService usuarioService;
 	private ClienteService clienteService;
 	private CuentaService cuentaService;
@@ -49,9 +45,7 @@ public class PersonController {
 	public void setGeneroService(GeneroService g){
 		this.generoService = g;
 	}
-	
-	//----------------------------------------------//
-	//José
+
 	@Autowired(required=true)
 	@Qualifier(value="paisService")
 	public void setPaisService(PaisService paisService) {
@@ -69,9 +63,6 @@ public class PersonController {
 	public void setLocalidadService(LocalidadService localidadService) {
 		this.localidadService = localidadService;
 	}
-	//----------------------------------------------//
-	//----------------------------------------------//
-	//Mauricio
 	
 	@Autowired(required=true)
 	@Qualifier(value="usuarioService")
@@ -97,39 +88,34 @@ public class PersonController {
 		this.movimientoService = movimientoService;
 	}
 	
+	//REDIRECCIONES
 	@RequestMapping(value="/inicio.html",method = RequestMethod.GET)
-	public String inicio(Model model) {
-		
-		model.addAttribute("ClienteUnico", this.clienteService.obtenerCliente(31484777));
-		model.addAttribute("listClientes", this.clienteService.listClientes());
-		
-		model.addAttribute("UsuarioUnico", this.usuarioService.obtenerUsuario(3));
-		model.addAttribute("listUsuarios", this.usuarioService.listUsuarios());
-		model.addAttribute("UsuarioUnico", this.usuarioService.actualizarEstado(5, false));
-		
-		model.addAttribute("CuentaUnica", this.cuentaService.obtenerCuenta(18810));
+	public String inicio(Model model) {	
 		model.addAttribute("listCuentas", this.cuentaService.listCuentas());
-
-		model.addAttribute("MovimientUnico", this.movimientoService.obtenerMovimiento(5));
-		model.addAttribute("listMovimiento", this.movimientoService.listMovimientos());
-		
-		model.addAttribute("listGeneros", this.generoService.listGeneros());
-		model.addAttribute("generoUnico", this.generoService.obtenerGenero(2));
-		
-		model.addAttribute("listPais", this.paisService.listPais());
-		model.addAttribute("paisUnico", this.paisService.obtenerPais(1));
-		
-		model.addAttribute("listProvincias", this.provinciaService.listProvincias());
-		model.addAttribute("listProvincias2", this.provinciaService.listProvincias_x_Pais(1));
-		model.addAttribute("provinciaUnica", this.provinciaService.obtenerProvincia(1));
-		
-		model.addAttribute("listLocalidades", this.localidadService.listLocalidades());
-		model.addAttribute("listLocalidades2", this.localidadService.listLocalidades_x_Prov(3));
-		model.addAttribute("localidadUnica", this.localidadService.obtenerLocalidad(1));
-		return "test";
+		return "listadoCuentas";
+	}
+	
+	@RequestMapping(value="/listadoCuentas.html",method = RequestMethod.GET)
+	public String redireccionarListadoCuentas(Model model) {
+		model.addAttribute("listCuentas", this.cuentaService.listCuentas());
+		return "listadoCuentas";
+	}
+	@RequestMapping(value="/listadoClientes.html",method = RequestMethod.GET)
+	public String redireccionarListadoClientes(Model model) {
+		model.addAttribute("listClientes", this.clienteService.listClientes());
+		return "listadoClientes";
 	}
 
-	//redirecciona test2
+	@RequestMapping(value="/altaCliente.html",method = RequestMethod.GET)
+	public String redireccionarAltaCliente(Model model) {
+		return "altaCliente";
+	}
+	
+	@RequestMapping(value="/altaCuenta.html",method = RequestMethod.GET)
+	public String redireccionarAltaCuenta(Model model) {
+		return "altaCuenta";
+	}
+
 	@RequestMapping(value="/test2.html",method = RequestMethod.GET)
 	public String redireccionarTest2(Model model) {
 		model.addAttribute("listGeneros", this.generoService.listGeneros());
@@ -179,5 +165,39 @@ public class PersonController {
         model.addAttribute("listPersons", this.personService.listPersons());
         return "person";
     }
+    
+    /*
+	@RequestMapping(value="/inicio.html",method = RequestMethod.GET)
+	public String inicio(Model model) {
+		
+		model.addAttribute("ClienteUnico", this.clienteService.obtenerCliente(31484777));
+		model.addAttribute("listClientes", this.clienteService.listClientes());
+		
+		model.addAttribute("UsuarioUnico", this.usuarioService.obtenerUsuario(3));
+		model.addAttribute("listUsuarios", this.usuarioService.listUsuarios());
+		model.addAttribute("UsuarioUnico", this.usuarioService.actualizarEstado(5, false));
+		
+		model.addAttribute("CuentaUnica", this.cuentaService.obtenerCuenta(18810));
+		model.addAttribute("listCuentas", this.cuentaService.listCuentas());
+
+		model.addAttribute("MovimientUnico", this.movimientoService.obtenerMovimiento(5));
+		model.addAttribute("listMovimiento", this.movimientoService.listMovimientos());
+		
+		model.addAttribute("listGeneros", this.generoService.listGeneros());
+		model.addAttribute("generoUnico", this.generoService.obtenerGenero(2));
+		
+		model.addAttribute("listPais", this.paisService.listPais());
+		model.addAttribute("paisUnico", this.paisService.obtenerPais(1));
+		
+		model.addAttribute("listProvincias", this.provinciaService.listProvincias());
+		model.addAttribute("listProvincias2", this.provinciaService.listProvincias_x_Pais(1));
+		model.addAttribute("provinciaUnica", this.provinciaService.obtenerProvincia(1));
+		
+		model.addAttribute("listLocalidades", this.localidadService.listLocalidades());
+		model.addAttribute("listLocalidades2", this.localidadService.listLocalidades_x_Prov(3));
+		model.addAttribute("localidadUnica", this.localidadService.obtenerLocalidad(1));
+		return "listadoCuentasAdmin";
+	}
+	*/
 	
 }

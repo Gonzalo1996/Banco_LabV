@@ -58,16 +58,16 @@
          	<a href=""><i class="fas fa-home"></i>Inicio</a>
         </li>
         <li>
-          	<a href="altaCliente.jsp"><i class="fas fa-user-cog"></i>Alta Cliente</a>
+          	<a href="altaCliente.html"><i class="fas fa-user-cog"></i>Alta Cliente</a>
         </li>
         <li>
-       		<a href="altaCuenta.jsp"><i class="fas fa-hands-helping"></i>Alta cuenta</a>          
+       		<a href="altaCuenta.html"><i class="fas fa-hands-helping"></i>Alta cuenta</a>          
         </li>
         <li>
-          	<a href="listadoCuentasAdmin.jsp"><i class="fas fa-clipboard"></i>Listado Cuentas</a>
+          	<a href="listadoCuentas.html"><i class="fas fa-clipboard"></i>Listado Cuentas</a>
         </li>
         <li>
-          	<a href="listadoUsuarioAdmin.jsp"><i class="fa fa-address-book"></i>Listado Clientes</a>
+          	<a href="listadoClientes.html"><i class="fa fa-address-book"></i>Listado Clientes</a>
         </li>
         <li>
           	<a href=""><i class="fas fa-info"></i>About</a>

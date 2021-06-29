@@ -1,3 +1,6 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
@@ -12,7 +15,7 @@
      <div class="container"> 
      	<div class="row">
      		<div class="col-md-12">
-				<h3 style="font-family: 'Barlow', sans-serif">Listado de usuarios:</h3>				
+				<h3 style="font-family: 'Barlow', sans-serif">Listado de clientes:</h3>				
 			</div>
      	</div>
      
@@ -57,23 +60,29 @@
 								<th>Apellido</th>
 								<th>DNI</th>
 								<th>CUIL</th>
-								<th>Localidad</th>
-								<th>Dirección</th>
-								<th>Correo</th>
+								<th>Usuario</th>
+								<th>Correo</th>								
+								<th>Dirección</th>	
+								<th>Localidad</th>								
 								<th>Editar</th>
 								<th>Borrar</th>
                             </tr>
                         </thead>
                         <tbody>
-							<c:forEach items="${listaUsuarios}" var="item">
-							<tr class="w3-hover-orange">
-									<td>${item.getContrasenia}</td>
-									<td>${item.getEstado}</td>
+							<c:forEach items="${listClientes}" var="u">
+								<tr>
+									<td>${u.nombre}</td>
+									<td>${u.apellido}</td>
+									<td>${u.dni}</td>
+									<td>${u.cuil}</td>
+									<td>${u.usuario.nombreUsuario}</td>
+									<td>${u.correo}</td>
+									<td>${u.direccion}</td>
+									<td>${u.localidad}</td>					
 									<td><button type="submit" class="btn btn-primary"><span class="fa fa-pencil"></span></button></td>
 									<td><button type="submit" class="btn btn-info"><span class="fa fa-trash"></span></button></td>
-							</tr>
+								</tr>
 							</c:forEach>
-
                         </tbody>        
                        </table>                  
                     </div>
