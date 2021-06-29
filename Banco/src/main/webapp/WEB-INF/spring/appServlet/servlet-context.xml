@@ -41,7 +41,11 @@
 		<beans:property name="annotatedClasses">
 			<beans:list>
 				<beans:value>banco.model.Person</beans:value>
-				<beans:value>banco.model.Genero</beans:value>		
+				<beans:value>banco.model.Genero</beans:value>	
+				<beans:value>banco.model.Cuenta</beans:value>
+				<beans:value>banco.model.Movimiento</beans:value>
+				<beans:value>banco.model.Usuario</beans:value>
+				<beans:value>banco.model.Cliente</beans:value>																					
 			</beans:list>
 		</beans:property>
 		<beans:property name="hibernateProperties">
@@ -68,6 +72,38 @@
 	
 	<beans:bean id="generoService" class="banco.service.GeneroServiceImpl">
 		<beans:property name="generoDao" ref="generoDAO"></beans:property>
+	</beans:bean>
+	
+	<beans:bean id="cuentaDAO" class="banco.dao.CuentaDAOImpl">
+		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</beans:bean>
+	
+	<beans:bean id="cuentaService" class="banco.service.CuentaServiceImpl">
+		<beans:property name="cuentaDao" ref="cuentaDAO"></beans:property>
+	</beans:bean>
+	
+	<beans:bean id="movimientoDAO" class="banco.dao.MovimientoDAOImpl">
+		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</beans:bean>
+	
+	<beans:bean id="movimientoService" class="banco.service.MovimientoServiceImpl">
+		<beans:property name="movimientoDao" ref="movimientoDAO"></beans:property>
+	</beans:bean>
+	
+	<beans:bean id="usuarioDAO" class="banco.dao.UsuarioDAOImpl">
+		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</beans:bean>
+	
+	<beans:bean id="usuarioService" class="banco.service.UsuarioServiceImpl">
+		<beans:property name="usuarioDao" ref="usuarioDAO"></beans:property>
+	</beans:bean>
+	
+	<beans:bean id="clienteDAO" class="banco.dao.ClienteDAOImpl">
+		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</beans:bean>
+	
+	<beans:bean id="clienteService" class="banco.service.ClienteServiceImpl">
+		<beans:property name="clienteDao" ref="clienteDAO"></beans:property>
 	</beans:bean>
 	
 	<context:component-scan base-package="banco" />

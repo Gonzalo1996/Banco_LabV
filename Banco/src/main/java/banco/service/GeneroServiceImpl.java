@@ -28,5 +28,4 @@ public class GeneroServiceImpl implements GeneroService{
 	public Genero obtenerGenero(int id) {
 		return generoDao.obtenerGenero(id);
 	}
-
 }
