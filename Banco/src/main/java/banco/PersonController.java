@@ -8,12 +8,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
 import banco.model.Person;
 import banco.service.GeneroService;
 import banco.service.PersonService;
-import servicio.UsuarioServicio;
 
 @Controller
 public class PersonController {
@@ -33,17 +31,18 @@ public class PersonController {
 		this.generoService = g;
 	}
 	
+	@RequestMapping(value="/inicio.html",method = RequestMethod.GET)
+	public String inicio(Model model) {
+		model.addAttribute("listGeneros", this.generoService.listGeneros());
+		model.addAttribute("generoUnico", this.generoService.obtenerGenero(2));
+		return "test";
+	}
+	
 	//redirecciona test2
 	@RequestMapping(value="/test2.html",method = RequestMethod.GET)
 	public String redireccionarTest2(Model model) {
 		model.addAttribute("listGeneros", this.generoService.listGeneros());
 		return "test2";
-	}
-	
-	@RequestMapping(value="/inicio.html",method = RequestMethod.GET)
-	public String inicio(Model model) {
-		model.addAttribute("listGeneros", this.generoService.listGeneros());
-		return "test";
 	}
 	
 	@RequestMapping(value = "/generos", method = RequestMethod.GET)

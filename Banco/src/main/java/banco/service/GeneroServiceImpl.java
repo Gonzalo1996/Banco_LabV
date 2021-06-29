@@ -23,4 +23,10 @@ public class GeneroServiceImpl implements GeneroService{
 		return generoDao.listGeneros();
 	}
 
+	@Override
+	@Transactional
+	public Genero obtenerGenero(int id) {
+		return generoDao.obtenerGenero(id);
+	}
+
 }

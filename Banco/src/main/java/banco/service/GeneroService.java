@@ -6,5 +6,5 @@ import banco.model.Genero;
 
 public interface GeneroService {
 	public List<Genero> listGeneros();
-
+	public Genero obtenerGenero(int id);
 }

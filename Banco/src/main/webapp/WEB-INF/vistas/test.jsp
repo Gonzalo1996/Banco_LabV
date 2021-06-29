@@ -12,6 +12,8 @@
 </head>
 <body>
 
+	<h1>${generoUnico}</h1>
+
 <form:select path = "listGeneros">
    <form:option value = "NONE" label = "Seleccionar Genero"/>
    <form:options items = "${listGeneros}" />
