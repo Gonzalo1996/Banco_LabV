@@ -8,4 +8,5 @@ public interface UsuarioDAO
 {
 	public List<Usuario> listUsuarios();
 	public Usuario obtenerUsuario(int idUsuario);
+	public int actualizarEstado(int idUsuario, Boolean estado);
 }

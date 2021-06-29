@@ -28,4 +28,10 @@ public class UsuarioServiceImpl implements UsuarioService{
 	public Usuario obtenerUsuario(int idUsuario) {
 		return usuarioDao.obtenerUsuario(idUsuario);
 	}
+
+	@Override
+	@Transactional
+	public int actualizarEstado(int idUsuario, Boolean estado) {
+		return usuarioDao.actualizarEstado(idUsuario, estado);
+	}
 }

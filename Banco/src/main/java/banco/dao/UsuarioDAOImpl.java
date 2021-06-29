@@ -42,4 +42,13 @@ public class UsuarioDAOImpl implements UsuarioDAO{
 		Usuario u = (Usuario)query.uniqueResult();
 		return u;
 	}
+	
+	public int actualizarEstado(int p_idUsuario, Boolean p_estado) {
+		Session session = this.sessionFactory.getCurrentSession();
+		String q = "UPDATE Usuario set estado = :p_estado WHERE idUsuario= :p_idUsuario";
+		Query query = session.createQuery(q);
+		query.setParameter("p_idUsuario", p_idUsuario);
+		query.setParameter("p_estado", p_estado);
+		return query.executeUpdate();
+	}
 }

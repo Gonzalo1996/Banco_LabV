@@ -21,16 +21,15 @@ public class Usuario implements Serializable
 	private String nombreUsuario;
 	private Boolean estado;
 	
-	/*
+	
 	@OneToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name="dni")
 	private Cliente cliente;
-	*/
 	
 	public Usuario() {
 	}
 	
-	/*
+	
 	public Usuario(Cliente cliente, String contrasenia, Integer tipoUsuario, String nombreUsuario, Boolean estado) {
 		super();
 		this.cliente = cliente;
@@ -39,7 +38,6 @@ public class Usuario implements Serializable
 		this.nombreUsuario = nombreUsuario;
 		this.estado = estado;
 	}
-	*/
 
 	public Integer getIdUsuario() {
 		return idUsuario;
@@ -49,7 +47,7 @@ public class Usuario implements Serializable
 		this.idUsuario = idUsuario;
 	}
 
-	/*
+	
 	public Cliente getCliente() {
 		return cliente;
 	}
@@ -57,7 +55,7 @@ public class Usuario implements Serializable
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
-*/
+
 	public String getContrasenia() {
 		return contrasenia;
 	}
@@ -95,5 +93,4 @@ public class Usuario implements Serializable
 		return "Usuario [idUsuario=" + idUsuario + ", contrasenia=" + contrasenia + ", tipoUsuario=" + tipoUsuario
 				+ ", nombreUsuario=" + nombreUsuario + ", estado=" + estado;
 	}
-	
 }

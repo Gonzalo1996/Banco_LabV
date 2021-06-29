@@ -12,10 +12,43 @@
 </head>
 <body>
 
+	<h1>${CuentaUnica.alias}</h1>
 	<h1>${generoUnico}</h1>
 	<h1>${paisUnico}</h1>
 	<h1>${provinciaUnica}</h1>
 	<h1>${localidadUnica}</h1>
+	<h1>${MovimientUnico}</h1>
+	<h1>${UsuarioUnico}</h1>
+	<h1>${ClienteUnico}</h1>
+
+
+<!-- ALTERNATIVA SELECT -->
+<select>
+    <option value="" disabled selected>--Select Cuenta--</option>
+        <c:forEach items="${listCuentas}" var="cuenta" varStatus="status">
+            <option value="${cuenta.nroCuenta}"><c:out value="${cuenta.alias}"></c:out> </option>
+        </c:forEach>
+</select>
+
+<form:select path = "listClientes">
+   <form:option value = "NONE" label = "Seleccionar cliente"/>
+   <form:options items = "${listClientes}" />
+</form:select>
+	
+<form:select path = "listUsuarios">
+   <form:option value = "NONE" label = "Seleccionar usuario"/>
+   <form:options items = "${listUsuarios}" />
+</form:select>
+
+<form:select path = "listMovimiento">
+   <form:option value = "NONE" label = "Seleccionar movimiento"/>
+   <form:options items = "${listMovimiento}" />
+</form:select>
+	
+<form:select path = "listCuentas">
+   <form:option value = "NONE" label = "Seleccionar Cuenta"/>
+   <form:options items = "${listCuentas}" />
+</form:select>
 
 <form:select path = "listGeneros">
    <form:option value = "NONE" label = "Seleccionar Genero"/>

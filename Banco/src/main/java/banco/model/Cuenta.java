@@ -26,15 +26,15 @@ public class Cuenta implements Serializable{
 	private Boolean estado;
 	private Date fechaCreacion;
 	
-	/*
+	
 	@ManyToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name="dni")
 	private Cliente cliente;
-	*/
+	
 	public Cuenta(){
 	
 	}
-/*
+
 	public Cuenta(Integer nroCuenta, String cbu, String alias, Integer moneda, Double saldo, Boolean estado,
 			Cliente cliente, Date fechacreacion, String nombreCuenta) {
 		this.nroCuenta = nroCuenta;
@@ -47,7 +47,7 @@ public class Cuenta implements Serializable{
 		this.fechaCreacion = fechacreacion;
 		this.nombreCuenta =  nombreCuenta;
 	}
-*/	
+
 	public Cuenta(Integer nroCuenta, Integer moneda, Double saldo) {
 		this.nroCuenta = nroCuenta;
 		this.moneda = moneda;
@@ -117,7 +117,7 @@ public class Cuenta implements Serializable{
 	public void setEstado(Boolean estado) {
 		this.estado = estado;
 	}
-/*
+
 	public Cliente getCliente() {
 		return cliente;
 	}
@@ -125,11 +125,9 @@ public class Cuenta implements Serializable{
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
-*/
+
 	@Override
 	public String toString() {
-		return "Cuenta [nroCuenta=" + nroCuenta + ", nombreCuenta=" + nombreCuenta + ", cbu=" + cbu + ", alias=" + alias
-				+ ", moneda=" + moneda + ", saldo=" + saldo + ", estado=" + estado + ", fechaCreacion=" + fechaCreacion
-				+ ", cliente=" + "]";
+		return nroCuenta + " " + alias;
 	}
 }

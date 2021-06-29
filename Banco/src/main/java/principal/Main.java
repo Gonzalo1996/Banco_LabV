@@ -7,25 +7,13 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import java.util.Date;
 
-import dao.ConfigHibernate;
-import dao.UsuarioDao;
-import dominio.Cliente;
-import dominio.Cuenta;
-import dominio.Genero;
-import dominio.Localidad;
-import dominio.Movimiento;
-import dominio.Pais;
-import dominio.Provincia;
-import dominio.Usuario;
-import servicio.CuentaServicio;
-import servicio.MovimientoServicio;
 //import resources.Config;
 
 public class Main {
 
 	public static void main(String[] args)
 	{
-		
+		/*
 		Date date = new Date("12/12/2020");
 		ApplicationContext appContext = new AnnotationConfigApplicationContext(Config.class); // con comas se pueden agregar mas archivos de appcontext
 		MovimientoServicio service = (MovimientoServicio)appContext.getBean("serviceBeanMovimiento");
@@ -36,9 +24,9 @@ public class Main {
 		System.out.println("Insertado");
 		
 		 ((ConfigurableApplicationContext)(appContext)).close(); 
-		 
+		 */
 	}
-
+/*
 	public static void agregarRegistros() 
 	{		
 		ConfigHibernate ch = new ConfigHibernate();
@@ -152,5 +140,5 @@ public class Main {
 
 	   	session.getTransaction().commit();
     	session.close();
-	}
+	}*/
 }

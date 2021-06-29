@@ -17,7 +17,7 @@ public class Cliente implements Serializable{
     private String correo;
     private String direccion;
     
-    /*
+    
     @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "idProvincia")
     private Provincia provincia;
@@ -37,11 +37,11 @@ public class Cliente implements Serializable{
     @OneToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name="idUsuario")
     private Usuario usuario;
-    */
+    
     public Cliente() {
     	
     }
-/*
+
 	public Cliente(Integer dni, Integer cuil, String nombre, String apellido, Date fechaNacimiento, String correo,
 			String direccion, Pais pais, Localidad localidad, Provincia provincia, Genero genero, Usuario usuario) {
 		this.dni = dni;
@@ -57,7 +57,7 @@ public class Cliente implements Serializable{
 		this.genero = genero;
 		this.usuario = usuario;
 	}
-	*/
+	
 
 	public Integer getDni() {
 		return dni;
@@ -106,7 +106,7 @@ public class Cliente implements Serializable{
 	public void setCorreo(String correo) {
 		this.correo = correo;
 	}
-/*
+
 	public Localidad getLocalidad() {
 		return localidad;
 	}
@@ -151,6 +151,5 @@ public class Cliente implements Serializable{
 	@Override
 	public String toString() {
 		return "Cliente [dni=" + dni + ", nombre=" + nombre + ", apellido=" + apellido + "]";
-	}*/
-    
+	}
 }

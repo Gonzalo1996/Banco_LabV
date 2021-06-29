@@ -11,11 +11,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import banco.model.Person;
+import banco.service.ClienteService;
+import banco.service.CuentaService;
 import banco.service.GeneroService;
 import banco.service.LocalidadService;
+import banco.service.MovimientoService;
 import banco.service.PaisService;
 import banco.service.PersonService;
 import banco.service.ProvinciaService;
+import banco.service.UsuarioService;
 
 @Controller
 public class PersonController {
@@ -28,6 +32,11 @@ public class PersonController {
 	private ProvinciaService provinciaService;
 	private LocalidadService localidadService;
 	
+	//Mauricio
+	private UsuarioService usuarioService;
+	private ClienteService clienteService;
+	private CuentaService cuentaService;
+	private MovimientoService movimientoService;
 	
 	@Autowired(required=true)
 	@Qualifier(value="personService")
@@ -61,9 +70,49 @@ public class PersonController {
 		this.localidadService = localidadService;
 	}
 	//----------------------------------------------//
+	//----------------------------------------------//
+	//Mauricio
+	
+	@Autowired(required=true)
+	@Qualifier(value="usuarioService")
+	public void setUsuarioService(UsuarioService usuarioService) {
+		this.usuarioService = usuarioService;
+	}
+
+	@Autowired(required=true)
+	@Qualifier(value="clienteService")
+	public void setClienteService(ClienteService clienteService) {
+		this.clienteService = clienteService;
+	}
+
+	@Autowired(required=true)
+	@Qualifier(value="cuentaService")
+	public void setCuentaService(CuentaService cuentaService) {
+		this.cuentaService = cuentaService;
+	}
+
+	@Autowired(required=true)
+	@Qualifier(value="movimientoService")
+	public void setMovimientoService(MovimientoService movimientoService) {
+		this.movimientoService = movimientoService;
+	}
 	
 	@RequestMapping(value="/inicio.html",method = RequestMethod.GET)
 	public String inicio(Model model) {
+		
+		model.addAttribute("ClienteUnico", this.clienteService.obtenerCliente(31484777));
+		model.addAttribute("listClientes", this.clienteService.listClientes());
+		
+		model.addAttribute("UsuarioUnico", this.usuarioService.obtenerUsuario(3));
+		model.addAttribute("listUsuarios", this.usuarioService.listUsuarios());
+		model.addAttribute("UsuarioUnico", this.usuarioService.actualizarEstado(5, false));
+		
+		model.addAttribute("CuentaUnica", this.cuentaService.obtenerCuenta(18810));
+		model.addAttribute("listCuentas", this.cuentaService.listCuentas());
+
+		model.addAttribute("MovimientUnico", this.movimientoService.obtenerMovimiento(5));
+		model.addAttribute("listMovimiento", this.movimientoService.listMovimientos());
+		
 		model.addAttribute("listGeneros", this.generoService.listGeneros());
 		model.addAttribute("generoUnico", this.generoService.obtenerGenero(2));
 		
@@ -79,7 +128,7 @@ public class PersonController {
 		model.addAttribute("localidadUnica", this.localidadService.obtenerLocalidad(1));
 		return "test";
 	}
-	
+
 	//redirecciona test2
 	@RequestMapping(value="/test2.html",method = RequestMethod.GET)
 	public String redireccionarTest2(Model model) {
