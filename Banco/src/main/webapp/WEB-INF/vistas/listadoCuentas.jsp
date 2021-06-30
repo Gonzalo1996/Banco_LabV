@@ -84,11 +84,28 @@
 								<td>${c.cbu}</td>
 								<td>${c.alias}</td>
 								<td>${c.saldo}</td>
-								<td>${c.moneda}</td>
-								<td>${c.estado}</td>
+
+								<c:choose>
+									<c:when test="${c.moneda == 1}">
+										<td>Peso</td>
+									</c:when>
+									<c:otherwise>
+										<td>Dolar</td>
+									</c:otherwise>
+								</c:choose>
+								
+								<c:choose>
+									<c:when test="${c.estado ==true}">
+										<td>Activa</td>
+									</c:when>
+									<c:otherwise>
+										<td>Inactiva</td>
+									</c:otherwise>
+								</c:choose>
+								
 								<td><button type="submit" class="btn btn-primary"><span class="fa fa-pencil"></span></button></td>
-								<td><button type="submit" class="btn btn-info"><span class="fa fa-trash"></span></button></td>
-							</tr>
+								<td><button type="submit" class="btn btn-info"><span class="fa fa-ban"></span></button></td>
+								</tr>
 						</c:forEach>
 					</tbody>        
                 </table>                  

@@ -60,10 +60,10 @@
 								<th>Apellido</th>
 								<th>DNI</th>
 								<th>CUIL</th>
-								<th>Usuario</th>
 								<th>Correo</th>								
 								<th>Dirección</th>	
-								<th>Localidad</th>								
+								<th>Localidad</th>
+								<th>Estado</th>								
 								<th>Editar</th>
 								<th>Borrar</th>
                             </tr>
@@ -75,10 +75,19 @@
 									<td>${u.apellido}</td>
 									<td>${u.dni}</td>
 									<td>${u.cuil}</td>
-									<td>${u.usuario.nombreUsuario}</td>
 									<td>${u.correo}</td>
 									<td>${u.direccion}</td>
-									<td>${u.localidad}</td>					
+									<td>${u.localidad}</td>		
+
+									<c:choose>
+										<c:when test="${u.usuario.estado ==true}">
+											<td>Activo</td>
+										</c:when>
+										<c:otherwise>
+											<td>Inactivo</td>
+										</c:otherwise>
+									</c:choose>
+
 									<td><button type="submit" class="btn btn-primary"><span class="fa fa-pencil"></span></button></td>
 									<td><button type="submit" class="btn btn-info"><span class="fa fa-trash"></span></button></td>
 								</tr>
@@ -89,7 +98,6 @@
                 </div>
         </div>  
     </div>     
-     
 </t:base>
       
     <script src="content/dataTable/jquery/jquery-3.3.1.min.js"></script>
