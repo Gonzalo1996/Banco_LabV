@@ -1,16 +1,20 @@
 package banco;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import banco.model.Person;
+import banco.model.Usuario;
 import banco.service.ClienteService;
 import banco.service.CuentaService;
 import banco.service.GeneroService;
@@ -88,11 +92,57 @@ public class PersonController {
 		this.movimientoService = movimientoService;
 	}
 	
+	@RequestMapping(value="/test.html",method = RequestMethod.POST)
+	public void testAjax(@RequestBody Usuario usuario) {
+	    System.out.println(usuario.toString());
+	}
+
 	//REDIRECCIONES
 	@RequestMapping(value="/inicio.html",method = RequestMethod.GET)
 	public String inicio(Model model) {	
-		model.addAttribute("listCuentas", this.cuentaService.listCuentas());
-		return "listadoCuentas";
+		return "login";
+	}
+	
+	@RequestMapping(value="/login.html",method = RequestMethod.GET)
+	public String login(Model model) {	
+		return "login";
+	}
+	
+	@RequestMapping(value="/login.html",method = RequestMethod.POST)
+	public String login(Model model, String nombreUsuario, Integer dni, String contrasenia) {	
+		
+		List<Object[]> listUsuarios = this.usuarioService.obtenerUsuarioLogin(nombreUsuario ,dni, contrasenia);
+		
+		Integer id = null;
+		String  nombre = null;
+		Integer tipoUser = null;
+		Integer dniUser = null;
+	
+		if(listUsuarios.isEmpty()) {
+			model.addAttribute("mensajeError", "Usuario o contrasenia incorrecta");
+			return "login";
+		}
+		
+		for(Object[] obj : listUsuarios) {
+			  id = (Integer)obj[0];
+			  nombre = (String)obj[2];
+			  tipoUser = (Integer)obj[3];
+			  dniUser = (Integer)obj[4];
+			}
+		
+		model.addAttribute("usuario", nombre);
+		
+		if(tipoUser == 1) {
+			return "redirect:/listadoCuentas.html";
+		}
+		else {
+			return "redirect:/detallecliente.html";
+		}
+	}
+	
+	@RequestMapping(value="/detallecliente.html",method = RequestMethod.GET)
+	public String redireccionarDetalleCliente(Model model) {
+		return "detallecliente";
 	}
 	
 	@RequestMapping(value="/listadoCuentas.html",method = RequestMethod.GET)

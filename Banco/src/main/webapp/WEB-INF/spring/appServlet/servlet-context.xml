@@ -46,7 +46,7 @@
 				<beans:value>banco.model.Movimiento</beans:value>
 				<beans:value>banco.model.Usuario</beans:value>
 				<beans:value>banco.model.Cliente</beans:value>	
-				
+				<beans:value>banco.model.TipoUsuario</beans:value>	
 				
 				<beans:value>banco.model.Pais</beans:value>
 				<beans:value>banco.model.Provincia</beans:value>

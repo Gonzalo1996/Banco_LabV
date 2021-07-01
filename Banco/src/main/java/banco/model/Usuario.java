@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -17,7 +19,6 @@ public class Usuario implements Serializable
 	@Id
 	private Integer idUsuario;
 	private String contrasenia;
-	private Integer tipoUsuario;
 	private String nombreUsuario;
 	private Boolean estado;
 	
@@ -26,17 +27,27 @@ public class Usuario implements Serializable
 	@JoinColumn(name="dni")
 	private Cliente cliente;
 	
+	@ManyToOne(cascade = {CascadeType.ALL})
+	@JoinColumn(name="tipoUsuarioId")
+	private TipoUsuario tipoUsuario;
+	
 	public Usuario() {
 	}
-	
-	
-	public Usuario(Cliente cliente, String contrasenia, Integer tipoUsuario, String nombreUsuario, Boolean estado) {
-		super();
-		this.cliente = cliente;
+
+	public Usuario(String contrasenia, String nombreUsuario, Boolean estado, Cliente cliente, TipoUsuario tipoUsuario) {
 		this.contrasenia = contrasenia;
-		this.tipoUsuario = tipoUsuario;
 		this.nombreUsuario = nombreUsuario;
 		this.estado = estado;
+		this.cliente = cliente;
+		this.tipoUsuario = tipoUsuario;
+	}
+
+	public TipoUsuario getTipoUsuario() {
+		return tipoUsuario;
+	}
+
+	public void setTipoUsuario(TipoUsuario tipoUsuario) {
+		this.tipoUsuario = tipoUsuario;
 	}
 
 	public Integer getIdUsuario() {
@@ -64,14 +75,6 @@ public class Usuario implements Serializable
 		this.contrasenia = contrasenia;
 	}
 
-	public Integer getTipoUsuario() {
-		return tipoUsuario;
-	}
-
-	public void setTipoUsuario(Integer tipoUsuario) {
-		this.tipoUsuario = tipoUsuario;
-	}
-
 	public String getNombreUsuario() {
 		return nombreUsuario;
 	}
@@ -90,7 +93,7 @@ public class Usuario implements Serializable
 
 	@Override
 	public String toString() {
-		return "Usuario [idUsuario=" + idUsuario + ", contrasenia=" + contrasenia + ", tipoUsuario=" + tipoUsuario
-				+ ", nombreUsuario=" + nombreUsuario + ", estado=" + estado;
+		return "Usuario [idUsuario=" + idUsuario + ", contrasenia=" + contrasenia + ", nombreUsuario=" + nombreUsuario
+				+ ", estado=" + estado + ", cliente=" + cliente + ", tipoUsuario=" + tipoUsuario + "]";
 	}
 }

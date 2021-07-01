@@ -34,4 +34,10 @@ public class UsuarioServiceImpl implements UsuarioService{
 	public int actualizarEstado(int idUsuario, Boolean estado) {
 		return usuarioDao.actualizarEstado(idUsuario, estado);
 	}
+
+	@Override
+	@Transactional
+	public List<Object[]> obtenerUsuarioLogin(String nombreUsuario, Integer dni, String contrasenia){
+		return usuarioDao.obtenerUsuarioLogin(nombreUsuario, dni, contrasenia);
+	}
 }

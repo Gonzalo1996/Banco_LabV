@@ -1,3 +1,7 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+
 <%@ tag language="java" pageEncoding="ISO-8859-1"%>
 <!doctype html>
 <html lang="en">
@@ -50,6 +54,7 @@
     <nav id="sidebar">
       <div class="sidebar-header">
         <h3><i class="fas fa-user"></i>Usuario</h3>
+        <h1>${usuario}</h1>
       </div>
 
       <ul class="list-unstyled components">

@@ -1,11 +1,24 @@
 package principal;
 
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.service.ServiceRegistry;
+import org.hibernate.service.ServiceRegistryBuilder;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.service.ServiceRegistry;
+import org.hibernate.service.ServiceRegistryBuilder;
+
 import java.util.Date;
+import banco.model.*;
+
 
 //import resources.Config;
 
@@ -13,25 +26,21 @@ public class Main {
 
 	public static void main(String[] args)
 	{
-		/*
-		Date date = new Date("12/12/2020");
-		ApplicationContext appContext = new AnnotationConfigApplicationContext(Config.class); // con comas se pueden agregar mas archivos de appcontext
-		MovimientoServicio service = (MovimientoServicio)appContext.getBean("serviceBeanMovimiento");
-		CuentaServicio service2 = (CuentaServicio)appContext.getBean("serviceBeanCuenta");
-		
-		Movimiento movimiento = new Movimiento(10, 100.0, 100.1, date, "MovimientoPrueba", service2.obtenerCuenta(18810));
-		service.insertarMovimiento(movimiento);
-		System.out.println("Insertado");
-		
-		 ((ConfigurableApplicationContext)(appContext)).close(); 
-		 */
+		agregarRegistros();	 
 	}
-/*
+
 	public static void agregarRegistros() 
 	{		
-		ConfigHibernate ch = new ConfigHibernate();
-		Session session= ch.abrirConexion();
-		session.beginTransaction();
+    	SessionFactory sessionFactory;
+    	
+    	Configuration configuration = new Configuration();
+    	configuration.configure();	
+    	ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
+    	sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+    	Session session = sessionFactory.openSession();
+ 
+    	session.beginTransaction();
+		
 		Date date = new Date("12/12/2020");
 
 		Pais pais = new Pais("Argentina");
@@ -62,16 +71,20 @@ public class Main {
 		Genero genero2 = new Genero("Femenino");
 		Genero genero3 = new Genero("Otros");
 		
-		Usuario usuario = new Usuario(null,"12345", 1, "@Jose123", true);
-		Usuario usuario1 = new Usuario(null,"12345", 1, "@Maumolina", true);
-		Usuario usuario2 = new Usuario(null,"12345", 1, "@MarcosV", true);
-		Usuario usuario3 = new Usuario(null,"12345", 1, "@GonzaAlde", true);
-		Usuario usuario4 = new Usuario(null,"12345", 1, "@Tdeamos", true);
-		Usuario usuario5 = new Usuario(null,"12345", 1, "@Rarra", true);
-		Usuario usuario6 = new Usuario(null,"12345", 1, "@JuanG", true);
-		Usuario usuario7 = new Usuario(null,"12345", 1, "@Therrera", true);
-		Usuario usuario8 = new Usuario(null,"12345", 1, "@ClaudioF", true);
-		Usuario usuario9 = new Usuario(null,"12345", 1, "@Kloster", true);
+		TipoUsuario tipoUsuario = new TipoUsuario("Cliente");
+		TipoUsuario tipoUsuario2 = new TipoUsuario("Administrador");
+
+		Usuario usuario3 = new Usuario("12345","@Gonza", true, null, tipoUsuario);
+		Usuario usuario4 = new Usuario("12345","@Tomas", true, null, tipoUsuario);
+		Usuario usuario5 = new Usuario("12345","@Rarra", true, null, tipoUsuario);
+		Usuario usuario6 = new Usuario("12345","@Juan", true, null, tipoUsuario2);
+		Usuario usuario7 = new Usuario("12345","@Tamara", true, null, tipoUsuario);
+		Usuario usuario8 = new Usuario("12345","@Claudio", true, null, tipoUsuario);
+		Usuario usuario9 = new Usuario("12345","@kloster", true, null, tipoUsuario);
+		Usuario usuario = new Usuario("12345","@jose", true, null, tipoUsuario2);
+		Usuario usuario1 = new Usuario("12345","@maumolina", true, null, tipoUsuario2);
+		Usuario usuario2 = new Usuario("12345","@Marcos", true, null, tipoUsuario2);
+
 
 		Cliente cliente = new Cliente(40184777, 2040184775, "Jose", "Rodriguez", date, "jose@gmail.com", "calle false 123", pais, localidad, provincia, genero, usuario);	
 		usuario.setCliente(cliente);
@@ -125,7 +138,7 @@ public class Main {
     	Movimiento movimiento7 = new Movimiento(8, 10401.7 , 50005.7 , date, "bono", cuenta7);
     	Movimiento movimiento8 = new Movimiento(9, 1031.7 , 50005.7 , date, "Cuota tusi", cuenta8);
     	Movimiento movimiento9 = new Movimiento(0, 10101.7 , 50005.7 , date, "deuda", cuenta9);
-    	
+    	Movimiento movimiento10 = new Movimiento(11, 10101.7 , 50005.7 , date, "deuda", cuenta5);
 
 		session.save(movimiento);
 		session.save(movimiento1);
@@ -137,8 +150,11 @@ public class Main {
 		session.save(movimiento7);
 		session.save(movimiento8);
 		session.save(movimiento9);
+		session.save(movimiento10);
 
-	   	session.getTransaction().commit();
+    	session.getTransaction().commit();
     	session.close();
-	}*/
+    	
+    	sessionFactory.close();
+}
 }

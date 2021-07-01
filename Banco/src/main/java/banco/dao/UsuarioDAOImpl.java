@@ -2,6 +2,7 @@ package banco.dao;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.transform.Transformers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
@@ -43,6 +44,7 @@ public class UsuarioDAOImpl implements UsuarioDAO{
 		return u;
 	}
 	
+	@Override
 	public int actualizarEstado(int p_idUsuario, Boolean p_estado) {
 		Session session = this.sessionFactory.getCurrentSession();
 		String q = "UPDATE Usuario set estado = :p_estado WHERE idUsuario= :p_idUsuario";
@@ -50,5 +52,18 @@ public class UsuarioDAOImpl implements UsuarioDAO{
 		query.setParameter("p_idUsuario", p_idUsuario);
 		query.setParameter("p_estado", p_estado);
 		return query.executeUpdate();
+	}
+
+	@Override
+	public List<Object[]> obtenerUsuarioLogin(String nombreUsuario, Integer dni, String contrasenia) {
+		Session session = this.sessionFactory.getCurrentSession();
+		String q = "SELECT u.idUsuario, u.contrasenia, u.nombreUsuario, u.tipoUsuario.id, u.cliente.dni"
+				+ " FROM Usuario as u INNER JOIN u.cliente INNER JOIN u.tipoUsuario "
+				+ "WHERE u.cliente.dni = :dni AND u.contrasenia = :contrasenia AND u.nombreUsuario= :nombreUsuario";
+		Query query = session.createQuery(q);
+		query.setParameter("nombreUsuario", nombreUsuario);
+		query.setParameter("dni", dni);
+		query.setParameter("contrasenia", contrasenia);
+		return (List<Object[]>)query.list();
 	}
 }
