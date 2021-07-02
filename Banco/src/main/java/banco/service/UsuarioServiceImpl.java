@@ -40,4 +40,10 @@ public class UsuarioServiceImpl implements UsuarioService{
 	public List<Object[]> obtenerUsuarioLogin(String nombreUsuario, Integer dni, String contrasenia){
 		return usuarioDao.obtenerUsuarioLogin(nombreUsuario, dni, contrasenia);
 	}
+	
+	@Override
+	@Transactional
+	public void guardarUsuario(Usuario usuario) {
+		usuarioDao.guardarUsuario(usuario);	
+	}
 }

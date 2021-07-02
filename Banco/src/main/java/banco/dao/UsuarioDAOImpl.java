@@ -66,4 +66,11 @@ public class UsuarioDAOImpl implements UsuarioDAO{
 		query.setParameter("contrasenia", contrasenia);
 		return (List<Object[]>)query.list();
 	}
+	
+	@Override
+	public void guardarUsuario(Usuario usuario) {
+		Session session = this.sessionFactory.getCurrentSession();
+		session.persist(usuario);
+		logger.info("Usuario saved successfully, Usuario Details="+ usuario);
+	}
 }

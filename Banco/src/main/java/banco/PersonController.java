@@ -1,5 +1,6 @@
 package banco;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -106,6 +107,27 @@ public class PersonController {
 	@RequestMapping(value="/login.html",method = RequestMethod.GET)
 	public String login(Model model) {	
 		return "login";
+	}
+	
+	@RequestMapping(value="/guardarUsuario.html",method = RequestMethod.GET)
+	public String guardarUsuario(Model model, String nombre, String apellido, String fechaNacimiento, Integer dni, Integer cuil, 
+		Integer genero)
+	{	
+		
+		Date fecha = new Date(fechaNacimiento.replace('-', '/'));
+		System.out.println(fecha);
+
+		System.out.println("DENTRO DE REQUEST");
+		System.out.println("NOMBRE: " + nombre + "APELLIDO: " + apellido + "DNI: " + dni + "CUIL: " + cuil + " FECHA: " + fecha +
+				"GENERO: " + genero);
+		
+		return "redirect:/listadoCuentas.html";
+	}
+		
+	@RequestMapping(value="/guardarUsuario.html",method = RequestMethod.POST)
+	public String guardarUsuario(Model model)
+	{	
+		return "altaCliente";
 	}
 	
 	@RequestMapping(value="/login.html",method = RequestMethod.POST)

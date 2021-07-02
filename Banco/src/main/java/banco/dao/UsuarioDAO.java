@@ -10,4 +10,6 @@ public interface UsuarioDAO
 	public Usuario obtenerUsuario(int idUsuario);
 	public List<Object[]> obtenerUsuarioLogin(String nombreUsuario, Integer dni, String contrasenia);
 	public int actualizarEstado(int idUsuario, Boolean estado);
+	
+	public void guardarUsuario(Usuario usuario);
 }
