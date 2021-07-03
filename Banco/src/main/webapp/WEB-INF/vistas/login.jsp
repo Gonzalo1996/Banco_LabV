@@ -11,29 +11,28 @@
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&amp;display=fallback">
-  <link rel="stylesheet" href="webapp/content/login/font-awesome.min.css">
-  <link rel="stylesheet"   href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.  5/jquery.mCustomScrollbar.min.css">
-  
-	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
-	<script src="content/login/jquery.min.js"></script>
-	<script src="content/login/bootstrap.bundle.min.js"></script>
-	<script src="content/login/adminlte.min.js"></script>
-  
+  <link rel="stylesheet"   href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+
   <!-- Font Awesome -->
+  <link rel="stylesheet" href="content/login/font-awesome.min.css">
  
   <!-- icheck bootstrap -->
   <link rel="stylesheet" href="content/login/icheck-bootstrap.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="content/login/adminlte.min.css">
   
-   <!-- Bootstrap CSS -->
-    <script src="content/nav/icons.js"></script>
+  <!-- Bootstrap CSS -->
+  <script src="content/nav/icons.js"></script>
+   
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+  
 </head>
 <body class="hold-transition login-page" background="content/images/fondo.jpg" style="background-size: cover">
 <div class="login-box">
   <div class="login-logo">
-    <a href=""><b>UTN</b>Bank</a>
+    <a href=""><b>UTN</b>&nbsp;Bank</a>
     <div class= "col-md-12">
     	<img src="content/images/logo.png" width="160px" height="160px"></img>
     </div>
@@ -46,7 +45,7 @@
     <div class="card-body login-card-body" style="border-radius: 44px">
       <p class="login-box-msg">Completa tus datos para iniciar sesión</p>
 
-      <form id="login" method="post" action="login.html">
+      <form >
       
 		<div class="input-group mb-3">
 			<input name="nombreUsuario" type="text" class="form-control"
@@ -120,22 +119,65 @@
             </div>
         </div>
         
+<form id="registro" action="#">
+	Login: <input type="text" name="login" id="login"> <span id="mensaje"></span><br>
+	Password: <input type="password" name="password" id="password"> <br>
+	Nombre y apellidos: <input type="text" name="nombre" id="nombre"> <br>
+<input type="submit" value="registrar">
+</form>
+<script type="text/javascript">
+    //$('#registro').submit(function(evento) {
+
+    	//evento.preventDefault();
+        
+   	$(function () {
+   		
+   		var data = {
+ 			nombreUsuario: 'test',
+ 			contrasenia: '1234',
+ 			//cliente: {
+ 				dni: 40123456
+ 			//}
+   		};
+   		
+        $.ajax({
+            url: './testAjax.html',
+            type: 'POST',
+            data: data,
+            //contentType: "application/json;charset=utf-8",
+            success: function (result) {
+                alert(result);
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+            	console.dir(xhr);
+            	var errorMsg = 'Error ' + xhr.status + '\r\n' + xhr.responseText;
+                //alert(errorMsg);
+            }
+        });
+
+   		
+   	});
+</script>
+<!--      
 <script type="text/javascript">
    console.log('paso 1');
     $('#login').submit(function(e) {
    console.log('paso 2');
         $.ajax({
-            url: 'test.html',
+            url: './test.html',
             type: 'POST',
-            data: JSON.stringify({nombreUsuario: $('#nombreUsuario').val(), 
-                contrasenia: $('#contrasenia').val(), dni: $('#dni').val()}),
-            processData: false,
+            data: {
+            	nombreUsuario: $('#nombreUsuario').val(), 
+                contrasenia: $('#contrasenia').val(), 
+                dni: $('#dni').val()
+            },
+            //processData: false,
             contentType: "application/json"
         });
    console.log('paso 3');
         e.preventDefault();
     });
 </script>
-
+-->
 </body>
 </html>

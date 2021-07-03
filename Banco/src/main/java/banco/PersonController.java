@@ -93,9 +93,10 @@ public class PersonController {
 		this.movimientoService = movimientoService;
 	}
 	
-	@RequestMapping(value="/test.html",method = RequestMethod.POST)
-	public void testAjax(@RequestBody Usuario usuario) {
-	    System.out.println(usuario.toString());
+	@RequestMapping(value="/testAjax.html",method = RequestMethod.POST) //@RequestBody Usuario usuario
+	public void testAjax(String nombreUsuario, String contrasenia, Integer dni) {
+//	    System.out.println(usuario.toString());
+		System.out.println(nombreUsuario + "-" + contrasenia + "-" + dni);
 	}
 
 	//REDIRECCIONES
