@@ -95,8 +95,10 @@ public class PersonController {
 			Cliente cliente = new Cliente(dni,cuil,nombre, apellido, fecha,correo, direccion, this.paisService.obtenerPais(1),
 					this.localidadService.obtenerLocalidad(localidad), this.provinciaService.obtenerProvincia(provincia),
 					this.generoService.obtenerGenero(genero), null);
-			
 			Usuario usuario = new Usuario(contrasenia,nombreUsuario,true, cliente, null);
+
+			cliente.setUsuario(usuario);
+//          usuario.setCliente(cliente);			
 			this.usuarioService.guardarUsuario(usuario);
 		}
 		else 
