@@ -34,70 +34,16 @@ import banco.service.UsuarioService;
 
 @Controller
 public class PersonController {
-	
-	private PersonService personService;
-	private GeneroService generoService;
-	private PaisService paisService;
-	private ProvinciaService provinciaService;
-	private LocalidadService localidadService;
-	private UsuarioService usuarioService;
-	private ClienteService clienteService;
-	private CuentaService cuentaService;
-	private MovimientoService movimientoService;
-	
-	@Autowired(required=true)
-	@Qualifier(value="personService")
-	public void setPersonService(PersonService ps){
-		this.personService = ps;
-	}
-	
-	@Autowired(required=true)
-	@Qualifier(value="generoService")
-	public void setGeneroService(GeneroService g){
-		this.generoService = g;
-	}
+	@Autowired private PersonService personService;
+	@Autowired private GeneroService generoService;
+	@Autowired private PaisService paisService;
+	@Autowired private ProvinciaService provinciaService;
+	@Autowired private LocalidadService localidadService;
+	@Autowired private UsuarioService usuarioService;
+	@Autowired private ClienteService clienteService;	
+	@Autowired private CuentaService cuentaService;
+	@Autowired private MovimientoService movimientoService;
 
-	@Autowired(required=true)
-	@Qualifier(value="paisService")
-	public void setPaisService(PaisService paisService) {
-		this.paisService = paisService;
-	}
-	
-	@Autowired(required=true)
-	@Qualifier(value="provinciaService")
-	public void setProvinciaService(ProvinciaService provinciaService) {
-		this.provinciaService = provinciaService;
-	}
-	
-	@Autowired(required=true)
-	@Qualifier(value="localidadService")
-	public void setLocalidadService(LocalidadService localidadService) {
-		this.localidadService = localidadService;
-	}
-	
-	@Autowired(required=true)
-	@Qualifier(value="usuarioService")
-	public void setUsuarioService(UsuarioService usuarioService) {
-		this.usuarioService = usuarioService;
-	}
-
-	@Autowired(required=true)
-	@Qualifier(value="clienteService")
-	public void setClienteService(ClienteService clienteService) {
-		this.clienteService = clienteService;
-	}
-
-	@Autowired(required=true)
-	@Qualifier(value="cuentaService")
-	public void setCuentaService(CuentaService cuentaService) {
-		this.cuentaService = cuentaService;
-	}
-
-	@Autowired(required=true)
-	@Qualifier(value="movimientoService")
-	public void setMovimientoService(MovimientoService movimientoService) {
-		this.movimientoService = movimientoService;
-	}
 
 	//REDIRECCIONES
 	@RequestMapping(value="/inicio.html",method = RequestMethod.GET)
