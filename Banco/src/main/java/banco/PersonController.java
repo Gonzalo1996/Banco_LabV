@@ -12,7 +12,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import banco.model.Cliente;
 import banco.model.Person;
@@ -94,12 +98,6 @@ public class PersonController {
 	public void setMovimientoService(MovimientoService movimientoService) {
 		this.movimientoService = movimientoService;
 	}
-	
-	@RequestMapping(value="/testAjax.html",method = RequestMethod.POST) //@RequestBody Usuario usuario
-	public void testAjax(String nombreUsuario, String contrasenia, Integer dni) {
-//	    System.out.println(usuario.toString());
-		System.out.println(nombreUsuario + "-" + contrasenia + "-" + dni);
-	}
 
 	//REDIRECCIONES
 	@RequestMapping(value="/inicio.html",method = RequestMethod.GET)
@@ -110,6 +108,30 @@ public class PersonController {
 	@RequestMapping(value="/login.html",method = RequestMethod.GET)
 	public String login(Model model) {	
 		return "login";
+	}
+	
+	@RequestMapping(value="/ajaxExamples.html",method = RequestMethod.GET)
+	public String ajaxExamples(Model model) {	
+		return "ajaxExamples";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/ajaxParams.html", method = RequestMethod.POST)
+	public String ajaxParams(Integer dni, String nombreUsuario, String contrasenia) {
+		System.out.println(dni + "-" + nombreUsuario + "-" + contrasenia);
+		return "resultado OK";
+	}
+
+	
+	@RequestMapping(value = "/ajaxObj.html", method = RequestMethod.POST)
+	@ResponseBody
+	public Object ajaxObj(@RequestBody Usuario usuario) throws JsonProcessingException {
+		ObjectMapper om = new ObjectMapper();
+		
+		System.out.println(usuario.toString());
+		usuario.setIdUsuario(100);
+		
+		return om.writeValueAsString(usuario);
 	}
 	
 	@RequestMapping(value="/guardarUsuario.html",method = RequestMethod.GET)

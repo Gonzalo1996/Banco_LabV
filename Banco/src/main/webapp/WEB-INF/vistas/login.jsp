@@ -118,46 +118,6 @@
                 </div>
             </div>
         </div>
-        
-<form id="registro" action="#">
-	Login: <input type="text" name="login" id="login"> <span id="mensaje"></span><br>
-	Password: <input type="password" name="password" id="password"> <br>
-	Nombre y apellidos: <input type="text" name="nombre" id="nombre"> <br>
-<input type="submit" value="registrar">
-</form>
-<script type="text/javascript">
-    //$('#registro').submit(function(evento) {
-
-    	//evento.preventDefault();
-        
-   	$(function () {
-   		
-   		var data = {
- 			nombreUsuario: 'test',
- 			contrasenia: '1234',
- 			//cliente: {
- 				dni: 40123456
- 			//}
-   		};
-   		
-        $.ajax({
-            url: './testAjax.html',
-            type: 'POST',
-            data: data,
-            //contentType: "application/json;charset=utf-8",
-            success: function (result) {
-                alert(result);
-            },
-            error: function(xhr, ajaxOptions, thrownError) {
-            	console.dir(xhr);
-            	var errorMsg = 'Error ' + xhr.status + '\r\n' + xhr.responseText;
-                //alert(errorMsg);
-            }
-        });
-
-   		
-   	});
-</script>
 <!--      
 <script type="text/javascript">
    console.log('paso 1');
