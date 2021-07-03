@@ -25,22 +25,27 @@ public class PaisDAOImpl implements PaisDAO{
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Pais> listPais() {
-		Session session = this.sessionFactory.getCurrentSession();
+		Session session = this.sessionFactory.openSession();
+		session.beginTransaction();
 		List<Pais> paisList = session.createQuery("FROM Pais").list();
 
 		for (Pais p : paisList) {
 			logger.info("Pais List::" + p);
 		}
+		session.close();
 		return paisList;	
 	}
 	
 	@Override
 	public Pais obtenerPais(int p_id) {
-		Session session = this.sessionFactory.getCurrentSession();
+		Session session = this.sessionFactory.openSession();
+		session.beginTransaction();
+
 		String q = "FROM Pais as p WHERE p.id = :p_id";
 		Query query = session.createQuery(q);
 		query.setParameter("p_id", p_id);
 		Pais p = (Pais)query.uniqueResult();
+		session.close();
 		return p;
 	}
 

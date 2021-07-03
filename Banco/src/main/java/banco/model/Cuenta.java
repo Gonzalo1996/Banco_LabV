@@ -6,6 +6,7 @@ import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -27,7 +28,7 @@ public class Cuenta implements Serializable{
 	private Date fechaCreacion;
 	
 	
-	@ManyToOne(cascade = {CascadeType.ALL})
+    @ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="dni")
 	private Cliente cliente;
 	

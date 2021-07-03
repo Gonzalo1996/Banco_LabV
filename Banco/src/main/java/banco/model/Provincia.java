@@ -15,7 +15,7 @@ import javax.persistence.*;
 	@Column
 	private String nombre;
 	
-	@OneToOne(cascade = {CascadeType.ALL})
+    @OneToOne(cascade= {CascadeType.ALL})
 	private Pais pais;
 	
 //	@ManyToOne(cascade = {CascadeType.ALL})

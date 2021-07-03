@@ -25,21 +25,25 @@ public class CuentaDAOImpl implements CuentaDAO{
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Cuenta> listCuentas() {
-		Session session = this.sessionFactory.getCurrentSession();
+		Session session = this.sessionFactory.openSession();
+		session.beginTransaction();
 		List<Cuenta> cuentaLista = session.createQuery("FROM Cuenta").list();
 		for (Cuenta c : cuentaLista) {
 			logger.info("Cuenta List::" + c);
 		}
+		session.close();
 		return cuentaLista;
 	}
 
 	@Override
 	public Cuenta obtenerCuenta(int p_nroCuenta) {
-		Session session = this.sessionFactory.getCurrentSession();
+		Session session = this.sessionFactory.openSession();
+		session.beginTransaction();
 		String q = "FROM Cuenta as c WHERE c.nroCuenta = :p_nroCuenta";
 		Query query = session.createQuery(q);
 		query.setParameter("p_nroCuenta", p_nroCuenta);
 		Cuenta c = (Cuenta)query.uniqueResult();
+		session.close();
 		return c;
 	}
 

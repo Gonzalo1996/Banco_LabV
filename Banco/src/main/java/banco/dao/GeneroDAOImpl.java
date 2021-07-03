@@ -24,22 +24,26 @@ public class GeneroDAOImpl implements GeneroDAO {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Genero> listGeneros() {
-		Session session = this.sessionFactory.getCurrentSession();
+		Session session = this.sessionFactory.openSession();
+		session.beginTransaction();
 		List<Genero> generoList = session.createQuery("from Genero").list();
 
 		for (Genero p : generoList) {
 			logger.info("Genero List::" + p);
 		}
+		session.close();
 		return generoList;
 	}
 
 	@Override
 	public Genero obtenerGenero(int p_id) {
-		Session session = this.sessionFactory.getCurrentSession();
+		Session session = this.sessionFactory.openSession();
+		session.beginTransaction();
 		String q = "FROM Genero as g WHERE g.id = :p_id";
 		Query query = session.createQuery(q);
 		query.setParameter("p_id", p_id);
 		Genero g = (Genero)query.uniqueResult();
+		session.close();
 		return g;
 	}
 

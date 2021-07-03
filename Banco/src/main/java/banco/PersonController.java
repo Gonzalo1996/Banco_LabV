@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import banco.model.Cliente;
 import banco.model.Person;
+import banco.model.TipoUsuario;
 import banco.model.Usuario;
 import banco.service.ClienteService;
 import banco.service.CuentaService;
@@ -111,15 +113,30 @@ public class PersonController {
 	
 	@RequestMapping(value="/guardarUsuario.html",method = RequestMethod.GET)
 	public String guardarUsuario(Model model, String nombre, String apellido, String fechaNacimiento, Integer dni, Integer cuil, 
-		Integer genero)
+		Integer genero, Integer provincia, Integer localidad, String direccion, String correo, String nombreUsuario, String contrasenia)
 	{	
-		
 		Date fecha = new Date(fechaNacimiento.replace('-', '/'));
 		System.out.println(fecha);
+		
+		System.out.println("NOMBRE: " + nombre + "APELLIDO: " + apellido + "DNI: " + dni + "CUIL: " + cuil + " FECHA: " + fecha +
+				"GENERO: " + genero + "PROVINCIA: " + provincia + "LOCALIDAD: " + localidad + direccion + correo+ nombreUsuario+ contrasenia);
+		
+		if(this.clienteService.obtenerCliente(dni) == null) {
+			System.out.println("LISTO PARA CREAR");
+
+			Cliente cliente = new Cliente(dni,cuil,nombre, apellido, fecha,correo, direccion, this.paisService.obtenerPais(1),
+					this.localidadService.obtenerLocalidad(localidad), this.provinciaService.obtenerProvincia(provincia),
+					this.generoService.obtenerGenero(genero), null);
+			
+			Usuario usuario = new Usuario(contrasenia,nombreUsuario,true, cliente, null);
+			this.usuarioService.guardarUsuario(usuario);
+		}
+		else 
+			System.out.println("!!!!!! USUARIO YA EXISTENTE");
+		
 
 		System.out.println("DENTRO DE REQUEST");
-		System.out.println("NOMBRE: " + nombre + "APELLIDO: " + apellido + "DNI: " + dni + "CUIL: " + cuil + " FECHA: " + fecha +
-				"GENERO: " + genero);
+		
 		
 		return "redirect:/listadoCuentas.html";
 	}
@@ -180,6 +197,10 @@ public class PersonController {
 
 	@RequestMapping(value="/altaCliente.html",method = RequestMethod.GET)
 	public String redireccionarAltaCliente(Model model) {
+		model.addAttribute("listGeneros", this.generoService.listGeneros());
+		model.addAttribute("listProvincias", this.provinciaService.listProvincias());
+		model.addAttribute("listLocalidades", this.localidadService.listLocalidades());
+
 		return "altaCliente";
 	}
 	

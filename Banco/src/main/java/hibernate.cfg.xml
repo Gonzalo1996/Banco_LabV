@@ -20,6 +20,6 @@
         <mapping class="banco.model.Cuenta"/>
         <mapping class="banco.model.Movimiento"/>
         <mapping class="banco.model.TipoUsuario"/>
-        
+
     </session-factory>
 </hibernate-configuration>

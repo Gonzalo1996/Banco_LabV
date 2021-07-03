@@ -25,34 +25,40 @@ public class LocalidadDAOImpl implements LocalidadDAO{
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Localidad> listLocalidades() {
-		Session session = this.sessionFactory.getCurrentSession();
+		Session session = this.sessionFactory.openSession();
+		session.beginTransaction();
 		List<Localidad> localidadList = session.createQuery("FROM Localidad").list();
 
 		for (Localidad l : localidadList) {
 			logger.info("Localidad List::" + l);
 		}
+		session.close();
 		return localidadList;
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Localidad> listLocalidades_x_Prov(int prov) {
-		Session session = this.sessionFactory.getCurrentSession();
+		Session session = this.sessionFactory.openSession();
+		session.beginTransaction();
 		List<Localidad> LocalidadList = session.createQuery("FROM Localidad WHERE idProvincia = " + prov).list();
 
 		for (Localidad l : LocalidadList) {
 			logger.info("Localidad List::" + l);
 		}
+		session.close();
 		return LocalidadList;
 	}
 
 	@Override
 	public Localidad obtenerLocalidad(int l_id) {
-		Session session = this.sessionFactory.getCurrentSession();
+		Session session = this.sessionFactory.openSession();
+		session.beginTransaction();
 		String hql = "FROM Localidad as p WHERE p.id = :l_id";
 		Query query = session.createQuery(hql);
 		query.setParameter("l_id", l_id);
 		Localidad l = (Localidad)query.uniqueResult();
+		session.close();
 		return l;
 	}
 

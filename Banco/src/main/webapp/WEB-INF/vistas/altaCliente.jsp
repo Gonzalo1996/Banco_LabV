@@ -42,35 +42,44 @@
           </div>
           <div class="row-form">
           <br>
-              <select name="genero" id="genero" class="drop-list">
-                <option selected class="disabled">Selec. Genero</option>
-                <option value="1">Genero 1</option>
-                <option value="2">Genero 2</option>
-                <option value="3">Genero 3</option>
-              </select> 
-            </div>
+			<select name="genero" class="drop-list">
+			    <option value="" disabled selected>--Seleccione genero--</option>
+			        <c:forEach items="${listGeneros}" var="genero" varStatus="status">
+			            <option value="${genero.id}"><c:out value="${genero.nombre}"></c:out> </option>
+			        </c:forEach>
+			</select>
+          </div>
         </div>
+            
+        <!--  AGREGAR SELECT PAIS!!!!!!!!!!!!!!!!!!
+                 <div class="row-form">
+          <br>
+			<select name="genero" class="drop-list">
+			    <option value="" disabled selected>--Seleccione genero--</option>
+			        <c:forEach items="${listGeneros}" var="genero" varStatus="status">
+			            <option value="${genero.id}"><c:out value="${genero.nombre}"></c:out> </option>
+			        </c:forEach>
+			</select>
+          </div> -->
         <div class="col-form">
 
 		<div class="row-form">
           <br>
-            <select name="provincia" id="prov" class="drop-list">
-              <option selected class="disabled">Selec. Provincia</option>
-              <option value="1">Prov 1</option>
-              <option value="2">Prov 2</option>
-              <option value="3">Prov 3</option>
-              <option value="4">Prov 4</option>
-            </select> 
+			<select name="provincia" class="drop-list">
+			    <option value="" disabled selected>--Seleccione provincia--</option>
+			        <c:forEach items="${listProvincias}" var="provincia" varStatus="status">
+			            <option value="${provincia.id}"><c:out value="${provincia.nombre}"></c:out> </option>
+			        </c:forEach>
+			</select>
           </div>
           <div class="row-form">
           <br>
-            <select name="localidad" id="localidad" class="drop-list">
-              <option selected class="disabled">Selec. Localidad </option>
-              <option value="1">Loc 1</option>
-              <option value="2">Loc 2</option>
-              <option value="3">Loc 3</option>
-              <option value="4">Loc 4</option>
-            </select>  
+			<select name="localidad" class="drop-list">
+			    <option value="" disabled selected>--Seleccione localidad--</option>
+			        <c:forEach items="${listLocalidades}" var="localidad" varStatus="status">
+			            <option value="${localidad.id}"><c:out value="${localidad.nombre}"></c:out> </option>
+			        </c:forEach>
+			</select>
           </div>
           <div class="row-form">
           <br>

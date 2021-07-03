@@ -15,7 +15,7 @@ public class Movimiento implements Serializable{
 	private Date fecha;
 	private String detalle;
 	
-	@ManyToOne(cascade ={CascadeType.ALL})
+    @ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name = "nroCuenta")
 	private Cuenta cuenta;
 	
