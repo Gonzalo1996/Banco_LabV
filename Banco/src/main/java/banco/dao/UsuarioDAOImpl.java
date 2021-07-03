@@ -69,7 +69,7 @@ public class UsuarioDAOImpl implements UsuarioDAO{
 		Session session = this.sessionFactory.openSession();
 		session.beginTransaction();
 		String q = "SELECT u.idUsuario, u.contrasenia, u.nombreUsuario, u.tipoUsuario.id, u.cliente.dni"
-				+ " FROM Usuario as u INNER JOIN u.cliente INNER JOIN u.tipoUsuario "
+				+ " FROM Usuario as u JOIN u.cliente JOIN u.tipoUsuario "
 				+ "WHERE u.cliente.dni = :dni AND u.contrasenia = :contrasenia AND u.nombreUsuario= :nombreUsuario";
 		Query query = session.createQuery(q);
 		query.setParameter("nombreUsuario", nombreUsuario);
@@ -85,8 +85,12 @@ public class UsuarioDAOImpl implements UsuarioDAO{
 		Session session = this.sessionFactory.openSession();
 		session.beginTransaction();
 
-		//session.persist(usuario);
-		session.saveOrUpdate(usuario);
+//		session.persist(usuario);
+//		session.saveOrUpdate(usuario);
+		session.save(usuario);
+		
 		logger.info("Usuario saved successfully, Usuario Details="+ usuario);
+		session.getTransaction().commit();
+		session.close();
 	}
 }

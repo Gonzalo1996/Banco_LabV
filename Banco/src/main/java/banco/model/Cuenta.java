@@ -28,7 +28,7 @@ public class Cuenta implements Serializable{
 	private Date fechaCreacion;
 	
 	
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne
 	@JoinColumn(name="dni")
 	private Cliente cliente;
 	

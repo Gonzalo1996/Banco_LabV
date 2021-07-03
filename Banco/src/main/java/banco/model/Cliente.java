@@ -18,19 +18,19 @@ public class Cliente implements Serializable{
     private String direccion;
     
     
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "idProvincia")
     private Provincia provincia;
     
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "idLocalidad")
     private Localidad localidad;
     
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "idGenero")
     private Genero genero;
     
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "idPais")
     private Pais pais;
     

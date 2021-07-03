@@ -68,7 +68,6 @@ public class PersonController {
 		return "resultado OK";
 	}
 
-	
 	@RequestMapping(value = "/ajaxObj.html", method = RequestMethod.POST)
 	@ResponseBody
 	public Object ajaxObj(@RequestBody Usuario usuario) throws JsonProcessingException {

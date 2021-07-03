@@ -15,7 +15,7 @@ public class Movimiento implements Serializable{
 	private Date fecha;
 	private String detalle;
 	
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne
 	@JoinColumn(name = "nroCuenta")
 	private Cuenta cuenta;
 	

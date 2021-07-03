@@ -45,7 +45,7 @@
     <div class="card-body login-card-body" style="border-radius: 44px">
       <p class="login-box-msg">Completa tus datos para iniciar sesión</p>
 
-      <form >
+      <form method="POST" action="login.html">
       
 		<div class="input-group mb-3">
 			<input name="nombreUsuario" type="text" class="form-control"
