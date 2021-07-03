@@ -23,22 +23,27 @@ public class MovimientoDAOImpl implements MovimientoDAO{
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Movimiento> listMovimientos() {
-		Session session = this.sessionFactory.getCurrentSession();
+		Session session = this.sessionFactory.openSession();
+		session.beginTransaction();
+
 		List<Movimiento> movimientoList = session.createQuery("FROM Movimiento").list();
 
 		for (Movimiento p : movimientoList) {
 			logger.info("Movimiento List::" + p);
 		}
+		session.close();
 		return movimientoList;
 	}
 
 	@Override
 	public Movimiento obtenerMovimiento(int p_id) {
-		Session session = this.sessionFactory.getCurrentSession();
+		Session session = this.sessionFactory.openSession();
+		session.beginTransaction();
 		String q = "FROM Movimiento as m WHERE m.id = :p_id";
 		Query query = session.createQuery(q);
 		query.setParameter("p_id", p_id);
 		Movimiento m = (Movimiento)query.uniqueResult();
+		session.close();
 		return m;
 	}
 }

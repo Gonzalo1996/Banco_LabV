@@ -25,38 +25,49 @@ public class UsuarioDAOImpl implements UsuarioDAO{
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Usuario> listUsuarios() {
-		Session session = this.sessionFactory.getCurrentSession();
+		Session session = this.sessionFactory.openSession();
+		session.beginTransaction();
+
 		List<Usuario> usuarioList = session.createQuery("FROM Usuario").list();
 
 		for (Usuario p : usuarioList) {
 			logger.info("Usuario List::" + p);
 		}
+		session.close();
 		return usuarioList;
 	}
 
 	@Override
 	public Usuario obtenerUsuario(int p_id) {
-		Session session = this.sessionFactory.getCurrentSession();
+		Session session = this.sessionFactory.openSession();
+		session.beginTransaction();
+
 		String q = "FROM Usuario as u WHERE u.idUsuario = :p_id";
 		Query query = session.createQuery(q);
 		query.setParameter("p_id", p_id);
 		Usuario u = (Usuario)query.uniqueResult();
+		session.close();
 		return u;
 	}
 	
 	@Override
 	public int actualizarEstado(int p_idUsuario, Boolean p_estado) {
-		Session session = this.sessionFactory.getCurrentSession();
+		Session session = this.sessionFactory.openSession();
+		session.beginTransaction();
+
 		String q = "UPDATE Usuario set estado = :p_estado WHERE idUsuario= :p_idUsuario";
 		Query query = session.createQuery(q);
 		query.setParameter("p_idUsuario", p_idUsuario);
 		query.setParameter("p_estado", p_estado);
-		return query.executeUpdate();
+		int execute = query.executeUpdate();
+		session.close();
+		return execute;
 	}
 
 	@Override
 	public List<Object[]> obtenerUsuarioLogin(String nombreUsuario, Integer dni, String contrasenia) {
-		Session session = this.sessionFactory.getCurrentSession();
+		Session session = this.sessionFactory.openSession();
+		session.beginTransaction();
 		String q = "SELECT u.idUsuario, u.contrasenia, u.nombreUsuario, u.tipoUsuario.id, u.cliente.dni"
 				+ " FROM Usuario as u INNER JOIN u.cliente INNER JOIN u.tipoUsuario "
 				+ "WHERE u.cliente.dni = :dni AND u.contrasenia = :contrasenia AND u.nombreUsuario= :nombreUsuario";
@@ -64,13 +75,18 @@ public class UsuarioDAOImpl implements UsuarioDAO{
 		query.setParameter("nombreUsuario", nombreUsuario);
 		query.setParameter("dni", dni);
 		query.setParameter("contrasenia", contrasenia);
-		return (List<Object[]>)query.list();
+		List<Object[]> list = (List<Object[]>)query.list();
+		session.close();
+		return list;
 	}
 	
 	@Override
 	public void guardarUsuario(Usuario usuario) {
-		Session session = this.sessionFactory.getCurrentSession();
-		session.persist(usuario);
+		Session session = this.sessionFactory.openSession();
+		session.beginTransaction();
+
+		//session.persist(usuario);
+		session.saveOrUpdate(usuario);
 		logger.info("Usuario saved successfully, Usuario Details="+ usuario);
 	}
 }

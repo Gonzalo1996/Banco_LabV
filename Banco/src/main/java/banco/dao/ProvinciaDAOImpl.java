@@ -26,12 +26,15 @@ public class ProvinciaDAOImpl implements ProvinciaDAO{
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Provincia> listProvincias() {
-		Session session = this.sessionFactory.getCurrentSession();
+		Session session = this.sessionFactory.openSession();
+		session.beginTransaction();
+
 		List<Provincia> provinciaList = session.createQuery("FROM Provincia").list();
 
 		for (Provincia p : provinciaList) {
 			logger.info("Provincia List::" + p);
 		}
+		session.close();
 		return provinciaList;
 	}
 	
@@ -39,23 +42,29 @@ public class ProvinciaDAOImpl implements ProvinciaDAO{
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Provincia> listProvincias_x_Pais(int pais) {
-		Session session = this.sessionFactory.getCurrentSession();
+		Session session = this.sessionFactory.openSession();
+		session.beginTransaction();
+
 		List<Provincia> provinciaList = session.createQuery("FROM Provincia WHERE pais_id = " + pais).list();
 
 		for (Provincia p : provinciaList) {
 			logger.info("Provincia List::" + p);
 		}
+		session.close();
 		return provinciaList;
 	}
 
 	//Obtengo una Provincia en particular
 	@Override
 	public Provincia obtenerProvincia(int p_id) {
-		Session session = this.sessionFactory.getCurrentSession();
+		Session session = this.sessionFactory.openSession();
+		session.beginTransaction();
+
 		String hql = "FROM Provincia as p WHERE p.id = :p_id";
 		Query query = session.createQuery(hql);
 		query.setParameter("p_id", p_id);
 		Provincia p = (Provincia)query.uniqueResult();
+		session.close();
 		return p;
 	}
 

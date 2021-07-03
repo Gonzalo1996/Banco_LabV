@@ -25,22 +25,26 @@ public class ClienteDAOImpl implements ClienteDAO{
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Cliente> listClientes() {
-		Session session = this.sessionFactory.getCurrentSession();
+		Session session = this.sessionFactory.openSession();
+		session.beginTransaction();
 		List<Cliente> clienteList = session.createQuery("FROM Cliente").list();
 
 		for (Cliente c : clienteList) {
 			logger.info("Cliente List::" + c);
 		}
+		session.close();
 		return clienteList;
 	}
 
 	@Override
 	public Cliente obtenerCliente(int p_dni) {
-		Session session = this.sessionFactory.getCurrentSession();
+		Session session = this.sessionFactory.openSession();
+		session.beginTransaction();
 		String q = "FROM Cliente as c WHERE c.dni = :p_dni";
 		Query query = session.createQuery(q);
 		query.setParameter("p_dni", p_dni);
 		Cliente c = (Cliente)query.uniqueResult();
+		session.close();
 		return c;
 	}
 }
