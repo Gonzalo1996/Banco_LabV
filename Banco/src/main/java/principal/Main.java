@@ -27,6 +27,7 @@ public class Main {
 	public static void main(String[] args)
 	{
 		agregarRegistros();	 
+		System.out.println("Registros insertados correctamente");
 	}
 
 	public static void agregarRegistros() 

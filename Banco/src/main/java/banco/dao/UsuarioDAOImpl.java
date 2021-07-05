@@ -102,4 +102,18 @@ public class UsuarioDAOImpl implements UsuarioDAO{
 		session.close();
 		return estado;
 	}
+	
+	@Override
+	public Usuario obtenerPorDni(int dni) {
+		Session session = this.sessionFactory.openSession();
+
+		String q = "SELECT u FROM Usuario as u JOIN u.cliente WHERE u.cliente.dni = :dni";
+		Query query = session.createQuery(q);
+		query.setParameter("dni", dni);
+		
+		Usuario u = (Usuario)query.uniqueResult();
+
+		session.close();
+		return u;
+	}
 }

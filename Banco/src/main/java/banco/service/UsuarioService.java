@@ -12,4 +12,5 @@ public interface UsuarioService
 	public int actualizarEstado(int idUsuario, Boolean estado);
 	public Boolean estadoUsuario(Integer dni);
 	public void guardarUsuario(Usuario usuario);
+	public Usuario obtenerPorDni(int dni);
 }

@@ -3,7 +3,6 @@ package banco;
 import java.util.Date;
 import java.util.List;
 
-import org.hamcrest.core.IsNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -120,21 +119,21 @@ public class PersonController {
 	@RequestMapping(value="/guardarCuenta.html",method = RequestMethod.POST)
 	public String guardarCuenta(Model model, String cbu, String alias, String fecha, Integer dni, Integer moneda)
 	{	
-		System.out.println("CBU: " + cbu + "ALIAS: " + alias + "Fecha: " + fecha + "Saldo: " + dni + "Moneda: " + moneda);
-		Date fechaCreacion = new Date(fecha.replace('-', '/'));
-		System.out.println(this.cuentaService.obtenerCantidadCuentas(dni));
-		System.out.println(this.usuarioService.estadoUsuario(dni));
+		try {
+			System.out.println("CBU: " + cbu + "ALIAS: " + alias + "Fecha: " + fecha + "Saldo: " + dni + "Moneda: " + moneda);
+			Date fechaCreacion = new Date(fecha.replace('-', '/'));
+			System.out.println(this.cuentaService.obtenerCantidadCuentas(dni));
+			System.out.println(this.usuarioService.estadoUsuario(dni));
+	
+			Cuenta cuenta = new Cuenta(cbu, alias, moneda, 10000.0, true, null, fechaCreacion, "Caja ahorro");
+			this.cuentaService.guardarCuenta(cuenta, dni);
 		
-		if(this.cuentaService.obtenerCantidadCuentas(dni) <= 3 && this.usuarioService.estadoUsuario(dni)) {
-			System.out.println("Cuenta apta para crear!!!");
-			Cuenta cuenta = new Cuenta(cbu, alias, moneda, 10000.0, true, this.clienteService.obtenerCliente(dni), fechaCreacion, "Caja ahorro");
-			this.cuentaService.guardarCuenta(cuenta);
-			System.out.println("EXITO");
+			return "redirect:/listadoCuentas.html";
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("error", e.getMessage());
+			return "altaCuenta";
 		}
-		else {
-			System.out.println("Usuario deshabilitado o con 4 cuentas asignadas");
-		}
-		return "redirect:/guardarCuenta.html";
 	}
 	
 	@RequestMapping(value="/guardarCuenta.html",method = RequestMethod.GET)

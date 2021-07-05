@@ -18,7 +18,6 @@ import javax.persistence.OneToMany;
 public class Cuenta implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(unique=true)
 	private Integer nroCuenta;
 	private String nombreCuenta;
 	

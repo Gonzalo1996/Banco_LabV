@@ -51,4 +51,9 @@ public class UsuarioServiceImpl implements UsuarioService{
 	public Boolean estadoUsuario(Integer dni) {
 		return usuarioDao.estadoUsuario(dni);
 	}
+	
+	@Override
+	public Usuario obtenerPorDni(int dni) {
+		return usuarioDao.obtenerPorDni(dni);
+	}
 }
