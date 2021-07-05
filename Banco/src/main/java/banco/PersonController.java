@@ -3,6 +3,7 @@ package banco;
 import java.util.Date;
 import java.util.List;
 
+import org.hamcrest.core.IsNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -19,6 +20,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import banco.model.Cliente;
+import banco.model.Cuenta;
 import banco.model.Person;
 import banco.model.TipoUsuario;
 import banco.model.Usuario;
@@ -44,7 +46,6 @@ public class PersonController {
 	@Autowired private CuentaService cuentaService;
 	@Autowired private MovimientoService movimientoService;
 
-
 	//REDIRECCIONES
 	@RequestMapping(value="/inicio.html",method = RequestMethod.GET)
 	public String inicio(Model model) {	
@@ -52,7 +53,7 @@ public class PersonController {
 	}
 	
 	@RequestMapping(value="/login.html",method = RequestMethod.GET)
-	public String login(Model model) {	
+	public String login(Model model) {
 		return "login";
 	}
 	
@@ -79,7 +80,7 @@ public class PersonController {
 		return om.writeValueAsString(usuario);
 	}
 	
-	@RequestMapping(value="/guardarUsuario.html",method = RequestMethod.GET)
+	@RequestMapping(value="/guardarUsuario.html",method = RequestMethod.POST)
 	public String guardarUsuario(Model model, String nombre, String apellido, String fechaNacimiento, Integer dni, Integer cuil, 
 		Integer genero, Integer provincia, Integer localidad, String direccion, String correo, String nombreUsuario, String contrasenia)
 	{	
@@ -98,7 +99,6 @@ public class PersonController {
 			Usuario usuario = new Usuario(contrasenia,nombreUsuario,true, cliente, null);
 
 			cliente.setUsuario(usuario);
-//          usuario.setCliente(cliente);			
 			this.usuarioService.guardarUsuario(usuario);
 		}
 		else 
@@ -108,13 +108,39 @@ public class PersonController {
 		System.out.println("DENTRO DE REQUEST");
 		
 		
-		return "redirect:/listadoCuentas.html";
+		return "redirect:/guardarUsuario.html";
 	}
 		
-	@RequestMapping(value="/guardarUsuario.html",method = RequestMethod.POST)
+	@RequestMapping(value="/guardarUsuario.html",method = RequestMethod.GET)
 	public String guardarUsuario(Model model)
 	{	
 		return "altaCliente";
+	}
+	
+	@RequestMapping(value="/guardarCuenta.html",method = RequestMethod.POST)
+	public String guardarCuenta(Model model, String cbu, String alias, String fecha, Integer dni, Integer moneda)
+	{	
+		System.out.println("CBU: " + cbu + "ALIAS: " + alias + "Fecha: " + fecha + "Saldo: " + dni + "Moneda: " + moneda);
+		Date fechaCreacion = new Date(fecha.replace('-', '/'));
+		System.out.println(this.cuentaService.obtenerCantidadCuentas(dni));
+		System.out.println(this.usuarioService.estadoUsuario(dni));
+		
+		if(this.cuentaService.obtenerCantidadCuentas(dni) <= 3 && this.usuarioService.estadoUsuario(dni)) {
+			System.out.println("Cuenta apta para crear!!!");
+			Cuenta cuenta = new Cuenta(cbu, alias, moneda, 10000.0, true, this.clienteService.obtenerCliente(dni), fechaCreacion, "Caja ahorro");
+			this.cuentaService.guardarCuenta(cuenta);
+			System.out.println("EXITO");
+		}
+		else {
+			System.out.println("Usuario deshabilitado o con 4 cuentas asignadas");
+		}
+		return "redirect:/guardarCuenta.html";
+	}
+	
+	@RequestMapping(value="/guardarCuenta.html",method = RequestMethod.GET)
+	public String guardarCuenta(Model model)
+	{	
+		return "altaCuenta";
 	}
 	
 	@RequestMapping(value="/login.html",method = RequestMethod.POST)
@@ -162,6 +188,7 @@ public class PersonController {
 	@RequestMapping(value="/listadoClientes.html",method = RequestMethod.GET)
 	public String redireccionarListadoClientes(Model model) {
 		model.addAttribute("listClientes", this.clienteService.listClientes());
+		model.addAttribute("listLocalidades", this.localidadService.listLocalidades());
 		return "listadoClientes";
 	}
 

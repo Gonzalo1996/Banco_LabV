@@ -46,4 +46,9 @@ public class UsuarioServiceImpl implements UsuarioService{
 	public void guardarUsuario(Usuario usuario) {
 		usuarioDao.guardarUsuario(usuario);	
 	}
+
+	@Override
+	public Boolean estadoUsuario(Integer dni) {
+		return usuarioDao.estadoUsuario(dni);
+	}
 }

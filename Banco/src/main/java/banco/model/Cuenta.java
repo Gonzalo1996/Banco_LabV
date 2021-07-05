@@ -7,6 +7,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -15,6 +17,7 @@ import javax.persistence.OneToMany;
 @Entity
 public class Cuenta implements Serializable{
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(unique=true)
 	private Integer nroCuenta;
 	private String nombreCuenta;
@@ -27,7 +30,6 @@ public class Cuenta implements Serializable{
 	private Boolean estado;
 	private Date fechaCreacion;
 	
-	
     @ManyToOne
 	@JoinColumn(name="dni")
 	private Cliente cliente;
@@ -36,9 +38,8 @@ public class Cuenta implements Serializable{
 	
 	}
 
-	public Cuenta(Integer nroCuenta, String cbu, String alias, Integer moneda, Double saldo, Boolean estado,
+	public Cuenta(String cbu, String alias, Integer moneda, Double saldo, Boolean estado,
 			Cliente cliente, Date fechacreacion, String nombreCuenta) {
-		this.nroCuenta = nroCuenta;
 		this.cbu = cbu;
 		this.alias = alias;
 		this.moneda = moneda;

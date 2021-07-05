@@ -84,13 +84,22 @@ public class UsuarioDAOImpl implements UsuarioDAO{
 	public void guardarUsuario(Usuario usuario) {
 		Session session = this.sessionFactory.openSession();
 		session.beginTransaction();
-
-//		session.persist(usuario);
-//		session.saveOrUpdate(usuario);
 		session.save(usuario);
 		
 		logger.info("Usuario saved successfully, Usuario Details="+ usuario);
 		session.getTransaction().commit();
 		session.close();
+	}
+
+	@Override
+	public Boolean estadoUsuario(Integer dni) {
+		Session session = this.sessionFactory.openSession();
+		session.beginTransaction();
+		String q = "SELECT u.estado FROM Usuario u INNER JOIN u.cliente WHERE u.cliente.dni= :dni";
+		Query query = session.createQuery(q);
+		query.setParameter("dni", dni);
+		Boolean estado = (Boolean)query.uniqueResult();
+		session.close();
+		return estado;
 	}
 }

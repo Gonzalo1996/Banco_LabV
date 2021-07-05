@@ -11,25 +11,26 @@
 	<section class="section-mov">
     <div class="container-form mov">
       <h3>Nueva Cuenta</h3>
-      <form action="">
+      
+      <form action="guardarCuenta.html" method="post">
       <div class="col-form">
         <div class="row-form">
          <br>
-          <input type="text" placeholder="CBU"> 
+          <input name="cbu" type="text" placeholder="CBU"> 
         </div>
         <div class="row-form">
          <br> 
-          <input type="text" placeholder="Alias"> 
+          <input name="alias" type="text" placeholder="Alias"> 
         </div>
         <div class="row-form date">
          <br>
-          <input  type="date" placeholder="Fecha creación">  
+          <input name="fecha" type="date" placeholder="Fecha creación">  
         </div>
       </div>
       <div class="col-form">
         <div class="row-form">
         <br>
-          <input type="text" placeholder="Saldo"> 
+          <input name="dni" type="text" placeholder="DNI cliente"> 
         </div>
         <!--
         <div class="row-form">
@@ -39,52 +40,18 @@
         -->
         <div class="row-form">
         <br>
-            <select name="prov" id="prov" class="drop-list">
-              <option selected class="disabled">Moneda</option>
+            <select name="moneda" id="moneda" class="drop-list">
               <option value="1">Pesos</option>
               <option value="2">Dolares</option>
             </select> 
           </div>
       </div>
-      <!--
-      <div class="col-form">
-        <div class="row-form">
-        <br>
-          <select name="prov" id="prov" class="drop-list">
-            <option selected class="disabled">Selec. Provincia</option>
-            <option value="1">Prov 1</option>
-            <option value="2">Prov 2</option>
-            <option value="3">Prov 3</option>
-            <option value="4">Prov 4</option>
-          </select> 
-        </div>
-        <div class="row-form">
-        <br>
-          <select name="prov" id="prov" class="drop-list">
-            <option selected class="disabled">Selec. Localidad </option>
-            <option value="1">Loc 1</option>
-            <option value="2">Loc 2</option>
-            <option value="3">Loc 3</option>
-            <option value="4">Loc 4</option>
-          </select>  
-        </div>
-        <div class="row-form">
-        <br>
-          <input type="text" placeholder="Direccion"> 
-        </div>               
-      </div>
-      <div class="col-form-correo">
-        <div class="row-form">
-         <br>
-          <input type="text" placeholder="correo"> 
-        </div>
-      </div>
-      -->
+ 
       <div class="btn-form">
         <button type="submit" class="btn-register">Registrar</button>
-      </div>
+      </div>  </form>
     </div>
-  </form>
+
    <!--
       <div class="container-form">
         <h2>Datos del cliente</h2>

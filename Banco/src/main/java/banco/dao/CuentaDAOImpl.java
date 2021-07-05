@@ -1,5 +1,6 @@
 package banco.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -14,7 +15,7 @@ import banco.model.Cuenta;
 @Repository
 public class CuentaDAOImpl implements CuentaDAO{
 
-	private static final Logger logger = LoggerFactory.getLogger(GeneroDAOImpl.class);
+	private static final Logger logger = LoggerFactory.getLogger(CuentaDAOImpl.class);
 
 	private SessionFactory sessionFactory;
 
@@ -45,6 +46,30 @@ public class CuentaDAOImpl implements CuentaDAO{
 		Cuenta c = (Cuenta)query.uniqueResult();
 		session.close();
 		return c;
+	}
+
+	@Override
+	public void guardarCuenta(Cuenta cuenta) {
+		Session session = this.sessionFactory.openSession();
+		session.beginTransaction();
+		session.save(cuenta);
+		
+		logger.info("Usuario saved successfully, Usuario Details="+ cuenta);
+		session.getTransaction().commit();
+		session.close();
+	}
+
+	@Override
+	public Long obtenerCantidadCuentas(Integer dni) {
+		Session session = this.sessionFactory.openSession();
+		session.beginTransaction();
+		String q = "SELECT COUNT(1) FROM Cuenta c INNER JOIN c.cliente GROUP BY c.cliente.dni HAVING c.cliente.dni= :dni";
+		Query query = session.createQuery(q);
+		query.setParameter("dni", dni);
+		Long cant = (Long)query.uniqueResult();
+		if (cant == null)return (long) 0;
+		session.close();
+		return cant;
 	}
 
 }

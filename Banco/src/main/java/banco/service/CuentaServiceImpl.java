@@ -28,4 +28,14 @@ public class CuentaServiceImpl implements CuentaService{
 	public Cuenta obtenerCuenta(int nroCuenta) {
 		return cuentaDao.obtenerCuenta(nroCuenta);
 	}
+
+	@Override
+	public void guardarCuenta(Cuenta cuenta) {
+		cuentaDao.guardarCuenta(cuenta);
+	}
+
+	@Override
+	public Long obtenerCantidadCuentas(Integer dni) {
+		return cuentaDao.obtenerCantidadCuentas(dni);
+	}
 }

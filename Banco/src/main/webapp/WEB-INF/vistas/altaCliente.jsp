@@ -16,7 +16,7 @@
         <div class="container-form">
         <h3>Datos del cliente</h3>
         
-        <form action="guardarUsuario.html" method="get">
+        <form action="guardarUsuario.html" method="post">
         <div class="col-form">
           <div class="row-form">
            <br>

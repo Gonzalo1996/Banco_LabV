@@ -116,16 +116,16 @@ public class Main {
         Cliente cliente9 = new Cliente(19447920, 2019447920, "Daniel", "Kloster", date, "dani_elCrack@gmail.com", "Av. Programador 1010", pais, localidad9, provincia9, genero3, usuario9);
         usuario9.setCliente(cliente9);
 
-    	Cuenta cuenta = new Cuenta (10110, "11101010", "winrar.licencia", 1, 1044.5, true, cliente, date, "C/ahorro");
-    	Cuenta cuenta1 = new Cuenta (12141, "12101010", "winrar.auto", 2, 1004.5, true, cliente1, date, "C/ahorro");
-    	Cuenta cuenta2 = new Cuenta (121140, "13101010", "winrar.pirata", 1, 1004.5, true, cliente2, date, "C/ahorro");
-    	Cuenta cuenta3 = new Cuenta (12310, "131401010", "winrar.nunca.pago", 1, 1004.5, true, cliente3, date, "C/ahorro");
-    	Cuenta cuenta4 = new Cuenta (13310, "16101010", "winrar.nada", 1, 1054.5, true, cliente4, date, "C/ahorro");
-    	Cuenta cuenta5= new Cuenta (12650, "10161710", "winrar.exe", 1, 1004.5, true, cliente5, date, "C/ahorro");
-    	Cuenta cuenta6 = new Cuenta (17710, "1010177010", "winrar.rawson", 1, 1004.5, true, cliente6, date, "C/ahorro");
-    	Cuenta cuenta7 = new Cuenta (18110, "19181010", "winrar.doc", 1, 1004.5, true, cliente7, date, "C/ahorro");
-    	Cuenta cuenta8 = new Cuenta (18419, "19171010", "winrar.rar", 1, 1004.5, true, cliente8, date, "C/ahorro");
-    	Cuenta cuenta9 = new Cuenta (18810, "101071910", "winrar.png", 1, 1094.5, true, cliente4, date, "C/ahorro");
+    	Cuenta cuenta = new Cuenta ("11101010", "winrar.licencia", 1, 1044.5, true, cliente, date, "C/ahorro");
+    	Cuenta cuenta1 = new Cuenta ("12101010", "winrar.auto", 2, 1004.5, true, cliente1, date, "C/ahorro");
+    	Cuenta cuenta2 = new Cuenta ("13101010", "winrar.pirata", 1, 1004.5, true, cliente2, date, "C/ahorro");
+    	Cuenta cuenta3 = new Cuenta ("131401010", "winrar.nunca.pago", 1, 1004.5, true, cliente3, date, "C/ahorro");
+    	Cuenta cuenta4 = new Cuenta ("16101010", "winrar.nada", 1, 1054.5, true, cliente4, date, "C/ahorro");
+    	Cuenta cuenta5= new Cuenta ("10161710", "winrar.exe", 1, 1004.5, true, cliente5, date, "C/ahorro");
+    	Cuenta cuenta6 = new Cuenta ("1010177010", "winrar.rawson", 1, 1004.5, true, cliente6, date, "C/ahorro");
+    	Cuenta cuenta7 = new Cuenta ("19181010", "winrar.doc", 1, 1004.5, true, cliente7, date, "C/ahorro");
+    	Cuenta cuenta8 = new Cuenta ("19171010", "winrar.rar", 1, 1004.5, true, cliente8, date, "C/ahorro");
+    	Cuenta cuenta9 = new Cuenta ("101071910", "winrar.png", 1, 1094.5, true, cliente4, date, "C/ahorro");
 
     	
     	Movimiento movimiento = new Movimiento(1, 10101.7 , 50005.7 , date, "deuda", cuenta);

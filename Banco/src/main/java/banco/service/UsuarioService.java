@@ -10,6 +10,6 @@ public interface UsuarioService
 	public Usuario obtenerUsuario(int idUsuario);
 	public List<Object[]> obtenerUsuarioLogin(String nombreUsuario, Integer dni, String contrasenia);
 	public int actualizarEstado(int idUsuario, Boolean estado);
-	
+	public Boolean estadoUsuario(Integer dni);
 	public void guardarUsuario(Usuario usuario);
 }
