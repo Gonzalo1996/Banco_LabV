@@ -15,7 +15,8 @@
 					<h3 style="font-family: 'Barlow', sans-serif">Modificar datos cliente:</h3>				
 				</div>
 	   	</div>
-
+		<br>
+		
 			<div class="row">
 			<div class="col-md-10">
 				<form method="POST" action="x">
@@ -60,47 +61,45 @@
 								</div>
    							 </div>
 					</div>
-					
-				  <div class="form-group row">
-				    <label class="col-md-1 col-form-label">País</label>
-						<div id ="nationality" class="btn-group col-md-2">
-							<button type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Elegir País</button>
-						  <div class="dropdown-menu">
-						    <a class="dropdown-item" href="#">Action</a>
-						  </div>
-						</div>
-						
-				    <label  class="col-md-1 col-form-label">Provincia:</label>
-					<div id ="nationality" class="btn-group col-md-2">
-						<button type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Elegir provincia</button>
-					  <div class="dropdown-menu">
-					    <a class="dropdown-item" href="#">Action</a>
-					  </div>
-					</div>
-					
-					<label  class="col-md-1 col-form-label">Localidad:</label>
-					<div id ="nationality" class="btn-group col-md-2">
-						<button type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Elegir localidad</button>
-					  <div class="dropdown-menu">
-					    <a class="dropdown-item" href="#">Action</a>
-					  </div>
-					</div>				 
-				  </div>
 				  
-  					<div class="form-group row">
-						<label class="col-md-1 col-form-label" for="email">Estado:</label>
-						    <div class="col-sm-10">
-								<div class="input-group mb-3">
-									<select class="btn btn-outline-secondary col-md-2">
-										<option>Activo</option>
-										<option>Inactivo</option>										
-									</select>
-								</div>
-   							 </div>
+				<div class="form-group">
+				        <label for="">Seleccionar:</label>
+				        <div class="input-group">
+							<select class="btn btn-outline-secondary col-md-2">
+								<option>País</option>
+								<option>Argentina</option>
+								<option>Uruguay</option>										
+							</select>
+				        
+							<span class="input-group-addon" style="color: white">-</span>    
+							<select class="btn btn-outline-secondary col-md-2">
+								<option>Provincia</option>
+								<option>Buenos aires</option>
+								<option>Punta del este</option>										
+							</select>
+							
+							<span class="input-group-addon" style="color: white">-</span>    
+				  			<select class="btn btn-outline-secondary col-md-2">
+								<option>Localidad</option>
+								<option>Pacheco</option>
+								<option>La playa</option>										
+							</select>
+							
+							<span class="input-group-addon" style="color: white">-</span>    
+				  			<select class="btn btn-outline-secondary col-md-2">
+								<option>Estado</option>
+								<option>Activo</option>
+								<option>Inactivo</option>										
+							</select>        
+						</div>
+			</div>
+				<div class="row">
+					<div class="col-md-2">
+						<button type="submit" class="btn btn-primary">
+							Modificar <span class="fa fa-pencil"></span>
+						</button>
 					</div>
-				 <button type="submit" class="btn btn-primary">
-				 	Modificar <span class="fa fa-pencil"></span>
-				 </button>
+				</div>
 				</form>
 			</div>
 		</div>
@@ -111,7 +110,3 @@
 <script src="content/dataTable/jquery/jquery-3.3.1.min.js"></script>
 <script src="content/dataTable/popper/popper.min.js"></script>
 <script src="content/dataTable/bootstrap/js/bootstrap.min.js"></script>
-  
-<!-- datatables JS -->
-<script type="text/javascript" src="content/dataTable/datatables/datatables.min.js"></script>    
-<script type="text/javascript" src="content/dataTable/main.js"></script>  

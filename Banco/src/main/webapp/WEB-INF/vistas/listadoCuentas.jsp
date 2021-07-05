@@ -20,7 +20,7 @@
 	
 	<div class="row">
 		<div class="col-md-12">
-			<form method="get" action="redireccionar_pag2.html">
+			<form method="get" action="">
 				<div class="form-group row">
 						<label class="col-md-1 col-form-label" for="txtCuil">CUIL:</label>
 						<div class="col-sm-12 col-md-4">
@@ -34,24 +34,15 @@
 				</div>
 					  
 				<div class="form-group row">
-					<label class="col-md-1 col-form-label" for="txtMoneda" >Tipo cuenta:</label>
+					<label class="col-md-1 col-form-label" >Tipo cuenta:</label>
 					<div class="col-xs-12 col-md-4">
-					 	 <!--<input id="txtMoneda" type="text" class="form-control" placeholder="Tipo cuenta">   -->	
  						<div class="dropdown ">
-						  <button class="btn btn-outline-info  dropdown-toggle btn-md" style="width: 100%" type="submit"  id="ddpTipoCuenta" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						    Tipo de cuenta
-						  </button>
-						  <div class="dropdown-menu" aria-labelledby="ddpTipoCuenta">
-						    <a class="dropdown-item" href="#">Peso</a>
-						    <a class="dropdown-item" href="#">Dolar</a>
-						  </div>
+ 						<select class="btn btn-outline-info  dropdown-toggle btn-md" style="width: 100%">
+ 							<option>Peso</option>
+ 							<option>Dolar</option>						
+ 						</select>
 						</div>	 	 		 	 		 	 						
 					</div>
-				
-				<div class="col-md-4">
-					<button type="submit" class="btn btn-primary">Filtrar <span class="fa fa-filter"></span></button>
-				    <button type="submit" class="btn btn-info">Quitar <span class="fa fa-times"></span></button>							
-				</div>
 				</div>
 			</form>			
 		</div>

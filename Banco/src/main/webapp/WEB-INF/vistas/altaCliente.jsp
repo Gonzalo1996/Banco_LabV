@@ -20,21 +20,21 @@
         <div class="col-form">
           <div class="row-form">
            <br>
-            <input name="nombre" type="text" placeholder="Nombre/s"> 
+            <input name="nombre" type="text" placeholder="Nombre/s" required/> 
           </div>
           <div class="row-form">
            <br> 
-            <input name="apellido" type="text" placeholder="Apellido/s"> 
+            <input name="apellido" type="text" placeholder="Apellido/s" required/> 
           </div>
           <div class="row-form date">
            <br>
-            <input name="fechaNacimiento" type="date" placeholder="Fecha nacimiento"> 
+            <input name="fechaNacimiento" type="date" placeholder="Fecha nacimiento" required/> 
           </div>
         </div>
         <div class="col-form">
           <div class="row-form">
           <br>
-            <input name="dni" type="text" placeholder="DNI"> 
+            <input name="dni" type="text" placeholder="DNI" required pattern="^[a-z0-9_-]{7,8}$" title="DNI invalido, no debe contener puntos y debe ir de 7 a 8 digitos"> 
           </div>
           <div class="row-form">
           <br>
@@ -42,7 +42,7 @@
           </div>
           <div class="row-form">
           <br>
-			<select name="genero" class="drop-list">
+			<select name="genero" class="drop-list" required>
 			    <option value="" disabled selected>--Seleccione genero--</option>
 			        <c:forEach items="${listGeneros}" var="genero" varStatus="status">
 			            <option value="${genero.id}"><c:out value="${genero.nombre}"></c:out> </option>
@@ -65,7 +65,7 @@
 
 		<div class="row-form">
           <br>
-			<select name="provincia" class="drop-list">
+			<select name="provincia" class="drop-list" required>
 			    <option value="" disabled selected>--Seleccione provincia--</option>
 			        <c:forEach items="${listProvincias}" var="provincia" varStatus="status">
 			            <option value="${provincia.id}"><c:out value="${provincia.nombre}"></c:out> </option>
@@ -74,7 +74,7 @@
           </div>
           <div class="row-form">
           <br>
-			<select name="localidad" class="drop-list">
+			<select name="localidad" class="drop-list" required>
 			    <option value="" disabled selected>--Seleccione localidad--</option>
 			        <c:forEach items="${listLocalidades}" var="localidad" varStatus="status">
 			            <option value="${localidad.id}"><c:out value="${localidad.nombre}"></c:out> </option>
@@ -83,22 +83,22 @@
           </div>
           <div class="row-form">
           <br>
-            <input name="direccion" type="text" placeholder="Direccion"> 
+            <input name="direccion" type="text" placeholder="Direccion" required/> 
           </div>               
         </div>
         <div class="col-form-correo">
           <div class="row-form">
            <br>
-            <input name="correo" type="text" placeholder="Correo"> 
+            <input name="correo" type="text" placeholder="Correo" required pattern="^[^@]+@[^@]+\.[a-zA-Z]{2,}$" title="Correo invalido, debe contener un @ y como minimo un punto."> 
           </div>
           
         <div class="row-form">
 			<br>
-			 <input name="nombreUsuario" type="text" placeholder="Nombre usuario">
+			 <input name="nombreUsuario" type="text" placeholder="Nombre usuario" required/>
 		</div>
 		<div class="row-form">
 			<br> 
-			<input name="contrasenia" type="text" placeholder="Contraseña">
+			<input name="contrasenia" type="password" placeholder="Contraseña"  required/>
 		</div>
           
        </div>

@@ -26,8 +26,13 @@
 			<div class="form-group row">
 					<label class="col-md-1 col-form-label" for="txtLocalidad">Localidad:</label>
 					<div class="col-md-4">
-						<input id="txtLocalidad" type="text" class="form-control" placeholder="Localidad">
-					</div>
+						<select name="localidad" class="btn btn-outline-info  dropdown-toggle btn-md" style="width: 100%">
+						    <option value="" disabled selected>--Seleccione localidad--</option>
+						        <c:forEach items="${listLocalidades}" var="localidad" varStatus="status">
+						            <option value="${localidad.id}"><c:out value="${localidad.nombre}"></c:out> </option>
+						        </c:forEach>
+						</select>				
+ 					</div>		
 			
 				<div class="col-md-4">
 					<button type="submit" class="btn btn-primary">Filtrar <span class="fa fa-filter"></span></button>
@@ -38,12 +43,7 @@
 		<div class="form-group row">
 			<label class="col-md-1 col-form-label" for="txtDni" >DNI:</label>
 			<div class="col-md-4">
-			 	<input id="txtDni" type="text" class="form-control" placeholder="DNI">
-			</div>
-			
-			<div class="col-md-4">
-				<button type="submit" class="btn btn-primary">Filtrar <span class="fa fa-filter"></span></button>
-			    <button type="submit" class="btn btn-info">Quitar <span class="fa fa-times"></span></button>							
+			 	<input id="txtDni" type="number" class="form-control" placeholder="DNI">
 			</div>
 		</div>
 		</form>
