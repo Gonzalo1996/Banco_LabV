@@ -37,8 +37,12 @@ public class UsuarioServiceImpl implements UsuarioService{
 
 	@Override
 	@Transactional
-	public List<Object[]> obtenerUsuarioLogin(String nombreUsuario, Integer dni, String contrasenia){
-		return usuarioDao.obtenerUsuarioLogin(nombreUsuario, dni, contrasenia);
+	public Usuario obtenerUsuarioLogin(String nombreUsuario, Integer dni, String contrasenia) throws Exception {
+		Usuario u = usuarioDao.obtenerUsuarioLogin(nombreUsuario, dni, contrasenia);
+		if (u == null)
+			throw new Exception("Usuario o contraseña incorrecta");
+		
+		return u;
 	}
 	
 	@Override

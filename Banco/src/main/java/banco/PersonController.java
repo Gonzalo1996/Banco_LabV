@@ -144,33 +144,21 @@ public class PersonController {
 	
 	@RequestMapping(value="/login.html",method = RequestMethod.POST)
 	public String login(Model model, String nombreUsuario, Integer dni, String contrasenia) {	
-		
-		List<Object[]> listUsuarios = this.usuarioService.obtenerUsuarioLogin(nombreUsuario ,dni, contrasenia);
-		
-		Integer id = null;
-		String  nombre = null;
-		Integer tipoUser = null;
-		Integer dniUser = null;
-	
-		if(listUsuarios.isEmpty()) {
-			model.addAttribute("mensajeError", "Usuario o contrasenia incorrecta");
-			return "login";
-		}
-		
-		for(Object[] obj : listUsuarios) {
-			  id = (Integer)obj[0];
-			  nombre = (String)obj[2];
-			  tipoUser = (Integer)obj[3];
-			  dniUser = (Integer)obj[4];
+		try {
+			Usuario usuario = this.usuarioService.obtenerUsuarioLogin(nombreUsuario ,dni, contrasenia);
+			
+			model.addAttribute("usuario", usuario.getCliente().getNombre());
+			
+			if(usuario.getTipoUsuario().getId() == 1) {
+				return "redirect:/listadoCuentas.html";
 			}
-		
-		model.addAttribute("usuario", nombre);
-		
-		if(tipoUser == 1) {
-			return "redirect:/listadoCuentas.html";
-		}
-		else {
-			return "redirect:/detallecliente.html";
+			else {
+				return "redirect:/detallecliente.html";
+			}		
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("error", e.getMessage());
+			return "login";
 		}
 	}
 	

@@ -28,6 +28,12 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
   
+    
+    <!-- SweetAlert2 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.1/main.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.1/main.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.1/locales-all.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
 </head>
 <body class="hold-transition login-page" background="content/images/fondo.jpg" style="background-size: cover">
 <div class="login-box">
@@ -37,9 +43,7 @@
     	<img src="content/images/logo.png" width="160px" height="160px"></img>
     </div>
 
-<c:if test="${!empty mensajeError}"><h1>${mensajeError}</h1></c:if>
-
-		</div>
+  </div>
   <!-- /.login-logo -->
   <div class="card" >
     <div class="card-body login-card-body" style="border-radius: 44px">
@@ -66,7 +70,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input name="contrasenia" type="password" class="form-control" placeholder="Constraseña">
+          <input name="contrasenia" type="password" class="form-control" placeholder="Contraseña">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fa fa-lock"></span>
@@ -139,5 +143,17 @@
     });
 </script>
 -->
+
+    
+    <c:if test="${!empty error}">
+	    <script>
+			Swal.fire({
+			  icon: 'error',
+			  title: 'Ups...',
+			  text: '${error}',
+			});
+		</script>
+	</c:if>
+
 </body>
 </html>

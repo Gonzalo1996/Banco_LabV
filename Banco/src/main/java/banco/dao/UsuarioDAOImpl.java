@@ -65,19 +65,21 @@ public class UsuarioDAOImpl implements UsuarioDAO{
 	}
 
 	@Override
-	public List<Object[]> obtenerUsuarioLogin(String nombreUsuario, Integer dni, String contrasenia) {
+	public Usuario obtenerUsuarioLogin(String nombreUsuario, Integer dni, String contrasenia) {
 		Session session = this.sessionFactory.openSession();
 		session.beginTransaction();
-		String q = "SELECT u.idUsuario, u.contrasenia, u.nombreUsuario, u.tipoUsuario.id, u.cliente.dni"
+		String q = "SELECT u"
 				+ " FROM Usuario as u JOIN u.cliente JOIN u.tipoUsuario "
 				+ "WHERE u.cliente.dni = :dni AND u.contrasenia = :contrasenia AND u.nombreUsuario= :nombreUsuario";
 		Query query = session.createQuery(q);
 		query.setParameter("nombreUsuario", nombreUsuario);
 		query.setParameter("dni", dni);
 		query.setParameter("contrasenia", contrasenia);
-		List<Object[]> list = (List<Object[]>)query.list();
+
+		Usuario u = (Usuario)query.uniqueResult();
+		
 		session.close();
-		return list;
+		return u;
 	}
 	
 	@Override
