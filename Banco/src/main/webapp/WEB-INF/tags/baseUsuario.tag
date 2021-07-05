@@ -17,6 +17,12 @@
 	<link rel="stylesheet" href="content/nav/style2.css">
 	
     <script src="content/nav/icons.js"></script>
+    
+    <!-- SweetAlert2 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.1/main.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.1/main.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.1/locales-all.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
 	
     <title>Sidebar + Navbar</title>
   </head>
@@ -78,6 +84,36 @@
     </div>
    
   </div>
+    
+    <c:if test="${!empty success}">
+	    <script>
+			Swal.fire({
+			  icon: 'success',
+			  title: 'Atención',
+			  text: '${success}',
+			});
+		</script>
+	</c:if>
+    
+    <c:if test="${!empty info}">
+	    <script>
+			Swal.fire({
+			  icon: 'info',
+			  title: 'Atención',
+			  text: '${info}',
+			});
+		</script>
+	</c:if>
+    
+    <c:if test="${!empty error}">
+	    <script>
+			Swal.fire({
+			  icon: 'error',
+			  title: 'Ups...',
+			  text: '${error}',
+			});
+		</script>
+	</c:if>
     
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

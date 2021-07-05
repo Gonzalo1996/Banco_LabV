@@ -23,6 +23,7 @@ public class Cuenta implements Serializable{
 	
 	@Column(unique=true)
 	private String cbu;
+	@Column(unique=true)
 	private String alias;
 	private Integer moneda;
 	private Double saldo;
