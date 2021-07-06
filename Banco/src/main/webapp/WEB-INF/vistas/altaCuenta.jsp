@@ -18,21 +18,21 @@
       <div class="col-form">
         <div class="row-form">
          <br>
-          <input name="cbu" type="text" placeholder="CBU"> 
+          <input name="cbu" type="text" placeholder="CBU" required/> 
         </div>
         <div class="row-form">
          <br> 
-          <input name="alias" type="text" placeholder="Alias"> 
+          <input name="alias" type="text" placeholder="Alias" required/> 
         </div>
         <div class="row-form date">
          <br>
-          <input name="nombre" type="text" placeholder="Nombre cuenta">  
+          <input name="nombre" type="text" placeholder="Nombre cuenta" required/>  
         </div>
       </div>
       <div class="col-form">
         <div class="row-form">
         <br>
-          <input name="dni" type="text" placeholder="DNI cliente"> 
+          <input name="dni" type="text" placeholder="DNI cliente" required/> 
         </div>
         <!--
         <div class="row-form">
@@ -42,7 +42,7 @@
         -->
         <div class="row-form">
         <br>
-            <select name="moneda" id="moneda" class="drop-list">
+            <select name="moneda" id="moneda" class="drop-list" required>
               <option value="1">Pesos</option>
               <option value="2">Dolares</option>
             </select> 

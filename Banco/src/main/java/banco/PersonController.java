@@ -135,11 +135,12 @@ public class PersonController {
 	
 			Cuenta cuenta = new Cuenta(cbu, alias, moneda, 10000.0, true, null, fechaActual, nombre);
 			this.cuentaService.guardarCuenta(cuenta, dni);
-		
 			return "redirect:/listadoCuentas.html";
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			model.addAttribute("error", e.getMessage());
+			model.addAttribute("listClientes", this.clienteService.listClientes());
 			return "altaCuenta";
 		}
 	}
@@ -147,6 +148,7 @@ public class PersonController {
 	@RequestMapping(value="/guardarCuenta.html",method = RequestMethod.GET)
 	public String guardarCuenta(Model model)
 	{	
+		model.addAttribute("listClientes", this.clienteService.listClientes());
 		return "altaCuenta";
 	}
 	
