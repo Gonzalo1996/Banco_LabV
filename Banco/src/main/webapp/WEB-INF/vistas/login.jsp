@@ -101,27 +101,6 @@
   </div>
 </div>
 
-<!-- VEMNTANA EMERGENTE -->
-        
- <!--<button href="#ventana1" class="btn btn-primary btn-lg" data-toggle="modal">Boton #1</button>  -->
-        <div class="modal fade" id="ventana1">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                    	<h3 class="modal-title">Error!</h3>                  
-                        <button class="close" data-dismiss="modal"><span class="fa fa-times-circle"></span></button>
-                    </div>
-                    <div class="modal-body">
-                        <p>
-							<c:if test="${!empty mensajeError}"><h1>${mensajeError}</h1></c:if>
-                        </p>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-default" data-dismiss="modal" type="button">Cerrar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
 <!--      
 <script type="text/javascript">
    console.log('paso 1');

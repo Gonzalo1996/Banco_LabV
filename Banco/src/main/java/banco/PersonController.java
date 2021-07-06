@@ -1,10 +1,14 @@
 package banco;
 
+import java.awt.SystemColor;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.format.datetime.joda.LocalDateParser;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -48,14 +52,18 @@ public class PersonController {
 
 	//REDIRECCIONES
 	@RequestMapping(value="/inicio.html",method = RequestMethod.GET)
-	public String inicio(Model model) {	
-		return "login";
+	public String inicio(Model model) {			
+		model.addAttribute("listCuentas", this.cuentaService.listCuentas());
+		model.addAttribute("listClientes", this.clienteService.listClientes());
+		
+		return "altaCuenta";
 	}
 	
 	@RequestMapping(value="/login.html",method = RequestMethod.GET)
 	public String login(Model model) {
 		return "login";
 	}
+	
 	
 	@RequestMapping(value="/ajaxExamples.html",method = RequestMethod.GET)
 	public String ajaxExamples(Model model) {	
@@ -100,6 +108,7 @@ public class PersonController {
 
 			cliente.setUsuario(usuario);
 			this.usuarioService.guardarUsuario(usuario);
+			return "redirect:/listadoClientes.html";
 		}
 		else 
 			System.out.println("!!!!!! USUARIO YA EXISTENTE");
@@ -118,15 +127,13 @@ public class PersonController {
 	}
 	
 	@RequestMapping(value="/guardarCuenta.html",method = RequestMethod.POST)
-	public String guardarCuenta(Model model, String cbu, String alias, String fecha, Integer dni, Integer moneda)
+	public String guardarCuenta(Model model, String cbu, String alias, String nombre, Integer dni, Integer moneda)
 	{	
 		try {
-			System.out.println("CBU: " + cbu + "ALIAS: " + alias + "Fecha: " + fecha + "Saldo: " + dni + "Moneda: " + moneda);
-			Date fechaCreacion = new Date(fecha.replace('-', '/'));
-			System.out.println(this.cuentaService.obtenerCantidadCuentas(dni));
-			System.out.println(this.usuarioService.estadoUsuario(dni));
+			SimpleDateFormat formatter= new SimpleDateFormat("yyyy/mm/ss HH:mm:ss");
+			Date fechaActual = new Date(formatter.format(System.currentTimeMillis()));
 	
-			Cuenta cuenta = new Cuenta(cbu, alias, moneda, 10000.0, true, null, fechaCreacion, "Caja ahorro");
+			Cuenta cuenta = new Cuenta(cbu, alias, moneda, 10000.0, true, null, fechaActual, nombre);
 			this.cuentaService.guardarCuenta(cuenta, dni);
 		
 			return "redirect:/listadoCuentas.html";
@@ -191,6 +198,7 @@ public class PersonController {
 	
 	@RequestMapping(value="/altaCuenta.html",method = RequestMethod.GET)
 	public String redireccionarAltaCuenta(Model model) {
+		model.addAttribute("listClientes", this.clienteService.listClientes());
 		return "altaCuenta";
 	}
 

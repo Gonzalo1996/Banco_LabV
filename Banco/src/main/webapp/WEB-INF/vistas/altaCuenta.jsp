@@ -26,7 +26,7 @@
         </div>
         <div class="row-form date">
          <br>
-          <input name="fecha" type="date" placeholder="Fecha creación">  
+          <input name="nombre" type="text" placeholder="Nombre cuenta">  
         </div>
       </div>
       <div class="col-form">
@@ -50,84 +50,44 @@
       </div>
  
       <div class="btn-form">
-        <button type="submit" class="btn-register">Registrar</button>
-      </div>  </form>
+        <button type="submit" class="btn-register">Registrar</button>     
+      </div> 
+      </form>
     </div>
+    
+    <button href="#ventana1" class="btn btn-primary" data-toggle="modal">
+    	<i class="fa fa-search" aria-hidden="true"></i>
+    </button>  
+    
+     <div class="modal fade" id="ventana1">
+           <div class="modal-dialog">
+               <div class="modal-content">
+                   <div class="modal-header">
+                   	<h3 class="modal-title">Buscar cliente</h3>                  
+                       <button class="close" data-dismiss="modal"><span class="fa fa-times-circle"></span></button>
+                   </div>
+                   <div class="modal-body">
+                       
+							<label for="exampleDataList" class="form-label">Buscador de clientes</label>
+							<input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Buscar cliente...">
+							<datalist id="datalistOptions">
+							        <c:forEach items="${listClientes}" var="c" varStatus="status">
+							            <option value="${c.dni}">
+								            <c:out value="Titular: "></c:out> 
+								            <c:out value="${c.apellido}"></c:out> 
+								            <c:out value="${c.nombre}"></c:out>          
+										</option>
+							        </c:forEach>
+							</datalist>
+                       
+                   </div>
+                   <div class="modal-footer">
+                       <button class="btn btn-default" data-dismiss="modal" type="button">Cerrar</button>
+                   </div>
+               </div>
+           </div>
+       </div>
 
-   <!--
-      <div class="container-form">
-        <h2>Datos del cliente</h2>
-        <form action="">
-        <div class="col-form">
-          <div class="row-form">
-           <br>
-            <input type="text" placeholder="Nombre/s"> 
-          </div>
-          <div class="row-form">
-           <br> 
-            <input type="text" placeholder="Apellido/s"> 
-          </div>
-          <div class="row-form date">
-           <br>
-            <input  type="date" placeholder="Fecha nacimiento"> 
-          </div>
-        </div>
-        <div class="col-form">
-          <div class="row-form">
-          <br>
-            <input type="text" placeholder="DNI"> 
-          </div>
-          <div class="row-form">
-          <br>
-            <input type="text" placeholder="CUIL"> 
-          </div>
-          <div class="row-form">
-          <br>
-              <select name="prov" id="prov" class="drop-list">
-                <option selected class="disabled">Selec. Genero</option>
-                <option value="1">Genero 1</option>
-                <option value="2">Genero 2</option>
-                <option value="3">Genero 3</option>
-              </select> 
-            </div>
-        </div>
-        <div class="col-form">
-          <div class="row-form">
-          <br>
-            <select name="prov" id="prov" class="drop-list">
-              <option selected class="disabled">Selec. Provincia</option>
-              <option value="1">Prov 1</option>
-              <option value="2">Prov 2</option>
-              <option value="3">Prov 3</option>
-              <option value="4">Prov 4</option>
-            </select> 
-          </div>
-          <div class="row-form">
-          <br>
-            <select name="prov" id="prov" class="drop-list">
-              <option selected class="disabled">Selec. Localidad </option>
-              <option value="1">Loc 1</option>
-              <option value="2">Loc 2</option>
-              <option value="3">Loc 3</option>
-              <option value="4">Loc 4</option>
-            </select>  
-          </div>
-          <div class="row-form">
-          <br>
-            <input type="text" placeholder="Direccion"> 
-          </div>               
-        </div>
-        <div class="col-form-correo">
-          <div class="row-form">
-           <br>
-            <input type="text" placeholder="correo"> 
-          </div>
-        </div>
-        <div class="btn-form">
-          <button type="submit" class="btn-register">Registrar</button>
-        </div>
-      </div>
-    </form>
-  -->
+
   </section>
 </t:base>
