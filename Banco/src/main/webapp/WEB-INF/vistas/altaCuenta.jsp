@@ -34,12 +34,14 @@
         <br>
           <input name="dni" type="text" placeholder="DNI cliente" required/> 
         </div>
-        <!--
+        
         <div class="row-form">
         <br>
-          <input type="text" placeholder="CUIL"> 
-        </div>
-        -->
+	        <button href="#ventana1" class="btn btn-link" data-toggle="modal">
+	    		<i class="fa fa-search" aria-hidden="true"></i>
+	    	</button>        
+	    	</div>
+        
         <div class="row-form">
         <br>
             <select name="moneda" id="moneda" class="drop-list" required>
@@ -50,14 +52,16 @@
       </div>
  
       <div class="btn-form">
-        <button type="submit" class="btn-register">Registrar</button>     
+        <button type="submit" class="btn btn-primary">
+        Registrar
+        <i class="fa fa-check-circle-o" aria-hidden="true"></i>
+        </button>     
       </div> 
+  
       </form>
     </div>
     
-    <button href="#ventana1" class="btn btn-primary" data-toggle="modal">
-    	<i class="fa fa-search" aria-hidden="true"></i>
-    </button>  
+
     
      <div class="modal fade" id="ventana1">
            <div class="modal-dialog">
@@ -67,18 +71,18 @@
                        <button class="close" data-dismiss="modal"><span class="fa fa-times-circle"></span></button>
                    </div>
                    <div class="modal-body">
-                       
-							<label for="exampleDataList" class="form-label">Buscador de clientes</label>
-							<input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Buscar cliente...">
-							<datalist id="datalistOptions">
-							        <c:forEach items="${listClientes}" var="c" varStatus="status">
-							            <option value="${c.dni}">
-								            <c:out value="Titular: "></c:out> 
-								            <c:out value="${c.apellido}"></c:out> 
-								            <c:out value="${c.nombre}"></c:out>          
-										</option>
-							        </c:forEach>
-							</datalist>
+                   
+						<label for="exampleDataList" class="form-label">Buscador de clientes</label>
+						<input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Buscar cliente...">
+						<datalist id="datalistOptions">
+						        <c:forEach items="${listClientes}" var="c" varStatus="status">
+						            <option value="${c.dni}">
+							            <c:out value="Titular: "></c:out> 
+							            <c:out value="${c.apellido}"></c:out> 
+							            <c:out value="${c.nombre}"></c:out>          
+									</option>
+						        </c:forEach>
+						</datalist>
                        
                    </div>
                    <div class="modal-footer">
