@@ -12,4 +12,5 @@ public interface CuentaService
 	public Cuenta obtenerPorCbu(String cbu);
 	public Cuenta obtenerPorAlias(String alias);
 
+	public List<Cuenta> obtenerCuentasPorCliente(Integer dni);
 }

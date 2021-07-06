@@ -95,5 +95,20 @@ public class CuentaDAOImpl implements CuentaDAO{
 		session.close();
 		return c;
 	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Cuenta> obtenerCuentasPorCliente(Integer c_dni) {
+		Session session = this.sessionFactory.getCurrentSession();
+		session.beginTransaction();
+		/*String q = "SELECT u"
+				+ " FROM Usuario as u JOIN u.cliente JOIN u.tipoUsuario "
+				+ "WHERE u.cliente.dni = :dni AND u.contrasenia = :contrasenia AND u.nombreUsuario= :nombreUsuario";*/
+		
+		String hql = "SELECT c FROM Cuenta as c JOIN c.cliente WHERE c.cliente.dni = :c_dni";
+		Query query = session.createQuery(hql);
+		query.setParameter("c_dni", c_dni);
+		return (List<Cuenta>)query.list();
+	}
 
 }

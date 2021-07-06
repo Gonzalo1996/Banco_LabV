@@ -287,4 +287,16 @@ public class PersonController {
 	}
 	*/
 	
+    @RequestMapping(value="/cuentasCliente.html",method = RequestMethod.GET)
+	public String redireccionarCuentaCliente(Model model, Integer dni) {
+    	//model.addAttribute("listCuentas", this.cuentaService.listCuentas());
+    	
+    	List<Cuenta> listCuentas = this.cuentaService.obtenerCuentasPorCliente(41184777);
+    	//for(int i=0; i<listCuentas.size();i++) {
+    	//	System.out.println("Contenido del Objeto " + i + listCuentas.get(i));
+    	//}
+    	
+    	model.addAttribute("listCuentas",listCuentas);
+		return "cuentasCliente";
+	}
 }

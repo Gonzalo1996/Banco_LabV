@@ -67,4 +67,10 @@ public class CuentaServiceImpl implements CuentaService{
 	public Cuenta obtenerPorAlias(String alias) {
 		return cuentaDao.obtenerPorAlias(alias);
 	}
+	
+	@Override
+	@Transactional
+	public List<Cuenta> obtenerCuentasPorCliente(Integer dni) {
+		return cuentaDao.obtenerCuentasPorCliente(dni);
+	}
 }
