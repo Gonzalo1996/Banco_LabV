@@ -33,14 +33,21 @@ public class CuentaServiceImpl implements CuentaService{
 	}
 
 	@Override
-	public void guardarCuenta(Cuenta cuenta, int dni) throws Exception {
+	public void guardarCuenta(Cuenta cuenta, int dni, String cbu, String alias) throws Exception {
 		Usuario usuario = usuarioService.obtenerPorDni(dni);
+		
 		if (usuario == null || !usuario.getEstado())
 			throw new Exception("El dni ingresado no corresponde a un usuario activo.");
 		
 		Long cantCuentas = this.obtenerCantidadCuentas(dni);
 		if (cantCuentas == 4)
 			throw new Exception("El cliente ya posee 4 cuentas asignadas.");
+		
+		if(obtenerPorCbu(cbu) != null)
+			throw new Exception("El CBU ingresado pertenece a otra cuenta");
+		
+		if(obtenerPorAlias(alias) != null)
+			throw new Exception("El alias  pertenece a otra cuenta");
 		
 		cuenta.setCliente(usuario.getCliente());
 		cuentaDao.guardarCuenta(cuenta);
@@ -49,5 +56,15 @@ public class CuentaServiceImpl implements CuentaService{
 	@Override
 	public Long obtenerCantidadCuentas(Integer dni) {
 		return cuentaDao.obtenerCantidadCuentas(dni);
+	}
+
+	@Override
+	public Cuenta obtenerPorCbu(String cbu) {
+		return cuentaDao.obtenerPorCbu(cbu);
+	}
+
+	@Override
+	public Cuenta obtenerPorAlias(String alias) {
+		return cuentaDao.obtenerPorAlias(alias);
 	}
 }

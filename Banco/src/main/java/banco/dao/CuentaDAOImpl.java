@@ -72,4 +72,28 @@ public class CuentaDAOImpl implements CuentaDAO{
 		return cant;
 	}
 
+	@Override
+	public Cuenta obtenerPorCbu(String cbu) {
+		Session session = this.sessionFactory.openSession();
+		session.beginTransaction();
+		String q = "FROM Cuenta as c WHERE c.cbu = :cbu";
+		Query query = session.createQuery(q);
+		query.setParameter("cbu", cbu);
+		Cuenta c = (Cuenta)query.uniqueResult();
+		session.close();
+		return c;
+	}
+
+	@Override
+	public Cuenta obtenerPorAlias(String alias) {
+		Session session = this.sessionFactory.openSession();
+		session.beginTransaction();
+		String q = "FROM Cuenta as c WHERE c.alias = :alias";
+		Query query = session.createQuery(q);
+		query.setParameter("alias", alias);
+		Cuenta c = (Cuenta)query.uniqueResult();
+		session.close();
+		return c;
+	}
+
 }

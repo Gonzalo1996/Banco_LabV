@@ -53,9 +53,8 @@ public class PersonController {
 	//REDIRECCIONES
 	@RequestMapping(value="/inicio.html",method = RequestMethod.GET)
 	public String inicio(Model model) {			
-		model.addAttribute("listCuentas", this.cuentaService.listCuentas());
 		model.addAttribute("listClientes", this.clienteService.listClientes());
-		
+
 		return "altaCuenta";
 	}
 	
@@ -134,7 +133,7 @@ public class PersonController {
 			Date fechaActual = new Date(formatter.format(System.currentTimeMillis()));
 	
 			Cuenta cuenta = new Cuenta(cbu, alias, moneda, 10000.0, true, null, fechaActual, nombre);
-			this.cuentaService.guardarCuenta(cuenta, dni);
+			this.cuentaService.guardarCuenta(cuenta, dni, cbu, alias);
 			return "redirect:/listadoCuentas.html";
 			
 		} catch (Exception e) {

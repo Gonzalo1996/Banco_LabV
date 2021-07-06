@@ -7,6 +7,8 @@ public interface CuentaDAO
 {
 	public List<Cuenta> listCuentas();
 	public Cuenta obtenerCuenta(int nroCuenta);
+	public Cuenta obtenerPorCbu(String cbu);
+	public Cuenta obtenerPorAlias(String cbu);
 	public void guardarCuenta(Cuenta cuenta);
 	public Long obtenerCantidadCuentas(Integer dni);
 }
