@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import banco.helpers.Constantes;
 import banco.model.Cliente;
 import banco.model.Cuenta;
 import banco.model.Person;
@@ -149,7 +150,7 @@ public class PersonController {
 			
 			model.addAttribute("usuario", usuario.getCliente().getNombre());
 			
-			if(usuario.getTipoUsuario().getId() == 1) {
+			if (usuario.getTipoUsuario().getId() == Constantes.TipoUsuario.ADMIN.id) {
 				return "redirect:/listadoCuentas.html";
 			}
 			else {
