@@ -79,4 +79,30 @@ public class CuentaServiceImpl implements CuentaService{
 	public Long obtenerCantCuentas_sinContarBajas(Integer dni) {
 		return cuentaDao.obtenerCantCuentas_sinContarBajas(dni);
 	}
+	
+	@Override
+	@Transactional
+	public int bajaCuenta(Integer nroCuenta) {
+		return cuentaDao.bajaCuenta(nroCuenta);
+	}
+
+	@Override
+	@Transactional
+	public int modificarCuenta(Integer nroCuenta, String alias, String nombre, Integer dni, Boolean estado) throws Exception{
+		Usuario usuario = usuarioService.obtenerPorDni(dni);
+		Cuenta cuenta = obtenerPorAlias(alias);
+		
+		if (usuario == null || !usuario.getEstado())
+			throw new Exception("El dni ingresado no corresponde a un usuario activo.");
+		
+		Long cantCuentas = this.obtenerCantidadCuentas(dni);
+		if (cantCuentas == 4)
+			throw new Exception("El cliente ya posee 4 cuentas asignadas.");
+		
+		if(cuenta != null && cuenta.getNroCuenta() != nroCuenta) {
+			throw new Exception("Alias ya asignado a otra cuenta");
+		}
+		
+		return cuentaDao.modificarCuenta(nroCuenta, alias, nombre, dni, estado);
+	}
 }

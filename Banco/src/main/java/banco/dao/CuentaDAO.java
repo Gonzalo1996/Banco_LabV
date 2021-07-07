@@ -11,7 +11,8 @@ public interface CuentaDAO
 	public Cuenta obtenerPorAlias(String cbu);
 	public void guardarCuenta(Cuenta cuenta);
 	public Long obtenerCantidadCuentas(Integer dni);
-	
+	public int bajaCuenta(Integer nroCuenta);
+	public int modificarCuenta(Integer nroCuenta, String alias, String nombre, Integer dni, Boolean estado);
 	public List<Cuenta> obtenerCuentasPorCliente(Integer dni);
 	public Long obtenerCantCuentas_sinContarBajas(Integer dni);
 }

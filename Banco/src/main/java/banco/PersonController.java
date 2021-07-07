@@ -54,8 +54,6 @@ public class PersonController {
 	//REDIRECCIONES
 	@RequestMapping(value="/inicio.html",method = RequestMethod.GET)
 	public String inicio(Model model) {			
-		model.addAttribute("listClientes", this.clienteService.listClientes());
-
 		return "altaCuenta";
 	}
 	
@@ -249,49 +247,54 @@ public class PersonController {
         return "person";
     }
     
-    /*
-	@RequestMapping(value="/inicio.html",method = RequestMethod.GET)
-	public String inicio(Model model) {
-		
-		model.addAttribute("ClienteUnico", this.clienteService.obtenerCliente(31484777));
-		model.addAttribute("listClientes", this.clienteService.listClientes());
-		
-		model.addAttribute("UsuarioUnico", this.usuarioService.obtenerUsuario(3));
-		model.addAttribute("listUsuarios", this.usuarioService.listUsuarios());
-		model.addAttribute("UsuarioUnico", this.usuarioService.actualizarEstado(5, false));
-		
-		model.addAttribute("CuentaUnica", this.cuentaService.obtenerCuenta(18810));
-		model.addAttribute("listCuentas", this.cuentaService.listCuentas());
-
-		model.addAttribute("MovimientUnico", this.movimientoService.obtenerMovimiento(5));
-		model.addAttribute("listMovimiento", this.movimientoService.listMovimientos());
-		
-		model.addAttribute("listGeneros", this.generoService.listGeneros());
-		model.addAttribute("generoUnico", this.generoService.obtenerGenero(2));
-		
-		model.addAttribute("listPais", this.paisService.listPais());
-		model.addAttribute("paisUnico", this.paisService.obtenerPais(1));
-		
-		model.addAttribute("listProvincias", this.provinciaService.listProvincias());
-		model.addAttribute("listProvincias2", this.provinciaService.listProvincias_x_Pais(1));
-		model.addAttribute("provinciaUnica", this.provinciaService.obtenerProvincia(1));
-		
-		model.addAttribute("listLocalidades", this.localidadService.listLocalidades());
-		model.addAttribute("listLocalidades2", this.localidadService.listLocalidades_x_Prov(3));
-		model.addAttribute("localidadUnica", this.localidadService.obtenerLocalidad(1));
-		return "listadoCuentasAdmin";
+	@RequestMapping(value="/modificarCuenta.html",method = RequestMethod.GET)
+	public String redireccionarModificarCuenta(Model model) {
+		return "modificarCuenta";
 	}
-	*/
 	
+    @RequestMapping("bajaCuenta.html{cbu}")
+    public String bajaCuenta(@PathVariable("cbu") String cbu, Model model){
+    	System.out.println("DENTRO DE BAJA CUENTA HTML");
+    	System.out.println("CBU: "+ cbu);
+        return "listadoCuentas";
+    }
+    
+    @RequestMapping("/bajaCuenta.html")
+    public String bajaCuenta(Model model, Integer nroCuenta){
+    	this.cuentaService.bajaCuenta(nroCuenta);
+        return "redirect:/listadoCuentas.html";
+    }
+    
+    @RequestMapping("/editarCuenta.html")
+    public String editarCuenta(Model model, Integer nroCuenta){
+    	System.out.println("ADENTRO DE EDITAR CUENTA");
+    	System.out.println("CUENTA A MODIFICAR: " + nroCuenta);
+    	model.addAttribute("cuenta", this.cuentaService.obtenerCuenta(nroCuenta));
+    	System.out.println(this.cuentaService.obtenerCuenta(nroCuenta));
+    	return "modificarCuenta";
+    }
+    
+    @RequestMapping(value="/guardarCuentaModificada.html",method = RequestMethod.GET)
+    public String guardarCuentaModificada(Model model, Integer nroCuenta, String nombre, Integer dni, String alias, Integer estado){    	
+    	Boolean estadoCuenta;
+    	try {
+        	if(estado == 1)
+        		estadoCuenta = true;
+        	else 
+        		estadoCuenta = false;
+        	this.cuentaService.modificarCuenta(nroCuenta, alias, nombre, dni, estadoCuenta);
+        	
+        	return "redirect:/listadoCuentas.html";
+    	}catch (Exception e) {
+			model.addAttribute("error", e.getMessage());
+	    	model.addAttribute("cuenta", this.cuentaService.obtenerCuenta(nroCuenta));
+			return "modificarCuenta";
+		}
+    }
+    
     @RequestMapping(value="/cuentasCliente.html",method = RequestMethod.GET)
-	public String redireccionarCuentaCliente(Model model, Integer dni) {
-    	//model.addAttribute("listCuentas", this.cuentaService.listCuentas());
-    	
+	public String redireccionarCuentaCliente(Model model, Integer dni) {    	
     	List<Cuenta> listCuentas = this.cuentaService.obtenerCuentasPorCliente(44444444);
-    	//for(int i=0; i<listCuentas.size();i++) {
-    	//	System.out.println("Contenido del Objeto " + i + listCuentas.get(i));
-    	//}
-    	
     	model.addAttribute("listCuentas",listCuentas);
 		return "cuentasCliente";
 	}

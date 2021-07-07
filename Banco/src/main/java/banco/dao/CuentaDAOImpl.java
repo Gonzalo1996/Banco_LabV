@@ -119,5 +119,36 @@ public class CuentaDAOImpl implements CuentaDAO{
 		session.close();
 		return cant;
 	}
+	
+	@Override
+	public int bajaCuenta(Integer p_nroCuenta) {
+		Session session = this.sessionFactory.openSession();
+		session.beginTransaction();
+		String q = "UPDATE Cuenta c set c.estado = false WHERE c.nroCuenta= :p_nroCuenta";
+		Query query = session.createQuery(q);
+		query.setParameter("p_nroCuenta", p_nroCuenta);
+		int execute = query.executeUpdate();
+		session.getTransaction().commit();
+		session.close();
+		return execute;
+	}
+
+	@Override
+	public int modificarCuenta(Integer nroCuenta, String alias, String nombre, Integer dni, Boolean estado) {
+		Session session = this.sessionFactory.openSession();
+		session.beginTransaction();
+		String q = "UPDATE Cuenta c set c.alias = :alias, c.nombreCuenta = :nombre, c.cliente.dni= :dni, c.estado= :estado"
+				+ " WHERE c.nroCuenta= :nroCuenta";
+		Query query = session.createQuery(q);
+		query.setParameter("nroCuenta", nroCuenta);
+		query.setParameter("alias", alias);
+		query.setParameter("nombre", nombre);
+		query.setParameter("dni", dni);
+		query.setParameter("estado", estado);
+		int execute = query.executeUpdate();
+		session.getTransaction().commit();
+		session.close();
+		return execute;
+	}
 
 }

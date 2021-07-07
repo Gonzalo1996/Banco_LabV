@@ -88,19 +88,27 @@
 								
 								<c:choose>
 									<c:when test="${c.estado ==true}">
-										<td>Activa</td>
+										<td>Activa</td>							
 									</c:when>
 									<c:otherwise>
 										<td>Inactiva</td>
 									</c:otherwise>
 								</c:choose>
+																				
+								<td><a class="btn btn-primary" href="<c:url value='/editarCuenta.html?nroCuenta=${c.nroCuenta}'/>"><span class="fa fa-pencil"></span></a></td>							
 								
-								<td><button type="submit" class="btn btn-primary"><span class="fa fa-pencil"></span></button></td>
-								<td><button type="submit" class="btn btn-info"><span class="fa fa-ban"></span></button></td>
-								</tr>
+								 <c:choose>
+									<c:when test="${c.estado ==true}">
+										<td><a class="btn btn-info" href="<c:url value='/bajaCuenta.html?nroCuenta=${c.nroCuenta}'/>"><span class="fa fa-ban"></span></a></td>							
+									</c:when>
+									<c:otherwise>
+										<td><a class=" disabled btn btn-secondary" href="<c:url value='/bajaCuenta.html?nroCuenta=${c.nroCuenta}'/>"><span class="fa fa-ban"></span></a></td>							
+									</c:otherwise>
+								</c:choose>																							
+							</tr>
 						</c:forEach>
 					</tbody>        
-                </table>                  
+                </table>                                  
              </div>
          </div>
  </div>
