@@ -1,6 +1,8 @@
 package banco.dao;
 
 import java.util.List;
+
+import banco.model.Cuenta;
 import banco.model.Movimiento;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -45,5 +47,16 @@ public class MovimientoDAOImpl implements MovimientoDAO{
 		Movimiento m = (Movimiento)query.uniqueResult();
 		session.close();
 		return m;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Movimiento> obtenerMovimientos_x_nroCuenta(Integer nroCuenta) {
+		Session session = this.sessionFactory.getCurrentSession();
+		session.beginTransaction();
+		String hql = "SELECT m FROM Movimiento as m JOIN m.cuenta WHERE m.cuenta.nroCuenta = :nroCuenta";
+		Query query = session.createQuery(hql);
+		query.setParameter("nroCuenta", nroCuenta);
+		return (List<Movimiento>)query.list();
 	}
 }

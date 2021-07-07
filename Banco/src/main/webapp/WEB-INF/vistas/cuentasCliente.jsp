@@ -33,7 +33,7 @@
 
 				<div class="dropdown-menu" aria-labelledby="ddpCuentas">
 						<c:forEach items="${listCuentas}" var="cuenta" varStatus="loop">
-            					<a class="dropdown-item" href="">
+            					<a class="dropdown-item" href="<c:url value='/movimientos.html?cbu=${cuenta.cbu}' />">
             						<c:choose>
 											<c:when test="${cuenta.moneda == 1}">
 												<b>En Pesos</b> &nbsp; &nbsp; &nbsp;

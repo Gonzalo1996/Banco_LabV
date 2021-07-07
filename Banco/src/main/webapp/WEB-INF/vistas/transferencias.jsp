@@ -36,8 +36,21 @@
 									Cuentas:
 									</button>
 									<div class="dropdown-menu" aria-labelledby="ddpTipoCuenta">
-										<a class="dropdown-item" href="#">Caja de ahorro pesos $</a>
-										<a class="dropdown-item" href="#">Cuenta dolares U$D</a>
+											<c:forEach items="${listCuentas}" var="cuenta" varStatus="loop">
+            									<a class="dropdown-item" href="">
+            										<c:choose>
+														<c:when test="${cuenta.moneda == 1}">
+															<b>En Pesos</b> &nbsp; &nbsp; &nbsp;
+														</c:when>
+														<c:otherwise>
+															<b>En Dolares</b> &nbsp;
+														</c:otherwise>
+													</c:choose>
+														${cuenta.nombreCuenta}
+            											${cuenta.nroCuenta} $ 
+            											${cuenta.saldo}
+            									</a>
+       										</c:forEach>
 									</div>
 								</div>	 											
 							</div>
@@ -96,8 +109,21 @@
 									Cuenta origen:
 									</button>
 									<div class="dropdown-menu" aria-labelledby="ddpCuentaOrigen">
-										<a class="dropdown-item" href="#">Caja de ahorro pesos $</a>
-										<a class="dropdown-item" href="#">Cuenta dolares U$D</a>
+											<c:forEach items="${listCuentas}" var="cuenta" varStatus="loop">
+            									<a class="dropdown-item" href="">
+            										<c:choose>
+														<c:when test="${cuenta.moneda == 1}">
+															<b>En Pesos</b> &nbsp; &nbsp; &nbsp;
+														</c:when>
+														<c:otherwise>
+															<b>En Dolares</b> &nbsp;
+														</c:otherwise>
+													</c:choose>
+														${cuenta.nombreCuenta}
+            											${cuenta.nroCuenta} $ 
+            											${cuenta.saldo}
+            									</a>
+       										</c:forEach>
 									</div>
 								</div>	 											
 							</div>
@@ -111,8 +137,21 @@
 									Cuenta destinatario:
 									</button>
 									<div class="dropdown-menu" aria-labelledby="ddpCuentaDestino">
-										<a class="dropdown-item" href="#">Caja de ahorro pesos $</a>
-										<a class="dropdown-item" href="#">Cuenta dolares U$D</a>
+											<c:forEach items="${listCuentas}" var="cuenta" varStatus="loop">
+            									<a class="dropdown-item" href="">
+            										<c:choose>
+														<c:when test="${cuenta.moneda == 1}">
+															<b>En Pesos</b> &nbsp; &nbsp; &nbsp;
+														</c:when>
+														<c:otherwise>
+															<b>En Dolares</b> &nbsp;
+														</c:otherwise>
+													</c:choose>
+														${cuenta.nombreCuenta}
+            											${cuenta.nroCuenta} $ 
+            											${cuenta.saldo}
+            									</a>
+       										</c:forEach>
 									</div>
 								</div>	 											
 							</div>

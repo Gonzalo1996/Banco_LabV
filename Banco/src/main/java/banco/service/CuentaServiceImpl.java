@@ -73,4 +73,10 @@ public class CuentaServiceImpl implements CuentaService{
 	public List<Cuenta> obtenerCuentasPorCliente(Integer dni) {
 		return cuentaDao.obtenerCuentasPorCliente(dni);
 	}
+
+	@Override
+	@Transactional
+	public Long obtenerCantCuentas_sinContarBajas(Integer dni) {
+		return cuentaDao.obtenerCantCuentas_sinContarBajas(dni);
+	}
 }

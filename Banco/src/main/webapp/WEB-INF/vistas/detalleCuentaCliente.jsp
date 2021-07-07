@@ -1,3 +1,7 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <title>Banco UTN</title>
@@ -7,16 +11,16 @@
 
 <div class="card">
 	 <div class="card-header">
-	    <h4 style="font-family: 'Barlow', sans-serif">Cuenta: 246-6666666-1
-	     <a href="cuentasCliente.jsp" class="btn btn-primary float-right" role="button">
+	    <h4 style="font-family: 'Barlow', sans-serif">Cuenta: ${nroCuenta}
+	     <a href="cuentasCliente.html" class="btn btn-primary float-right" role="button">
 	     <span class="fa fa-arrow-left"></span>
 	      Volver
 	     </a></h4>
-	 	CBU: 0246666666610012
+	 	CBU: ${nroCbu}
 	 </div>
 	 
 	 <div class="card-body">
-	    <h5 class="card-title">Movimientos</h5>
+	    <h3 class="card-title">Movimientos <b class="float-right">Saldo: $ ${saldo}</b></h3>
 	    
 <div class="row">
          <div class="col-md-12">
@@ -28,38 +32,17 @@
 						<th>Descripción</th>
 						<th>Importe</th>
 						<th>Saldo Total</th>
-						<th></th>
                      </tr>
                  </thead>
                  <tbody>
-                     <tr>
-						<td>10/06/2021</td>
-						<td>Extracción</td>
-						<td>-$ 1.500,00</td>
-						<td>$ 5.000,00</td>							
-						<td><button type="submit" class="btn btn-primary">Ver</button></td>
-                     </tr>                       
-                     <tr>
-						<td>30/05/2021</td>
-						<td>Compra Visa Débito</td>
-						<td>-$ 2.000,00</td>
-						<td>$ 6.500,00</td>							
-						<td><button type="submit" class="btn btn-primary">Ver</button></td>
-                     </tr> 
-                    <tr>
-						<td>19/05/2021</td>
-						<td>Pago de Servicios</td>
-						<td>-$ 1.500,00</td>
-						<td>$ 8.500,00</td>							
-						<td><button type="submit" class="btn btn-primary">Ver</button></td>
-                     </tr> 
-                     <tr>
-						<td>16/01/2021</td>
-						<td>Apertura Cuenta</td>
-						<td>$ 10.000,00</td>
-						<td>$ 10.000,00</td>							
-						<td><button type="submit" class="btn btn-primary">Ver</button></td>
-                     </tr> 
+						<c:forEach items="${listMovimientos}" var="m">
+							<tr>
+								<td>${m.fecha}</td>
+								<td>${m.detalle}</td>
+								<td>${m.monto}</td>						
+								<td>${m.saldo}</td>
+								</tr>
+						</c:forEach>                      
                  </tbody>        
                 </table>                  
              </div>

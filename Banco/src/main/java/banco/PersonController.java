@@ -25,6 +25,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import banco.helpers.Constantes;
 import banco.model.Cliente;
 import banco.model.Cuenta;
+import banco.model.Movimiento;
 import banco.model.Person;
 import banco.model.TipoUsuario;
 import banco.model.Usuario;
@@ -171,11 +172,6 @@ public class PersonController {
 		}
 	}
 	
-	@RequestMapping(value="/detallecliente.html",method = RequestMethod.GET)
-	public String redireccionarDetalleCliente(Model model) {
-		return "detallecliente";
-	}
-	
 	@RequestMapping(value="/listadoCuentas.html",method = RequestMethod.GET)
 	public String redireccionarListadoCuentas(Model model) {
 		model.addAttribute("listCuentas", this.cuentaService.listCuentas());
@@ -291,12 +287,56 @@ public class PersonController {
 	public String redireccionarCuentaCliente(Model model, Integer dni) {
     	//model.addAttribute("listCuentas", this.cuentaService.listCuentas());
     	
-    	List<Cuenta> listCuentas = this.cuentaService.obtenerCuentasPorCliente(41184777);
+    	List<Cuenta> listCuentas = this.cuentaService.obtenerCuentasPorCliente(44444444);
     	//for(int i=0; i<listCuentas.size();i++) {
     	//	System.out.println("Contenido del Objeto " + i + listCuentas.get(i));
     	//}
     	
     	model.addAttribute("listCuentas",listCuentas);
 		return "cuentasCliente";
+	}
+    
+    @RequestMapping(value="/transferencias.html",method = RequestMethod.GET)
+	public String redireccionarTransferencias(Model model, Integer dni) {
+
+    	List<Cuenta> listCuentas = this.cuentaService.obtenerCuentasPorCliente(44444444);
+    	
+    	model.addAttribute("listCuentas",listCuentas);
+		return "transferencias";
+	}
+    
+	@RequestMapping(value="/movimientos.html",method = RequestMethod.GET)
+    public String redireccionarMovimientos(Model model, String cbu){
+		
+        System.out.println("Nro. de CBU: " + cbu);
+        
+        Cuenta cuenta = this.cuentaService.obtenerPorCbu(cbu);
+        
+        List<Movimiento> listMovimientos = this.movimientoService.obtenerMovimientos_x_nroCuenta(cuenta.getNroCuenta());
+        
+        System.out.println(cuenta.toString());
+        
+        for(int i=0; i<listMovimientos.size();i++) {
+        		System.out.println("Contenido del Objeto " + listMovimientos.get(i));
+        }
+        
+        
+        model.addAttribute("nroCuenta", cuenta.getNroCuenta());
+        model.addAttribute("nroCbu", cuenta.getCbu());
+        model.addAttribute("saldo", cuenta.getSaldo());
+        model.addAttribute("listMovimientos", listMovimientos);
+        
+        return "detalleCuentaCliente";
+    }
+	
+	@RequestMapping(value="/detallecliente.html",method = RequestMethod.GET)
+	public String redireccionarDetalleCliente(Model model, Integer dni) {
+		
+		Cliente cliente = this.clienteService.obtenerCliente(44444444);
+		
+		model.addAttribute("cliente", cliente);
+		model.addAttribute("totalCuentas", this.cuentaService.obtenerCantCuentas_sinContarBajas(44444444));
+		
+		return "detallecliente";
 	}
 }

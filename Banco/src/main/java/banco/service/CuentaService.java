@@ -13,4 +13,5 @@ public interface CuentaService
 	public Cuenta obtenerPorAlias(String alias);
 
 	public List<Cuenta> obtenerCuentasPorCliente(Integer dni);
+	public Long obtenerCantCuentas_sinContarBajas(Integer dni);
 }

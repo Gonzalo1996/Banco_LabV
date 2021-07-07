@@ -101,10 +101,23 @@ public class CuentaDAOImpl implements CuentaDAO{
 	public List<Cuenta> obtenerCuentasPorCliente(Integer c_dni) {
 		Session session = this.sessionFactory.getCurrentSession();
 		session.beginTransaction();
-		String hql = "SELECT c FROM Cuenta as c JOIN c.cliente WHERE c.cliente.dni = :c_dni";
+		String hql = "SELECT c FROM Cuenta as c JOIN c.cliente WHERE c.cliente.dni = :c_dni AND c.estado = true";
 		Query query = session.createQuery(hql);
 		query.setParameter("c_dni", c_dni);
 		return (List<Cuenta>)query.list();
+	}
+
+	@Override
+	public Long obtenerCantCuentas_sinContarBajas(Integer dni) {
+		Session session = this.sessionFactory.openSession();
+		session.beginTransaction();
+		String q = "SELECT COUNT(1) FROM Cuenta c INNER JOIN c.cliente WHERE c.estado = true GROUP BY c.cliente.dni HAVING c.cliente.dni= :dni";
+		Query query = session.createQuery(q);
+		query.setParameter("dni", dni);
+		Long cant = (Long)query.uniqueResult();
+		if (cant == null)return (long) 0;
+		session.close();
+		return cant;
 	}
 
 }

@@ -13,4 +13,5 @@ public interface CuentaDAO
 	public Long obtenerCantidadCuentas(Integer dni);
 	
 	public List<Cuenta> obtenerCuentasPorCliente(Integer dni);
+	public Long obtenerCantCuentas_sinContarBajas(Integer dni);
 }
