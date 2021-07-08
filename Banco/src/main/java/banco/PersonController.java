@@ -6,6 +6,9 @@ import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.format.datetime.joda.LocalDateParser;
@@ -54,7 +57,7 @@ public class PersonController {
 	//REDIRECCIONES
 	@RequestMapping(value="/inicio.html",method = RequestMethod.GET)
 	public String inicio(Model model) {	
-		return "listadoClientes";
+		return "login";
 	}
 	
 	@RequestMapping(value="/login.html",method = RequestMethod.GET)
@@ -146,12 +149,13 @@ public class PersonController {
 	}
 	
 	@RequestMapping(value="/login.html",method = RequestMethod.POST)
-	public String login(Model model, String nombreUsuario, Integer dni, String contrasenia) {	
+	public String login(Model model, String nombreUsuario, Integer dni, String contrasenia, HttpServletRequest request) {	
 		try {
-			Usuario usuario = this.usuarioService.obtenerUsuarioLogin(nombreUsuario ,dni, contrasenia);
-			
+			Usuario usuario = this.usuarioService.obtenerUsuarioLogin(nombreUsuario ,dni, contrasenia);		
 			model.addAttribute("usuario", usuario.getCliente().getNombre());
 			
+			HttpSession session = request.getSession();
+			session.setAttribute("usuario", usuario);
 			if (usuario.getTipoUsuario().getId() == Constantes.TipoUsuario.ADMIN.id) {
 				return "redirect:/listadoCuentas.html";
 			}
@@ -313,12 +317,11 @@ public class PersonController {
     }
 	
 	@RequestMapping(value="/detallecliente.html",method = RequestMethod.GET)
-	public String redireccionarDetalleCliente(Model model, Integer dni) {
-		
+	public String redireccionarDetalleCliente(Model model, Integer dni) {	
 		Cliente cliente = this.clienteService.obtenerCliente(44444444);
-		
-		model.addAttribute("cliente", cliente);
 		model.addAttribute("totalCuentas", this.cuentaService.obtenerCantCuentas_sinContarBajas(44444444));
+		model.addAttribute("cliente", cliente);
+
 		
 		return "detallecliente";
 	}
