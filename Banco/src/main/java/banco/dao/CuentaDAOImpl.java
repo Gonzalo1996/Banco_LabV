@@ -150,5 +150,4 @@ public class CuentaDAOImpl implements CuentaDAO{
 		session.close();
 		return execute;
 	}
-
 }

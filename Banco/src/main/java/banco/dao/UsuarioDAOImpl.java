@@ -118,4 +118,32 @@ public class UsuarioDAOImpl implements UsuarioDAO{
 		session.close();
 		return u;
 	}
+	
+	@Override
+	public int bajaUsuario(Integer dni) {
+		Session session = this.sessionFactory.openSession();
+		session.beginTransaction();
+		String q = "UPDATE Usuario u set u.estado = false WHERE u.cliente.dni= :dni";
+		Query query = session.createQuery(q);
+		query.setParameter("dni", dni);
+		int execute = query.executeUpdate();
+		session.getTransaction().commit();
+		session.close();
+		return execute;
+	}
+
+	@Override
+	public int actualizarEstadoPorDni(int dni, Boolean estado) {
+		Session session = this.sessionFactory.openSession();
+		session.beginTransaction();
+
+		String q = "UPDATE Usuario u set u.estado = :estado WHERE u.cliente.dni= :dni";
+		Query query = session.createQuery(q);
+		query.setParameter("dni", dni);
+		query.setParameter("estado", estado);
+		int execute = query.executeUpdate();
+		session.getTransaction().commit();
+		session.close();
+		return execute;
+	}
 }

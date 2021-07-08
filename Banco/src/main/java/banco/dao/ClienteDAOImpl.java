@@ -1,5 +1,6 @@
 package banco.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -46,5 +47,31 @@ public class ClienteDAOImpl implements ClienteDAO{
 		Cliente c = (Cliente)query.uniqueResult();
 		session.close();
 		return c;
+	}
+
+	@Override
+	public int modificarCliente(Integer dni, String nombre, String apellido, Date fecha, String correo, String direccion,
+		Integer pais, Integer provincia, Integer localidad) {
+		Session session = this.sessionFactory.openSession();
+		session.beginTransaction();
+		String q = "UPDATE Cliente c set c.nombre = :nombre, c.apellido = :apellido, c.fechaNacimiento = :fecha, c.correo= :correo, "
+				+ "c.direccion = :direccion, c.pais.id = :pais, c.provincia.id = :provincia, c.localidad.id = :localidad"
+				+ " WHERE c.dni = :dni";
+
+		Query query = session.createQuery(q);
+		query.setParameter("dni", dni);
+		query.setParameter("nombre", nombre);
+		query.setParameter("apellido", apellido);
+		query.setParameter("fecha", fecha);
+		query.setParameter("correo", correo);
+		query.setParameter("direccion", direccion);
+		query.setParameter("pais", pais);
+		query.setParameter("provincia", provincia);
+		query.setParameter("localidad", localidad);
+		
+		int execute = query.executeUpdate();
+		session.getTransaction().commit();
+		session.close();
+		return execute;		
 	}
 }

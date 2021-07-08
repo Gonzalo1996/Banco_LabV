@@ -1,5 +1,6 @@
 package banco.service;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -28,5 +29,12 @@ public class ClienteServiceImpl implements ClienteService{
 	@Transactional
 	public Cliente obtenerCliente(int dni) {
 		return clienteDao.obtenerCliente(dni);
+	}
+
+	@Override
+	@Transactional
+	public int modificarCliente(Integer dni, String nombre, String apellido, Date fecha, String correo, String direccion,
+			Integer pais, Integer provincia, Integer localidad) {
+		return clienteDao.modificarCliente(dni, nombre, apellido, fecha, correo, direccion, pais, provincia, localidad);
 	}
 }

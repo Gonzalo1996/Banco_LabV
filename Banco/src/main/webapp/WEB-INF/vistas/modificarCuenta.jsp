@@ -20,7 +20,7 @@
 		
 			<div class="row">
 			<div class="col-md-10">
-				<form action="guardarCuentaModificada.html" method="GET">
+				<form action="guardarCuentaModificada.html" method="post">
 				
 					<div class="form-group row">
 						<label class="col-md-1 col-form-label" for="name">Nro. Cuenta:</label>

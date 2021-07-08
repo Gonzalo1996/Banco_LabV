@@ -87,9 +87,15 @@
 											<td>Inactivo</td>
 										</c:otherwise>
 									</c:choose>
-
-									<td><button type="submit" class="btn btn-primary"><span class="fa fa-pencil"></span></button></td>
-									<td><button type="submit" class="btn btn-info"><span class="fa fa-trash"></span></button></td>
+									<td><a class="btn btn-primary" href="<c:url value='/editarCliente.html?dni=${u.dni}'/>"><span class="fa fa-pencil"></span></a></td>							
+									 <c:choose>
+										<c:when test="${u.usuario.estado ==true}">
+											<td><a class="btn btn-info" href="<c:url value='/bajaUsuario.html?dni=${u.dni}'/>"><span class="fa fa-trash"></span></a></td>									
+										</c:when>
+										<c:otherwise>
+											<td><a class="disabled btn btn-secondary" href="<c:url value='/bajaUsuario.html?dni=${u.dni}'/>"><span class="fa fa-trash"></span></a></td>									
+										</c:otherwise>
+									</c:choose>	
 								</tr>
 							</c:forEach>
                         </tbody>        

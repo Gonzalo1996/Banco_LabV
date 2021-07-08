@@ -52,12 +52,25 @@ public class UsuarioServiceImpl implements UsuarioService{
 	}
 
 	@Override
+	@Transactional
 	public Boolean estadoUsuario(Integer dni) {
 		return usuarioDao.estadoUsuario(dni);
 	}
 	
 	@Override
+	@Transactional
 	public Usuario obtenerPorDni(int dni) {
 		return usuarioDao.obtenerPorDni(dni);
+	}
+
+	@Override
+	@Transactional
+	public int bajaUsuario(Integer dni) {
+		return usuarioDao.bajaUsuario(dni);
+	}
+
+	@Override
+	public int actualizarEstadoPorDni(int dni, Boolean estado) {
+		return usuarioDao.actualizarEstadoPorDni(dni, estado);
 	}
 }
