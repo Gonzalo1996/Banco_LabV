@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <%@ attribute name="menu" fragment="true" %>
+<%@ attribute name="title" required="true" %>
 
 <!doctype html>
 <html lang="en">
@@ -11,6 +12,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	
 	<link rel="icon" href="content/images/favicon.ico" type="image/x-icon"/>
+	
+	<title>UTN BANK | ${title}</title>
+	
     <!-- FONTAWESOME : https://kit.fontawesome.com/a23e6feb03.js -->
     <link rel="stylesheet"   href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
     <!-- Bootstrap CSS -->

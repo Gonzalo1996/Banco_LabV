@@ -1,7 +1,9 @@
 <%@ tag language="java" pageEncoding="ISO-8859-1"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags"%>
 
-<t:base>
+<%@ attribute name="title" required="true" %>
+
+<t:base title="${title}">
 	<jsp:attribute name="menu">
         <li>
           <a href="detallecliente.html"><i class="fas fa-home"></i>Inicio</a>

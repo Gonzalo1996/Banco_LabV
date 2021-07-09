@@ -6,7 +6,7 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<t:baseUsuario>
+<t:baseUsuario title="Test">
 <form:select path = "listGeneros">
    <form:option value = "NONE" label = "Seleccionar Genero"/>
    <form:options items = "${listGeneros}" />

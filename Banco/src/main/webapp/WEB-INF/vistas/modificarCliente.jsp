@@ -11,7 +11,7 @@
 	href="https://fonts.googleapis.com/css2?family=Barlow:wght@100&display=swap"
 	rel="stylesheet">
 
-<t:baseAdmin>
+<t:baseAdmin title="Modificar cliente">
 
 	<div class="container-fluid">
 
