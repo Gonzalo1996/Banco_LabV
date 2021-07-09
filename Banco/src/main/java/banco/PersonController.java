@@ -57,7 +57,6 @@ public class PersonController {
 	@Autowired private CuentaService cuentaService;
 	@Autowired private MovimientoService movimientoService;
 
-	//REDIRECCIONES
 	@RequestMapping(value="/inicio.html",method = RequestMethod.GET)
 	public String inicio(Model model) {	
 		return "login";
@@ -169,6 +168,8 @@ public class PersonController {
 			
 			HttpSession session = request.getSession();
 			session.setAttribute("usuario", usuario);
+			session.setAttribute("dni", usuario.getCliente().getDni());
+
 			if (usuario.getTipoUsuario().getId() == Constantes.TipoUsuario.ADMIN.id) {
 				return "redirect:/listadoCuentas.html";
 			}
@@ -292,32 +293,26 @@ public class PersonController {
     }
     
     @RequestMapping(value="/cuentasCliente.html",method = RequestMethod.GET)
-	public String redireccionarCuentaCliente(Model model, Integer dni) {    	
-    	List<Cuenta> listCuentas = this.cuentaService.obtenerCuentasPorCliente(44444444);
+	public String redireccionarCuentaCliente(Model model, HttpServletRequest request) { 	
+    	List<Cuenta> listCuentas = this.cuentaService.obtenerCuentasPorCliente((Integer)request.getSession().getAttribute("dni"));
     	model.addAttribute("listCuentas",listCuentas);
 		return "cuentasCliente";
 	}
     
     @RequestMapping(value="/transferencias.html",method = RequestMethod.GET)
-	public String redireccionarTransferencias(Model model, Integer dni) {
-
-    	List<Cuenta> listCuentas = this.cuentaService.obtenerCuentasPorCliente(44444444);
-    	
+	public String redireccionarTransferencias(Model model, HttpServletRequest request) {
+    	List<Cuenta> listCuentas = this.cuentaService.obtenerCuentasPorCliente((Integer)request.getSession().getAttribute("dni"));	
     	model.addAttribute("listCuentas",listCuentas);
 		return "transferencias";
 	}
     
 	@RequestMapping(value="/movimientos.html",method = RequestMethod.GET)
     public String redireccionarMovimientos(Model model, String cbu){
-		
-        System.out.println("Nro. de CBU: " + cbu);
-        
+		        
         Cuenta cuenta = this.cuentaService.obtenerPorCbu(cbu);
         
         List<Movimiento> listMovimientos = this.movimientoService.obtenerMovimientos_x_nroCuenta(cuenta.getNroCuenta());
-        
-        System.out.println(cuenta.toString());
-        
+                
         for(int i=0; i<listMovimientos.size();i++) {
         		System.out.println("Contenido del Objeto " + listMovimientos.get(i));
         }      
@@ -330,13 +325,19 @@ public class PersonController {
     }
 	
 	@RequestMapping(value="/detallecliente.html",method = RequestMethod.GET)
-	public String redireccionarDetalleCliente(Model model, Integer dni) {	
-		Cliente cliente = this.clienteService.obtenerCliente(44444444);
-		model.addAttribute("totalCuentas", this.cuentaService.obtenerCantCuentas_sinContarBajas(44444444));
+	public String redireccionarDetalleCliente(Model model, HttpServletRequest request) {
+		Cliente cliente = this.clienteService.obtenerCliente((Integer)request.getSession().getAttribute("dni"));
+		model.addAttribute("totalCuentas", this.cuentaService.obtenerCantCuentas_sinContarBajas((Integer)request.getSession().getAttribute("dni")));
 		model.addAttribute("cliente", cliente);
-
 		
 		return "detallecliente";
+	}
+	
+    @RequestMapping(value="/cerrarSesion.html",method = RequestMethod.GET)
+	public String cerrarSesion(Model model, HttpServletRequest request) { 
+    	request.getSession().removeAttribute("dni");
+    	request.getSession().removeAttribute("usuario");
+		return "login";
 	}
 	
 	/////////EJEMPLOS PERSON///////////

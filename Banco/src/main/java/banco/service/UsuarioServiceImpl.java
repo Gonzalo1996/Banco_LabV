@@ -42,6 +42,9 @@ public class UsuarioServiceImpl implements UsuarioService{
 		if (u == null)
 			throw new Exception("Usuario o contraseña incorrecta");
 		
+		if(u.getEstado() == false)
+			throw new Exception("Usuario deshabilitado");
+		
 		return u;
 	}
 	

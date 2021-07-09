@@ -30,7 +30,6 @@ public class MovimientoServiceImpl implements MovimientoService{
 	}
 
 	@Override
-	@Transactional
 	public List<Movimiento> obtenerMovimientos_x_nroCuenta(Integer nroCuenta) {
 		return movimientoDao.obtenerMovimientos_x_nroCuenta(nroCuenta);
 	}

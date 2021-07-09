@@ -99,12 +99,14 @@ public class CuentaDAOImpl implements CuentaDAO{
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Cuenta> obtenerCuentasPorCliente(Integer c_dni) {
-		Session session = this.sessionFactory.getCurrentSession();
+		Session session = this.sessionFactory.openSession();
 		session.beginTransaction();
 		String hql = "SELECT c FROM Cuenta as c JOIN c.cliente WHERE c.cliente.dni = :c_dni AND c.estado = true";
 		Query query = session.createQuery(hql);
 		query.setParameter("c_dni", c_dni);
-		return (List<Cuenta>)query.list();
+		List<Cuenta> lista = (List<Cuenta>)query.list();
+		session.close();
+		return lista;
 	}
 
 	@Override
