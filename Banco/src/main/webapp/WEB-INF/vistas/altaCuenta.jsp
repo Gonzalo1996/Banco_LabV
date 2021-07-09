@@ -2,7 +2,7 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<t:base>
+<t:baseAdmin>
 <link rel="stylesheet" href="content/form/form-cuenta.css">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@200;400&display=swap" rel="stylesheet">
@@ -94,4 +94,4 @@
 
 
   </section>
-</t:base>
+</t:baseAdmin>

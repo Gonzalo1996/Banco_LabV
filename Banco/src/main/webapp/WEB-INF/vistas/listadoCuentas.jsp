@@ -3,7 +3,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
-<t:base>
+<t:baseAdmin>
 	<link rel="stylesheet" type="text/css" href="content/dataTable/datatables/datatables.min.css"/>
     <link rel="stylesheet"  type="text/css" href="content/dataTable/datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">
 	
@@ -114,7 +114,7 @@
  </div>
 </div>
 	
-</t:base>
+</t:baseAdmin>
 
     <script src="content/dataTable/jquery/jquery-3.3.1.min.js"></script>
     <script src="content/dataTable/popper/popper.min.js"></script>

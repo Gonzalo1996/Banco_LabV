@@ -11,7 +11,7 @@
 	href="https://fonts.googleapis.com/css2?family=Barlow:wght@100&display=swap"
 	rel="stylesheet">
 
-<t:base>
+<t:baseAdmin>
 
 	<div class="container-fluid">
 
@@ -190,4 +190,4 @@ $(function(){
 });
 </script>
 
-</t:base>
+</t:baseAdmin>

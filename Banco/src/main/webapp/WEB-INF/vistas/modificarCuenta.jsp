@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@100&display=swap" rel="stylesheet">
 
-<t:base>
+<t:baseAdmin>
 	<div class="container-fluid">
 		<div class="row">
 	     		<div class="col-md-12">
@@ -95,7 +95,7 @@
 			</div>
 		</div>
 	</div>
-</t:base>
+</t:baseAdmin>
 
     <c:if test="${!empty error}">
 	    <script>

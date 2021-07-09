@@ -1,7 +1,7 @@
 <%@ tag language="java" pageEncoding="ISO-8859-1"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags"%>
 
-<t:test>
+<t:base>
 	<jsp:attribute name="menu">
         <li>
           <a href="detallecliente.html"><i class="fas fa-home"></i>Inicio</a>
@@ -24,4 +24,4 @@
 		<jsp:doBody />
 	</jsp:body>
 
-</t:test>
+</t:base>
