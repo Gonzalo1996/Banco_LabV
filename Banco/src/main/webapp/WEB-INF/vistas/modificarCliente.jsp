@@ -104,12 +104,10 @@
 						<label class="col-md-2 col-form-label" for="provincia">Provincia:</label>
 						<div class="col-md-10">
 							<select name="provincia" class="form-control" required>
-								<option value="" disabled selected>Seleccione provincia</option>
 								<c:forEach items="${listProvincias}" var="provincia"
 									varStatus="status">
-									<option value="${provincia.id}"><c:out
-											value="${provincia.nombre}"></c:out>
-									</option>
+									<option value="${provincia.id}"
+										${provincia.id == cliente.provincia.id ? 'selected' : ''}>${provincia.nombre}</option>
 								</c:forEach>
 							</select>
 						</div>
@@ -119,12 +117,10 @@
 						<label class="col-md-2 col-form-label" for="localidad">Localidad:</label>
 						<div class="col-md-10">
 							<select name="localidad" class="form-control" required>
-								<option value="" disabled selected>Seleccione localidad</option>
 								<c:forEach items="${listLocalidades}" var="localidad"
 									varStatus="status">
-									<option value="${localidad.id}"><c:out
-											value="${localidad.nombre}"></c:out>
-									</option>
+									<option value="${localidad.id}"
+										${localidad.id == cliente.localidad.id ? 'selected' : ''}>${localidad.nombre}</option>
 								</c:forEach>
 							</select>
 						</div>
