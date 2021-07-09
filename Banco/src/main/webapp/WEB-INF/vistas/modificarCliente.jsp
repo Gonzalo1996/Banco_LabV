@@ -103,7 +103,7 @@
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label" for="provincia">Provincia:</label>
 						<div class="col-md-10">
-							<select name="provincia" class="form-control" required>
+							<select id="provincia" name="provincia" class="form-control" required>
 								<c:forEach items="${listProvincias}" var="provincia"
 									varStatus="status">
 									<option value="${provincia.id}"
@@ -116,7 +116,7 @@
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label" for="localidad">Localidad:</label>
 						<div class="col-md-10">
-							<select name="localidad" class="form-control" required>
+							<select id="localidad" name="localidad" class="form-control" required>
 								<c:forEach items="${listLocalidades}" var="localidad"
 									varStatus="status">
 									<option value="${localidad.id}"
@@ -151,9 +151,43 @@
 							</button>
 						</div>
 					</div>
+					
 				</form>
+				
 			</div>
 		</div>
 	</div>
+
+<script>
+$(function(){
+	$('#provincia').change(function(e){
+		var data = {
+			idProvincia: parseInt(this.value)
+		};
+   		
+        $.ajax({
+            url: './getLocalidadesPorProvincia.html',
+            type: 'GET',
+            data: data,
+            dataType: 'json',
+            success: function (response) {                                
+                var options = '';
+                $.each(response, function(key, value) {
+                    options += "<option value='"+value.id+"'>"+value.nombre+"</option>";
+                });
+                
+                $('#localidad')
+                	.empty()
+                	.append(options);
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+            	var errorMsg = 'Error ' + xhr.status + '\r\n' + xhr.responseText;
+                alert(errorMsg);
+            }
+        });
+        
+	});
+});
+</script>
 
 </t:base>

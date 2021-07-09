@@ -30,6 +30,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import banco.helpers.Constantes;
 import banco.model.Cliente;
 import banco.model.Cuenta;
+import banco.model.Localidad;
 import banco.model.Movimiento;
 import banco.model.Person;
 import banco.model.TipoUsuario;
@@ -88,6 +89,16 @@ public class PersonController {
 		usuario.setIdUsuario(100);
 		
 		return om.writeValueAsString(usuario);
+	}
+	
+	@RequestMapping(value = "/getLocalidadesPorProvincia.html", method = RequestMethod.GET)
+	@ResponseBody
+	public Object getLocalidadesPorProvincia(Integer idProvincia) throws JsonProcessingException {
+		ObjectMapper om = new ObjectMapper();
+
+		List<Localidad> list = localidadService.listLocalidades_x_Prov(idProvincia);
+		
+		return om.writeValueAsString(list);
 	}
 	
 	@RequestMapping(value="/guardarUsuario.html",method = RequestMethod.POST)
