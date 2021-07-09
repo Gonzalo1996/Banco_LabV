@@ -1,6 +1,8 @@
 package banco;
 
 import java.awt.SystemColor;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
@@ -264,8 +266,8 @@ public class PersonController {
     
     @RequestMapping(value="/guardarClienteModificado.html",method = RequestMethod.POST)
     public String guardarClienteModificado(Model model, Integer dni, String nombre, String apellido, String fecha, String correo, String direccion,
-    										Integer pais, Integer provincia, Integer localidad, Integer estado){ 	
-		Date fechaNac = new Date(fecha.replace('-', '/'));
+    										Integer pais, Integer provincia, Integer localidad, Integer estado) throws Exception{
+		Date fechaNac = new SimpleDateFormat("yyyy-MM-dd").parse(fecha);
 		Boolean estadoCuenta;
 		
        	if(estado == 1)

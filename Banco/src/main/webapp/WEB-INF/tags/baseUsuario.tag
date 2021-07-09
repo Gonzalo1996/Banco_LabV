@@ -10,6 +10,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+	<link rel="icon" href="content/images/favicon.ico" type="image/x-icon"/>
     <!-- FONTAWESOME : https://kit.fontawesome.com/a23e6feb03.js -->
     <link rel="stylesheet"   href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.  5/jquery.mCustomScrollbar.min.css">
     <!-- Bootstrap CSS -->
@@ -24,7 +25,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.1/locales-all.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
 	
-    <title>Sidebar + Navbar</title>
+    <title>Sidebar + Navbar usuario</title>
   </head>
   <body>
     
