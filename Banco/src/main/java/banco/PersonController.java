@@ -101,7 +101,7 @@ public class PersonController {
 	}
 	
 	@RequestMapping(value="/guardarUsuario.html",method = RequestMethod.POST)
-	public String guardarUsuario(Model model, String nombre, String apellido, String fechaNacimiento, Integer dni, Integer cuil, 
+	public String guardarUsuario(Model model, String nombre, String apellido, String fechaNacimiento, Integer dni, String cuil, 
 		Integer genero, Integer provincia, Integer localidad, String direccion, String correo, String nombreUsuario, String contrasenia)
 	{	
 		Date fecha = new Date(fechaNacimiento.replace('-', '/'));
@@ -302,9 +302,42 @@ public class PersonController {
     @RequestMapping(value="/transferencias.html",method = RequestMethod.GET)
 	public String redireccionarTransferencias(Model model, HttpServletRequest request) {
     	List<Cuenta> listCuentas = this.cuentaService.obtenerCuentasPorCliente((Integer)request.getSession().getAttribute("dni"));	
+    	
+    	String error = (String)request.getSession().getAttribute("error");
+    	if (error != null && !error.isEmpty()) {
+    		model.addAttribute("error", error);
+			request.getSession().removeAttribute("error");
+    	}
+    	
     	model.addAttribute("listCuentas",listCuentas);
 		return "transferencias";
 	}
+    
+    @RequestMapping(value="/transferenciasOtros.html", method=RequestMethod.POST)
+    public String transferenciasOtros(Model model, Integer nroCuenta, String cbu, Double montoOtros, HttpServletRequest request) {
+    	try {
+    		this.movimientoService.guardarTransferenciaOtros(nroCuenta, cbu, montoOtros);
+    		
+        	return "redirect:/transferencias.html";	
+		} catch (Exception e) {
+			e.printStackTrace();
+			request.setAttribute("error", e.getMessage());
+        	return "redirect:/transferencias.html";	
+		}
+    }
+    
+    @RequestMapping(value="/transferenciasPropias.html", method=RequestMethod.POST)
+    public String transferenciasPropias(Model model, Integer nroCuentaOrigen, Integer nroCuentaDestino, Double montoPropias, HttpServletRequest request) {
+    	try {
+    		this.movimientoService.guardarTransferenciaPropias(nroCuentaOrigen, nroCuentaDestino, montoPropias);
+    		
+        	return "redirect:/transferencias.html";	
+		} catch (Exception e) {
+			e.printStackTrace();
+			request.getSession().setAttribute("error", e.getMessage());
+        	return "redirect:/transferencias.html";	
+		}
+    }
     
 	@RequestMapping(value="/movimientos.html",method = RequestMethod.GET)
     public String redireccionarMovimientos(Model model, String cbu){

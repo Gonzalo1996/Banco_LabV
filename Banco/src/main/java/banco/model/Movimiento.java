@@ -9,6 +9,7 @@ import javax.persistence.*;
 public class Movimiento implements Serializable{
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private Double monto;
 	private Double saldo;
@@ -23,19 +24,12 @@ public class Movimiento implements Serializable{
 		
 	}
 	
-	public Movimiento(Integer id, Double monto, Double saldo, Date fecha, String detalle, Cuenta cuenta) {
-		this.id = id;
+	public Movimiento(Double monto, Double saldo, Date fecha, String detalle, Cuenta cuenta) {
 		this.monto = monto;
 		this.saldo = saldo;
 		this.fecha = fecha;
 		this.detalle = detalle;
 		this.cuenta = cuenta;
-	}
-	
-	public Movimiento(Integer id, Double monto, Double saldo) {
-		this.id = id;
-		this.monto = monto;
-		this.saldo = saldo;
 	}
 
 	public Integer getId() {

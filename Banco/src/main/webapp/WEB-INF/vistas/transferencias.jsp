@@ -28,31 +28,29 @@
 		
 		    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
 		      <div class="card-body">
-					<form method="get" action="x">
+		      
+					<form method="post" action="transferenciasOtros.html">
 						<div class="form-group row">
 							<label class="col-md-3 col-form-label" for="ddpCuenta">Transfiriendo desde:</label>
 							<div class="col-md-5">
 								<div class="dropdown ">
-									<button class="btn btn-outline-secondary dropdown-toggle btn-md" style="width: 100%" type="submit"  id="ddpCuenta" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-									Cuentas:
-									</button>
-									<div class="dropdown-menu" aria-labelledby="ddpTipoCuenta">
-											<c:forEach items="${listCuentas}" var="cuenta" varStatus="loop">
-            									<a class="dropdown-item" href="">
-            										<c:choose>
-														<c:when test="${cuenta.moneda == 1}">
-															<b>En Pesos</b> &nbsp; &nbsp; &nbsp;
-														</c:when>
-														<c:otherwise>
-															<b>En Dolares</b> &nbsp;
-														</c:otherwise>
-													</c:choose>
-														${cuenta.nombreCuenta}
-            											${cuenta.nroCuenta} $ 
-            											${cuenta.saldo}
-            									</a>
-       										</c:forEach>
-									</div>
+									<select class="form-control" name="nroCuenta">
+										<c:forEach items="${listCuentas}" var="cuenta" varStatus="loop">
+           									<option class="dropdown-item" value="${cuenta.nroCuenta}">
+           										<c:choose>
+													<c:when test="${cuenta.moneda == 1}">
+														<b>En Pesos</b> &nbsp; &nbsp; &nbsp;
+													</c:when>
+													<c:otherwise>
+														<b>En Dolares</b> &nbsp;
+													</c:otherwise>
+												</c:choose>
+													${cuenta.nombreCuenta}
+           											${cuenta.nroCuenta} $ 
+           											${cuenta.saldo}
+           									</option>
+    									</c:forEach>
+									</select>
 								</div>	 											
 							</div>
 						</div>
@@ -60,7 +58,7 @@
 						<div class="form-group row">
 								<label class="col-md-3 col-form-label" for="txtCbu">Ingresá el CBU/CVU destino:</label>
 								<div class="col-md-5">
-									<input id="txtCbu" type="text" class="form-control" placeholder="CBU/CVU">
+									<input id="txtCbu" type="text" name="cbu" class="form-control" placeholder="CBU/CVU">
 								</div>
 						</div>
 						
@@ -71,7 +69,7 @@
 									  <div class="input-group-prepend">
 									    <span class="input-group-text">$</span>
 									  </div>
-									  <input id="txtMonto" type="text" class="form-control" placeholder="Monto" aria-describedby="basic-addon1">
+									  <input id="txtMonto" type="number" step="any" name="montoOtros" class="form-control" placeholder="Monto" aria-describedby="basic-addon1">
 									</div>
 								</div>								
 						</div>
@@ -83,7 +81,8 @@
 							</div>
 						</div>
 	
-					</form>				
+					</form>			
+						
 		      </div>
 		    </div>
 		  </div>
@@ -101,31 +100,29 @@
 		    </div>
 		    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
 				<div class="card-body">
-					<form method="get" action="x">
+				
+					<form method="post" action="transferenciasPropias.html">
 						<div class="form-group row">
 							<label class="col-md-3 col-form-label">Transfiriendo desde:</label>
 							<div class="col-md-5">
 								<div class="dropdown ">
-									<button class="btn btn-outline-secondary dropdown-toggle btn-md" style="width: 100%" type="submit"  id="ddpCuenta" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-									Cuenta origen:
-									</button>
-									<div class="dropdown-menu" aria-labelledby="ddpCuentaOrigen">
-											<c:forEach items="${listCuentas}" var="cuenta" varStatus="loop">
-            									<a class="dropdown-item" href="">
-            										<c:choose>
-														<c:when test="${cuenta.moneda == 1}">
-															<b>En Pesos</b> &nbsp; &nbsp; &nbsp;
-														</c:when>
-														<c:otherwise>
-															<b>En Dolares</b> &nbsp;
-														</c:otherwise>
-													</c:choose>
-														${cuenta.nombreCuenta}
-            											${cuenta.nroCuenta} $ 
-            											${cuenta.saldo}
-            									</a>
-       										</c:forEach>
-									</div>
+									<select class="form-control" name="nroCuentaOrigen">
+										<c:forEach items="${listCuentas}" var="cuenta" varStatus="loop">
+           									<option class="dropdown-item" value="${cuenta.nroCuenta}">
+           										<c:choose>
+													<c:when test="${cuenta.moneda == 1}">
+														<b>En Pesos</b> &nbsp; &nbsp; &nbsp;
+													</c:when>
+													<c:otherwise>
+														<b>En Dolares</b> &nbsp;
+													</c:otherwise>
+												</c:choose>
+													${cuenta.nombreCuenta}
+           											${cuenta.nroCuenta} $ 
+           											${cuenta.saldo}
+           									</option>
+    									</c:forEach>
+									</select>
 								</div>	 											
 							</div>
 						</div>
@@ -134,26 +131,23 @@
 							<label class="col-md-3 col-form-label">Cuenta a trasnferir:</label>
 							<div class="col-md-5">
 								<div class="dropdown ">
-									<button class="btn btn-outline-secondary dropdown-toggle btn-md" style="width: 100%" type="submit"  id="ddpCuenta" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-									Cuenta destinatario:
-									</button>
-									<div class="dropdown-menu" aria-labelledby="ddpCuentaDestino">
-											<c:forEach items="${listCuentas}" var="cuenta" varStatus="loop">
-            									<a class="dropdown-item" href="">
-            										<c:choose>
-														<c:when test="${cuenta.moneda == 1}">
-															<b>En Pesos</b> &nbsp; &nbsp; &nbsp;
-														</c:when>
-														<c:otherwise>
-															<b>En Dolares</b> &nbsp;
-														</c:otherwise>
-													</c:choose>
-														${cuenta.nombreCuenta}
-            											${cuenta.nroCuenta} $ 
-            											${cuenta.saldo}
-            									</a>
-       										</c:forEach>
-									</div>
+									<select class="form-control" name="nroCuentaDestino">
+										<c:forEach items="${listCuentas}" var="cuenta" varStatus="loop">
+           									<option class="dropdown-item" value="${cuenta.nroCuenta}">
+           										<c:choose>
+													<c:when test="${cuenta.moneda == 1}">
+														<b>En Pesos</b> &nbsp; &nbsp; &nbsp;
+													</c:when>
+													<c:otherwise>
+														<b>En Dolares</b> &nbsp;
+													</c:otherwise>
+												</c:choose>
+													${cuenta.nombreCuenta}
+           											${cuenta.nroCuenta} $ 
+           											${cuenta.saldo}
+           									</option>
+    									</c:forEach>
+									</select>
 								</div>	 											
 							</div>
 						</div>
@@ -165,7 +159,7 @@
 									  <div class="input-group-prepend">
 									    <span class="input-group-text">$</span>
 									  </div>
-									  <input id="txtMonto2" type="text" class="form-control" placeholder="Monto" aria-describedby="basic-addon1">
+									  <input id="txtMonto2" type="number" step="0.01" name="montoPropias" class="form-control" placeholder="Monto" aria-describedby="basic-addon1">
 									</div>
 								</div>								
 						</div>
@@ -177,7 +171,8 @@
 								</button>
 							</div>
 						</div>
-					</form>				
+					</form>	
+								
 				</div>
 		    </div>
 		  </div>

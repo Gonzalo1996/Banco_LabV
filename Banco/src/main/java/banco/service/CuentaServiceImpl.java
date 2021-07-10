@@ -52,6 +52,12 @@ public class CuentaServiceImpl implements CuentaService{
 		cuenta.setCliente(usuario.getCliente());
 		cuentaDao.guardarCuenta(cuenta);
 	}
+	
+	@Override
+	@Transactional
+	public void actualizarCuenta(Cuenta cuenta) {
+		this.cuentaDao.actualizarCuenta(cuenta);
+	}
 
 	@Override
 	public Long obtenerCantidadCuentas(Integer dni) {
@@ -69,7 +75,6 @@ public class CuentaServiceImpl implements CuentaService{
 	}
 	
 	@Override
-	@Transactional
 	public List<Cuenta> obtenerCuentasPorCliente(Integer dni) {
 		return cuentaDao.obtenerCuentasPorCliente(dni);
 	}

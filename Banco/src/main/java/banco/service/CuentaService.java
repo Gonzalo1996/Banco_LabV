@@ -8,6 +8,7 @@ public interface CuentaService
 	public List<Cuenta> listCuentas();
 	public Cuenta obtenerCuenta(int nroCuenta);
 	public void guardarCuenta(Cuenta cuenta, int dni, String cbu, String alias) throws Exception;
+	public void actualizarCuenta(Cuenta cuenta);
 	public Long obtenerCantidadCuentas(Integer dni);
 	public Cuenta obtenerPorCbu(String cbu);
 	public Cuenta obtenerPorAlias(String alias);

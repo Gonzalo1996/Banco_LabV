@@ -4,6 +4,8 @@ import java.util.List;
 
 import banco.model.Cuenta;
 import banco.model.Movimiento;
+import banco.model.Usuario;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
@@ -26,7 +28,6 @@ public class MovimientoDAOImpl implements MovimientoDAO{
 	@Override
 	public List<Movimiento> listMovimientos() {
 		Session session = this.sessionFactory.openSession();
-		session.beginTransaction();
 
 		List<Movimiento> movimientoList = session.createQuery("FROM Movimiento").list();
 
@@ -40,7 +41,7 @@ public class MovimientoDAOImpl implements MovimientoDAO{
 	@Override
 	public Movimiento obtenerMovimiento(int p_id) {
 		Session session = this.sessionFactory.openSession();
-		session.beginTransaction();
+
 		String q = "FROM Movimiento as m WHERE m.id = :p_id";
 		Query query = session.createQuery(q);
 		query.setParameter("p_id", p_id);
@@ -53,12 +54,23 @@ public class MovimientoDAOImpl implements MovimientoDAO{
 	@Override
 	public List<Movimiento> obtenerMovimientos_x_nroCuenta(Integer nroCuenta) {
 		Session session = this.sessionFactory.openSession();
-		session.beginTransaction();
+
 		String hql = "SELECT m FROM Movimiento as m JOIN m.cuenta WHERE m.cuenta.nroCuenta = :nroCuenta";
 		Query query = session.createQuery(hql);
 		query.setParameter("nroCuenta", nroCuenta);
 		List<Movimiento> lista = (List<Movimiento>)query.list();
 		session.close();
 		return lista;
+	}
+
+	@Override
+	public void guardar(Movimiento movimiento) {
+		Session session = this.sessionFactory.openSession();
+		session.beginTransaction();
+		session.save(movimiento);
+		
+		logger.info("Movimiento saved successfully, Movimiento Details="+ movimiento);
+		session.getTransaction().commit();
+		session.close();
 	}
 }

@@ -54,7 +54,18 @@ public class CuentaDAOImpl implements CuentaDAO{
 		session.beginTransaction();
 		session.save(cuenta);
 		
-		logger.info("Usuario saved successfully, Usuario Details="+ cuenta);
+		logger.info("Cuenta saved successfully, Cuenta Details="+ cuenta);
+		session.getTransaction().commit();
+		session.close();
+	}
+	
+	@Override	
+	public void actualizarCuenta(Cuenta cuenta) {
+		Session session = this.sessionFactory.openSession();
+		session.beginTransaction();
+		session.update(cuenta);
+		
+		logger.info("Cuenta saved successfully, Cuenta Details="+ cuenta);
 		session.getTransaction().commit();
 		session.close();
 	}
@@ -100,7 +111,6 @@ public class CuentaDAOImpl implements CuentaDAO{
 	@Override
 	public List<Cuenta> obtenerCuentasPorCliente(Integer c_dni) {
 		Session session = this.sessionFactory.openSession();
-		session.beginTransaction();
 		String hql = "SELECT c FROM Cuenta as c JOIN c.cliente WHERE c.cliente.dni = :c_dni AND c.estado = true";
 		Query query = session.createQuery(hql);
 		query.setParameter("c_dni", c_dni);

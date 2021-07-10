@@ -10,7 +10,7 @@ public class Cliente implements Serializable{
 	@Id
 	@Column(unique=true)
     private Integer dni;
-    private Integer cuil;
+    private String cuil;
     private String nombre;
     private String apellido;
     private Date fechaNacimiento;
@@ -42,7 +42,7 @@ public class Cliente implements Serializable{
     	
     }
 
-	public Cliente(Integer dni, Integer cuil, String nombre, String apellido, Date fechaNacimiento, String correo,
+	public Cliente(Integer dni, String cuil, String nombre, String apellido, Date fechaNacimiento, String correo,
 			String direccion, Pais pais, Localidad localidad, Provincia provincia, Genero genero, Usuario usuario) {
 		this.dni = dni;
 		this.cuil = cuil;
@@ -67,11 +67,11 @@ public class Cliente implements Serializable{
 		this.dni = dni;
 	}
 
-	public Integer getCuil() {
+	public String getCuil() {
 		return cuil;
 	}
 
-	public void setCuil(Integer cuil) {
+	public void setCuil(String cuil) {
 		this.cuil = cuil;
 	}
 
