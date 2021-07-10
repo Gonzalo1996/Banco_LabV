@@ -50,7 +50,8 @@
 				
 				<beans:value>banco.model.Pais</beans:value>
 				<beans:value>banco.model.Provincia</beans:value>
-				<beans:value>banco.model.Localidad</beans:value>																				
+				<beans:value>banco.model.Localidad</beans:value>
+				<beans:value>banco.model.TipoMoneda</beans:value>																					
 			</beans:list>
 		</beans:property>
 		<beans:property name="hibernateProperties">
@@ -135,6 +136,14 @@
 	
 	<beans:bean id="localidadService" class="banco.service.LocalidadServiceImpl">
 		<beans:property name="localidadDao" ref="localidadDAO"></beans:property>
+	</beans:bean>
+	
+	<beans:bean id="tipoMonedaDAO" class="banco.dao.TipoMonedaDAOImpl">
+		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</beans:bean>
+	
+	<beans:bean id="tipoMonedaService" class="banco.service.TipoMonedaServiceImpl">
+		<beans:property name="tipoMoneda" ref="tipoMonedaDAO"></beans:property>
 	</beans:bean>
 	
 	<context:component-scan base-package="banco" />

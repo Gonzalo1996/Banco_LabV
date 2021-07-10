@@ -133,14 +133,16 @@ public class UsuarioDAOImpl implements UsuarioDAO{
 	}
 
 	@Override
-	public int actualizarEstadoPorDni(int dni, Boolean estado) {
+	public int actualizarUsuario(int dni, Boolean estado, String contrasenia) {
 		Session session = this.sessionFactory.openSession();
 		session.beginTransaction();
 
-		String q = "UPDATE Usuario u set u.estado = :estado WHERE u.cliente.dni= :dni";
+		String q = "UPDATE Usuario u set u.estado = :estado, u.contrasenia = :contrasenia WHERE u.cliente.dni= :dni";
 		Query query = session.createQuery(q);
 		query.setParameter("dni", dni);
 		query.setParameter("estado", estado);
+		query.setParameter("contrasenia", contrasenia);
+
 		int execute = query.executeUpdate();
 		session.getTransaction().commit();
 		session.close();

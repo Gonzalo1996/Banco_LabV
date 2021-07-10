@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Cuenta implements Serializable{
@@ -25,10 +26,13 @@ public class Cuenta implements Serializable{
 	private String cbu;
 	@Column(unique=true)
 	private String alias;
-	private Integer moneda;
 	private Double saldo;
 	private Boolean estado;
 	private Date fechaCreacion;
+	
+    @OneToOne(cascade = {CascadeType.ALL})
+	@JoinColumn(name="moneda")
+	private TipoMoneda tipoMoneda;
 	
     @ManyToOne
 	@JoinColumn(name="dni")
@@ -38,22 +42,16 @@ public class Cuenta implements Serializable{
 	
 	}
 
-	public Cuenta(String cbu, String alias, Integer moneda, Double saldo, Boolean estado,
+	public Cuenta(String cbu, String alias, TipoMoneda tipoMoneda, Double saldo, Boolean estado,
 			Cliente cliente, Date fechacreacion, String nombreCuenta) {
 		this.cbu = cbu;
 		this.alias = alias;
-		this.moneda = moneda;
+		this.tipoMoneda = tipoMoneda;
 		this.saldo = saldo;
 		this.estado = estado;
 		this.cliente = cliente;
 		this.fechaCreacion = fechacreacion;
 		this.nombreCuenta =  nombreCuenta;
-	}
-
-	public Cuenta(Integer nroCuenta, Integer moneda, Double saldo) {
-		this.nroCuenta = nroCuenta;
-		this.moneda = moneda;
-		this.saldo = saldo;
 	}
 
 	public String getNombreCuenta() {
@@ -96,12 +94,12 @@ public class Cuenta implements Serializable{
 		this.alias = alias;
 	}
 
-	public Integer getMoneda() {
-		return moneda;
+	public TipoMoneda getTipoMoneda() {
+		return tipoMoneda;
 	}
 
-	public void setMoneda(Integer moneda) {
-		this.moneda = moneda;
+	public void setTipoMoneda(TipoMoneda tipoMoneda) {
+		this.tipoMoneda = tipoMoneda;
 	}
 
 	public Double getSaldo() {

@@ -33,6 +33,7 @@ import banco.model.Cuenta;
 import banco.model.Localidad;
 import banco.model.Movimiento;
 import banco.model.Person;
+import banco.model.TipoMoneda;
 import banco.model.TipoUsuario;
 import banco.model.Usuario;
 import banco.service.ClienteService;
@@ -43,6 +44,7 @@ import banco.service.MovimientoService;
 import banco.service.PaisService;
 import banco.service.PersonService;
 import banco.service.ProvinciaService;
+import banco.service.TipoMonedaService;
 import banco.service.UsuarioService;
 
 @Controller
@@ -56,6 +58,8 @@ public class PersonController {
 	@Autowired private ClienteService clienteService;	
 	@Autowired private CuentaService cuentaService;
 	@Autowired private MovimientoService movimientoService;
+	@Autowired private TipoMonedaService tipoMonedaService;
+
 
 	@RequestMapping(value="/inicio.html",method = RequestMethod.GET)
 	public String inicio(Model model) {	
@@ -141,8 +145,9 @@ public class PersonController {
 			SimpleDateFormat formatter= new SimpleDateFormat("yyyy/mm/ss HH:mm:ss");
 			Date fechaActual = new Date(formatter.format(System.currentTimeMillis()));
 	
-			Cuenta cuenta = new Cuenta(cbu, alias, moneda, 10000.0, true, null, fechaActual, nombre);
+			Cuenta cuenta = new Cuenta(cbu, alias, this.tipoMonedaService.obtenerTipoMoneda(moneda), 0.0, true, null, fechaActual, nombre);
 			this.cuentaService.guardarCuenta(cuenta, dni, cbu, alias);
+			this.movimientoService.guardarSaldoInicial(cuenta);
 			return "redirect:/listadoCuentas.html";
 			
 		} catch (Exception e) {
@@ -261,6 +266,7 @@ public class PersonController {
     @RequestMapping("/bajaUsuario.html")
     public String bajaUsuario(Model model, Integer dni){
     	this.usuarioService.bajaUsuario(dni);
+		this.cuentaService.bajaCuentaPorDni(dni);
         return "redirect:/listadoClientes.html";
     }
     
@@ -278,17 +284,20 @@ public class PersonController {
     
     @RequestMapping(value="/guardarClienteModificado.html",method = RequestMethod.POST)
     public String guardarClienteModificado(Model model, Integer dni, String nombre, String apellido, String fecha, String correo, String direccion,
-    										Integer pais, Integer provincia, Integer localidad, Integer estado) throws Exception{
+    										Integer pais, Integer provincia, Integer localidad, Integer estado, String contrasenia) throws Exception{
 		Date fechaNac = new SimpleDateFormat("yyyy-MM-dd").parse(fecha);
 		Boolean estadoCuenta;
 		
-       	if(estado == 1)
-    		estadoCuenta = true;
-    	else 
+       	if(estado == 1) {
+       		estadoCuenta = true;
+       	}		
+    	else {
     		estadoCuenta = false;
-    	
+    		this.cuentaService.bajaCuentaPorDni(dni);
+    	}
+    		
     	this.clienteService.modificarCliente(dni, nombre, apellido, fechaNac, correo, direccion, pais, provincia, localidad);
-    	this.usuarioService.actualizarEstadoPorDni(dni, estadoCuenta);
+    	this.usuarioService.actualizarUsuario(dni, estadoCuenta, contrasenia);
     	return "redirect:/listadoClientes.html";
     }
     
@@ -301,6 +310,7 @@ public class PersonController {
     
     @RequestMapping(value="/transferencias.html",method = RequestMethod.GET)
 	public String redireccionarTransferencias(Model model, HttpServletRequest request) {
+    	
     	List<Cuenta> listCuentas = this.cuentaService.obtenerCuentasPorCliente((Integer)request.getSession().getAttribute("dni"));	
     	
     	String error = (String)request.getSession().getAttribute("error");
@@ -314,28 +324,30 @@ public class PersonController {
 	}
     
     @RequestMapping(value="/transferenciasOtros.html", method=RequestMethod.POST)
-    public String transferenciasOtros(Model model, Integer nroCuenta, String cbu, Double montoOtros, HttpServletRequest request) {
+    public String transferenciasOtros(Model model, Integer nroCuenta, String cbu, Double montoOtros, String detalle, HttpServletRequest request) {
     	try {
-    		this.movimientoService.guardarTransferenciaOtros(nroCuenta, cbu, montoOtros);
+    		this.movimientoService.guardarTransferenciaOtros(nroCuenta, cbu, montoOtros, detalle);
     		
         	return "redirect:/transferencias.html";	
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("error", e.getMessage());
-        	return "redirect:/transferencias.html";	
+			model.addAttribute("listCuentas", this.cuentaService.obtenerCuentasPorCliente((Integer)request.getSession().getAttribute("dni")));
+        	return "transferencias";	
 		}
     }
     
     @RequestMapping(value="/transferenciasPropias.html", method=RequestMethod.POST)
-    public String transferenciasPropias(Model model, Integer nroCuentaOrigen, Integer nroCuentaDestino, Double montoPropias, HttpServletRequest request) {
+    public String transferenciasPropias(Model model, Integer nroCuentaOrigen, Integer nroCuentaDestino, Double montoPropias,String detalle, HttpServletRequest request) {
     	try {
-    		this.movimientoService.guardarTransferenciaPropias(nroCuentaOrigen, nroCuentaDestino, montoPropias);
+    		this.movimientoService.guardarTransferenciaPropias(nroCuentaOrigen, nroCuentaDestino, montoPropias, detalle);
     		
         	return "redirect:/transferencias.html";	
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.getSession().setAttribute("error", e.getMessage());
-        	return "redirect:/transferencias.html";	
+			model.addAttribute("listCuentas", this.cuentaService.obtenerCuentasPorCliente((Integer)request.getSession().getAttribute("dni")));
+        	return "transferencias";	
 		}
     }
     

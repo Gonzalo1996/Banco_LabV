@@ -46,7 +46,7 @@ public class MovimientoServiceImpl implements MovimientoService{
 
 	@Override
 	@Transactional
-	public void guardarTransferenciaOtros(Integer nroCuenta, String cbu, Double monto) throws Exception {
+	public void guardarTransferenciaOtros(Integer nroCuenta, String cbu, Double monto, String detalle) throws Exception {
 		Cuenta cuentaOrigen = this.cuentaService.obtenerCuenta(nroCuenta);
 		Cuenta cuentaDestino = this.cuentaService.obtenerPorCbu(cbu);
 		
@@ -60,6 +60,9 @@ public class MovimientoServiceImpl implements MovimientoService{
 		
 		if (cuentaOrigen.getNroCuenta() == cuentaDestino.getNroCuenta())
 			throw new Exception("No se puede realizar una transferencia a la misma cuenta.");
+		
+		if (cuentaOrigen.getTipoMoneda().getId() != cuentaDestino.getTipoMoneda().getId())
+			throw new Exception("Solo se admiten transferencias del mismo tipo de moneda.");
 
 		Double saldoDestino = cuentaDestino.getSaldo() + monto;
 		
@@ -68,8 +71,8 @@ public class MovimientoServiceImpl implements MovimientoService{
 		if (saldoOrigen < 0)
 			throw new Exception("La cuenta no posee los fondos suficientes para realizar esta transferencia.");
 
-		Movimiento movOrigen = new Movimiento(-monto, saldoOrigen, new Date(), "Falta poner detalle", cuentaOrigen);
-		Movimiento movDestino = new Movimiento(monto, saldoDestino, new Date(), "Falta poner detalle", cuentaDestino);
+		Movimiento movOrigen = new Movimiento(-monto, saldoOrigen, new Date(), detalle, cuentaOrigen);
+		Movimiento movDestino = new Movimiento(monto, saldoDestino, new Date(), detalle, cuentaDestino);
 
 		cuentaOrigen.setSaldo(saldoOrigen);
 		cuentaDestino.setSaldo(saldoDestino);
@@ -82,9 +85,12 @@ public class MovimientoServiceImpl implements MovimientoService{
 
 	@Override
 	@Transactional
-	public void guardarTransferenciaPropias(Integer nroCuentaOrigen, Integer nroCuentaDestino, Double monto) throws Exception {
+	public void guardarTransferenciaPropias(Integer nroCuentaOrigen, Integer nroCuentaDestino, Double monto, String detalle) throws Exception {
 		Cuenta cuentaOrigen = this.cuentaService.obtenerCuenta(nroCuentaOrigen);
 		Cuenta cuentaDestino = this.cuentaService.obtenerCuenta(nroCuentaDestino);
+		
+		if (cuentaOrigen.getTipoMoneda().getId() != cuentaDestino.getTipoMoneda().getId())
+			throw new Exception("Solo se admiten transferencias del mismo tipo de moneda.");
 		
 		if (cuentaOrigen == null || !cuentaOrigen.getEstado())
 			throw new Exception("La cuenta origen no existe o no se encuentra activa.");
@@ -104,8 +110,8 @@ public class MovimientoServiceImpl implements MovimientoService{
 		if (saldoOrigen < 0)
 			throw new Exception("La cuenta no posee los fondos suficiente para realizar esta transferencia.");
 
-		Movimiento movOrigen = new Movimiento(-monto, saldoOrigen, new Date(), "Falta poner detalle", cuentaOrigen);
-		Movimiento movDestino = new Movimiento(monto, saldoDestino, new Date(), "Falta poner detalle", cuentaDestino);
+		Movimiento movOrigen = new Movimiento(-monto, saldoOrigen, new Date(), detalle, cuentaOrigen);
+		Movimiento movDestino = new Movimiento(monto, saldoDestino, new Date(), detalle, cuentaDestino);
 
 		cuentaOrigen.setSaldo(saldoOrigen);
 		cuentaDestino.setSaldo(saldoDestino);
@@ -114,5 +120,15 @@ public class MovimientoServiceImpl implements MovimientoService{
 		this.cuentaService.actualizarCuenta(cuentaDestino);
 		this.guardar(movOrigen);
 		this.guardar(movDestino);		
+	}
+
+	@Override
+	@Transactional
+	public void guardarSaldoInicial(Cuenta c) {
+		Cuenta cuenta = cuentaService.obtenerPorCbu(c.getCbu());
+		Movimiento movimiento = new Movimiento(10000.0, 10000.0, new Date(), "Apertura cuenta", cuenta);
+		cuenta.setSaldo(10000.0);
+		this.cuentaService.actualizarCuenta(cuenta);
+		this.guardar(movimiento);
 	}
 }

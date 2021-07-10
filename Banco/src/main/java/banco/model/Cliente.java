@@ -17,7 +17,6 @@ public class Cliente implements Serializable{
     private String correo;
     private String direccion;
     
-    
     @ManyToOne
     @JoinColumn(name = "idProvincia")
     private Provincia provincia;

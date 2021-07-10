@@ -143,6 +143,21 @@
 							</select>
 						</div>
 					</div>
+					
+					<div class="form-group row">
+						<label class="col-md-2 col-form-label" for="direccion">Contraseña:</label>
+						<div class="col-sm-10">
+							<div class="input-group">
+								<input name="contrasenia" id="text" type="text"
+									class="form-control" value="${cliente.usuario.contrasenia}">
+								<div class="input-group-append">
+									<span class="input-group-text"> <i
+										class="fa fa-lock"></i>
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>
 
 					<div class="form-group row">
 						<div class="col-md-2">

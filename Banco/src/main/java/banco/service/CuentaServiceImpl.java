@@ -110,4 +110,10 @@ public class CuentaServiceImpl implements CuentaService{
 		
 		return cuentaDao.modificarCuenta(nroCuenta, alias, nombre, dni, estado);
 	}
+
+	@Override
+	@Transactional
+	public int bajaCuentaPorDni(Integer dni) {
+		return this.cuentaDao.bajaCuentaPorDni(dni);
+	}
 }

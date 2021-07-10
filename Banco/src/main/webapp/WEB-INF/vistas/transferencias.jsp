@@ -38,7 +38,7 @@
 										<c:forEach items="${listCuentas}" var="cuenta" varStatus="loop">
            									<option class="dropdown-item" value="${cuenta.nroCuenta}">
            										<c:choose>
-													<c:when test="${cuenta.moneda == 1}">
+													<c:when test="${cuenta.tipoMoneda.id == 1}">
 														<b>En Pesos</b> &nbsp; &nbsp; &nbsp;
 													</c:when>
 													<c:otherwise>
@@ -73,6 +73,14 @@
 									</div>
 								</div>								
 						</div>
+						
+						<div class="form-group row">
+								<label class="col-md-3 col-form-label" for="txtDetalle">Detalle:</label>
+								<div class="col-md-5">
+									<input name="detalle" id="txtDetalle" type="text" class="form-control" placeholder="Detalle">
+								</div>
+						</div>
+						
 						<div class="row">
 							<div class="col-md-4 offset-md-3">
 								<button id="btnTransferir" class="btn btn-primary" type="submit">Transferir
@@ -110,7 +118,7 @@
 										<c:forEach items="${listCuentas}" var="cuenta" varStatus="loop">
            									<option class="dropdown-item" value="${cuenta.nroCuenta}">
            										<c:choose>
-													<c:when test="${cuenta.moneda == 1}">
+													<c:when test="${cuenta.tipoMoneda.id == 1}">
 														<b>En Pesos</b> &nbsp; &nbsp; &nbsp;
 													</c:when>
 													<c:otherwise>
@@ -135,7 +143,7 @@
 										<c:forEach items="${listCuentas}" var="cuenta" varStatus="loop">
            									<option class="dropdown-item" value="${cuenta.nroCuenta}">
            										<c:choose>
-													<c:when test="${cuenta.moneda == 1}">
+													<c:when test="${cuenta.tipoMoneda.id == 1}">
 														<b>En Pesos</b> &nbsp; &nbsp; &nbsp;
 													</c:when>
 													<c:otherwise>
@@ -164,6 +172,13 @@
 								</div>								
 						</div>
 						
+						<div class="form-group row">
+								<label class="col-md-3 col-form-label" for="txtDetalle">Detalle:</label>
+								<div class="col-md-5">
+									<input name="detalle" id="txtDetalle" type="text" class="form-control" placeholder="Detalle">
+								</div>
+						</div>
+						
 						<div class="row">
 							<div class="col-md-4 offset-md-3">
 								<button id="btnTransferir" class="btn btn-primary" type="submit">Transferir
@@ -179,5 +194,15 @@
 		</div>
 	</div>
 	</div>
+	
+	    <c:if test="${!empty error}">
+	    <script>
+			Swal.fire({
+			  icon: 'error',
+			  title: 'Ups...',
+			  text: '${error}',
+			});
+		</script>
+	</c:if>
 	
 </t:baseUsuario>

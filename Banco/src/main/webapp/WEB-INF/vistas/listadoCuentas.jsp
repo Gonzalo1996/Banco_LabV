@@ -78,8 +78,9 @@
 								<td>${c.alias}</td>
 								<td>${c.saldo}</td>
 
+ 
 								<c:choose>
-									<c:when test="${c.moneda == 1}">
+									<c:when test="${c.tipoMoneda.id == 1}">
 										<td>Peso</td>
 									</c:when>
 									<c:otherwise>
