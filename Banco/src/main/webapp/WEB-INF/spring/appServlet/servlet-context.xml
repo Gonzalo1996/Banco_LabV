@@ -146,6 +146,18 @@
 		<beans:property name="tipoMoneda" ref="tipoMonedaDAO"></beans:property>
 	</beans:bean>
 	
+	<!-- BEANS NUESTROS -->
+	
+	<beans:bean id="movimientoInicial" class="banco.model.Movimiento">
+		<beans:property name="saldo" value="10000.0"></beans:property>
+		<beans:property name="monto" value="10000.0"></beans:property>
+		<beans:property name="detalle" value="Apertura cuenta"></beans:property>
+	</beans:bean>
+	
+	<beans:bean id="movimientoOrigen" class="banco.model.Movimiento"></beans:bean>
+	<beans:bean id="movimientoDestino" class="banco.model.Movimiento"></beans:bean>
+	
+	
 	<context:component-scan base-package="banco" />
 	
 	<tx:annotation-driven transaction-manager="transactionManager"/>

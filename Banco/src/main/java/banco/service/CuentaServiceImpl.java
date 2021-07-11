@@ -100,9 +100,14 @@ public class CuentaServiceImpl implements CuentaService{
 		if (usuario == null || !usuario.getEstado())
 			throw new Exception("El dni ingresado no corresponde a un usuario activo.");
 		
-		Long cantCuentas = this.obtenerCantidadCuentas(dni);
-		if (cantCuentas == 4)
-			throw new Exception("El cliente ya posee 4 cuentas asignadas.");
+		System.out.println("DNI CUENTA: " + cuenta.getCliente().getDni());
+		System.out.println("DNI PARAMETRO: " + dni);
+
+		if(!cuenta.getCliente().getDni().equals(dni)) {
+			Long cantCuentas = this.obtenerCantidadCuentas(dni);
+			if (cantCuentas == 4)
+				throw new Exception("El cliente ya posee 4 cuentas asignadas.");	
+		}
 		
 		if(cuenta != null && cuenta.getNroCuenta() != nroCuenta) {
 			throw new Exception("Alias ya asignado a otra cuenta");

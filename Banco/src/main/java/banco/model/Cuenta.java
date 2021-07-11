@@ -30,7 +30,7 @@ public class Cuenta implements Serializable{
 	private Boolean estado;
 	private Date fechaCreacion;
 	
-    @OneToOne(cascade = {CascadeType.ALL})
+    @ManyToOne
 	@JoinColumn(name="moneda")
 	private TipoMoneda tipoMoneda;
 	

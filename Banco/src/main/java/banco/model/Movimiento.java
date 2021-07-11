@@ -5,6 +5,10 @@ import java.util.Date;
 
 import javax.persistence.*;
 
+/**
+ * @author Mauricio
+ *
+ */
 @Entity
 public class Movimiento implements Serializable{
 	
@@ -79,6 +83,8 @@ public class Movimiento implements Serializable{
 	public void setSaldo(Double saldo) {
 		this.saldo = saldo;
 	}
+	
+	
 	
 	@Override
 	public String toString() {
