@@ -8,11 +8,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import banco.model.TipoMoneda;
+import banco.model.TipoUsuario;
 
 @Repository
-public class TipoMonedaDAOImpl implements TipoMonedaDAO{
+public class TipoUsuarioDAOImpl implements TipoUsuarioDAO{
 
-	private static final Logger logger = LoggerFactory.getLogger(TipoMonedaDAOImpl.class);
+	private static final Logger logger = LoggerFactory.getLogger(TipoUsuarioDAOImpl.class);
 
 	private SessionFactory sessionFactory;
 
@@ -21,13 +22,13 @@ public class TipoMonedaDAOImpl implements TipoMonedaDAO{
 	}
 	
 	@Override
-	public TipoMoneda obtenerTipoMoneda(Integer id) {
+	public TipoUsuario obtenerTipoUsuario(Integer id) {
 		Session session = this.sessionFactory.openSession();
 		session.beginTransaction();
-		String q = "FROM TipoMoneda as t WHERE t.id = :id";
+		String q = "FROM TipoUsuario as t WHERE t.id = :id";
 		Query query = session.createQuery(q);
 		query.setParameter("id", id);
-		TipoMoneda t = (TipoMoneda)query.uniqueResult();
+		TipoUsuario t = (TipoUsuario)query.uniqueResult();
 		session.close();
 		return t;
 	}

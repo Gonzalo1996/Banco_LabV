@@ -113,7 +113,14 @@
 		<beans:property name="clienteDao" ref="clienteDAO"></beans:property>
 	</beans:bean>
 	
-	<!-- José -->
+	<beans:bean id="tipoUsuarioDAO" class="banco.dao.TipoUsuarioDAOImpl">
+		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</beans:bean>
+	
+	<beans:bean id="tipoUsuarioService" class="banco.service.TipoUsuarioServiceImpl">
+		<beans:property name="tipoUsuario" ref="tipoUsuarioDAO"></beans:property>
+	</beans:bean>
+	
 	<beans:bean id="paisDAO" class="banco.dao.PaisDAOImpl">
 		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
 	</beans:bean>
@@ -146,8 +153,6 @@
 		<beans:property name="tipoMoneda" ref="tipoMonedaDAO"></beans:property>
 	</beans:bean>
 	
-	<!-- BEANS NUESTROS -->
-	
 	<beans:bean id="movimientoInicial" class="banco.model.Movimiento">
 		<beans:property name="saldo" value="10000.0"></beans:property>
 		<beans:property name="monto" value="10000.0"></beans:property>
@@ -155,7 +160,13 @@
 	</beans:bean>
 	
 	<beans:bean id="movimientoOrigen" class="banco.model.Movimiento"></beans:bean>
+	
 	<beans:bean id="movimientoDestino" class="banco.model.Movimiento"></beans:bean>
+	
+	<beans:bean id="nuevoCliente" class="banco.model.Cliente"></beans:bean>
+	<beans:bean id="nuevoUsuario" class="banco.model.Usuario"></beans:bean>
+	
+	<beans:bean id="nuevaCuenta" class="banco.model.Cuenta"></beans:bean>
 	
 	
 	<context:component-scan base-package="banco" />

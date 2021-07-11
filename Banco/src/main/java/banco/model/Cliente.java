@@ -113,7 +113,14 @@ public class Cliente implements Serializable{
 	public void setLocalidad(Localidad localidad) {
 		this.localidad = localidad;
 	}
-	
+
+	public Pais getPais() {
+		return pais;
+	}
+
+	public void setPais(Pais pais) {
+		this.pais = pais;
+	}
 
 	public Provincia getProvincia() {
 		return provincia;

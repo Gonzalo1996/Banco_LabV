@@ -45,6 +45,7 @@ import banco.service.PaisService;
 import banco.service.PersonService;
 import banco.service.ProvinciaService;
 import banco.service.TipoMonedaService;
+import banco.service.TipoUsuarioService;
 import banco.service.UsuarioService;
 
 @Controller
@@ -59,7 +60,19 @@ public class PersonController {
 	@Autowired private CuentaService cuentaService;
 	@Autowired private MovimientoService movimientoService;
 	@Autowired private TipoMonedaService tipoMonedaService;
+	@Autowired private TipoUsuarioService tipoUsuarioService;
 
+	@Autowired
+	@Qualifier("nuevoCliente")
+	private Cliente nuevoCliente;
+	
+	@Autowired
+	@Qualifier("nuevoUsuario")
+	private Usuario nuevoUsuario;
+	
+	@Autowired
+	@Qualifier("nuevaCuenta")
+	private Cuenta nuevaCuenta;
 
 	@RequestMapping(value="/inicio.html",method = RequestMethod.GET)
 	public String inicio(Model model) {	
@@ -108,29 +121,36 @@ public class PersonController {
 	public String guardarUsuario(Model model, String nombre, String apellido, String fechaNacimiento, Integer dni, String cuil, 
 		Integer genero, Integer provincia, Integer localidad, String direccion, String correo, String nombreUsuario, String contrasenia)
 	{	
-		Date fecha = new Date(fechaNacimiento.replace('-', '/'));
-		System.out.println(fecha);
-		
-		System.out.println("NOMBRE: " + nombre + "APELLIDO: " + apellido + "DNI: " + dni + "CUIL: " + cuil + " FECHA: " + fecha +
-				"GENERO: " + genero + "PROVINCIA: " + provincia + "LOCALIDAD: " + localidad + direccion + correo+ nombreUsuario+ contrasenia);
-		
+		Date fecha = new Date(fechaNacimiento.replace('-', '/'));	
 		if(this.clienteService.obtenerCliente(dni) == null) {
-			System.out.println("LISTO PARA CREAR");
+			
+			this.nuevoCliente.setDni(dni);
+			this.nuevoCliente.setCuil(cuil);
+			this.nuevoCliente.setNombre(nombre);
+			this.nuevoCliente.setApellido(apellido);
+			this.nuevoCliente.setFechaNacimiento(fecha);
+			this.nuevoCliente.setCorreo(correo);
+			this.nuevoCliente.setDireccion(direccion);
+			this.nuevoCliente.setPais(this.paisService.obtenerPais(1));
+			this.nuevoCliente.setLocalidad(this.localidadService.obtenerLocalidad(localidad));
+			this.nuevoCliente.setProvincia(this.provinciaService.obtenerProvincia(provincia));
+			this.nuevoCliente.setGenero(this.generoService.obtenerGenero(genero));
 
-			Cliente cliente = new Cliente(dni,cuil,nombre, apellido, fecha,correo, direccion, this.paisService.obtenerPais(1),
-					this.localidadService.obtenerLocalidad(localidad), this.provinciaService.obtenerProvincia(provincia),
-					this.generoService.obtenerGenero(genero), null);
-			Usuario usuario = new Usuario(contrasenia,nombreUsuario,true, cliente, null);
-
-			cliente.setUsuario(usuario);
-			this.usuarioService.guardarUsuario(usuario);
+			this.nuevoUsuario.setContrasenia(contrasenia);
+			this.nuevoUsuario.setNombreUsuario(nombreUsuario);
+			this.nuevoUsuario.setEstado(true);
+			this.nuevoUsuario.setCliente(nuevoCliente);
+			this.nuevoUsuario.setTipoUsuario(this.tipoUsuarioService.obtenerTipoUsuario(2));
+			
+			this.nuevoCliente.setUsuario(nuevoUsuario);
+			
+			this.usuarioService.guardarUsuario(nuevoUsuario);
 			return "redirect:/listadoClientes.html";
 		}
-		else 
-			System.out.println("!!!!!! USUARIO YA EXISTENTE");
-		
-		return "redirect:/guardarUsuario.html";
+		else 		
+			return "redirect:/guardarUsuario.html";
 	}
+	
 		
 	@RequestMapping(value="/guardarUsuario.html",method = RequestMethod.GET)
 	public String guardarUsuario(Model model)
@@ -144,10 +164,17 @@ public class PersonController {
 		try {
 			SimpleDateFormat formatter= new SimpleDateFormat("yyyy/mm/ss HH:mm:ss");
 			Date fechaActual = new Date(formatter.format(System.currentTimeMillis()));
-	
-			Cuenta cuenta = new Cuenta(cbu, alias, this.tipoMonedaService.obtenerTipoMoneda(moneda), 0.0, true, null, fechaActual, nombre);
-			this.cuentaService.guardarCuenta(cuenta, dni, cbu, alias);
-			this.movimientoService.guardarSaldoInicial(cuenta);
+			
+			this.nuevaCuenta.setCbu(cbu);
+			this.nuevaCuenta.setAlias(alias);
+			this.nuevaCuenta.setTipoMoneda(this.tipoMonedaService.obtenerTipoMoneda(moneda));
+			this.nuevaCuenta.setSaldo(0.0);
+			this.nuevaCuenta.setEstado(true);
+			this.nuevaCuenta.setFechaCreacion(fechaActual);
+			this.nuevaCuenta.setNombreCuenta(nombre);
+			
+			this.cuentaService.guardarCuenta(nuevaCuenta, dni, cbu, alias);
+			this.movimientoService.guardarSaldoInicial(nuevaCuenta);
 			return "redirect:/listadoCuentas.html";
 			
 		} catch (Exception e) {
