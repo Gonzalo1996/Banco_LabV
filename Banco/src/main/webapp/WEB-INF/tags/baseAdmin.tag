@@ -1,7 +1,23 @@
+<%@tag import="banco.constants.TipoUsuario"%>
+<%@tag import="banco.model.Usuario"%>
 <%@ tag language="java" pageEncoding="ISO-8859-1"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags"%>
 
 <%@ attribute name="title" required="true" %>
+
+
+<%
+	try {		
+		Usuario usuario = (Usuario)session.getAttribute("usuario");
+		
+		if (usuario == null || usuario.getTipoUsuario() == null || !usuario.getTipoUsuario().getId().equals(TipoUsuario.ADMIN.getId()))
+			throw new Exception("Usuario no logueado o sin permisos.");
+	} catch (Exception e) {
+		e.printStackTrace();
+		response.setHeader("Location", request.getContextPath() + "/login.html");
+		response.setStatus(302);
+	} 
+%>
 
 <t:base title="${title}">
 	<jsp:attribute name="menu">
@@ -22,6 +38,9 @@
         </li>
         <li>
           	<a href=""><i class="fas fa-info"></i>About</a>
+        </li>
+        <li>
+          	<a href="detallecliente.html"><i class="fa fa-user-plus"></i>Vista cliente</a>
         </li>
 	</jsp:attribute>
 	<jsp:body>

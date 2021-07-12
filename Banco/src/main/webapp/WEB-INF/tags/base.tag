@@ -1,8 +1,22 @@
+<%@tag import="banco.model.Usuario"%>
 <%@ tag language="java" pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <%@ attribute name="menu" fragment="true" %>
 <%@ attribute name="title" required="true" %>
+
+<%
+	try {		
+		Usuario usuario = (Usuario)session.getAttribute("usuario");
+		
+		if (usuario == null)
+			throw new Exception("Usuario no logueado.");
+	} catch (Exception e) {
+		e.printStackTrace();
+		response.setHeader("Location", request.getContextPath() + "/login.html");
+		response.setStatus(302);
+	} 
+%>
 
 <!doctype html>
 <html lang="en">
