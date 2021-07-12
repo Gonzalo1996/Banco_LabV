@@ -38,7 +38,7 @@
           </div>
           <div class="row-form">
           <br>
-            <input name="cuil" type="text" placeholder="CUIL"> 
+            <input name="cuil" type="text" placeholder="CUIL" required pattern="\b(20|23|24|27|30|33|34)(\D)?[0-9]{8}(\D)?[0-9]" title="Formato incorrecto"> 
           </div>
           <div class="row-form">
           <br>

@@ -40,14 +40,14 @@
 						<label class="col-md-2 col-form-label" for="nombre">Nombre:</label>
 						<div class="col-sm-10">
 							<input name="nombre" id="name" type="text" class="form-control"
-								value="${cliente.nombre}">
+								value="${cliente.nombre}" required/>
 						</div>
 					</div>
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label" for="apellido">Apellido:</label>
 						<div class="col-sm-10">
 							<input name="apellido" id="surname" type="text"
-								class="form-control" value="${cliente.apellido}">
+								class="form-control" value="${cliente.apellido}" required/>
 						</div>
 					</div>
 
@@ -56,7 +56,7 @@
 							nacimiento:</label>
 						<div class="col-sm-10">
 							<input name="fecha" id="fecha" type="date" class="form-control"
-								value="${fecha}">
+								value="${fecha}" required/>
 						</div>
 					</div>
 
@@ -64,8 +64,8 @@
 						<label class="col-md-2 col-form-label" for="correo">Correo:</label>
 						<div class="col-sm-10">
 							<div class="input-group">
-								<input name="correo" id="email" type="email"
-									class="form-control" value="${cliente.correo}">
+								<input name="correo" id="email" type="email" 
+								 	class="form-control" value="${cliente.correo}" required pattern="^[^@]+@[^@]+\.[a-zA-Z]{2,}$" title="Correo invalido, debe contener un @ y como minimo un punto.">
 								<div class="input-group-append">
 									<span class="input-group-text"> <i
 										class="fa fa-envelope"></i>
@@ -80,7 +80,7 @@
 						<div class="col-sm-10">
 							<div class="input-group">
 								<input name="direccion" id="text" type="text"
-									class="form-control" value="${cliente.direccion}">
+									class="form-control" value="${cliente.direccion}" required/>
 								<div class="input-group-append">
 									<span class="input-group-text"> <i
 										class="fa fa-map-marker"></i>
@@ -150,7 +150,7 @@
 						<div class="col-sm-10">
 							<div class="input-group">
 								<input name="contrasenia" id="text" type="text"
-									class="form-control" value="${cliente.usuario.contrasenia}">
+									class="form-control" value="${cliente.usuario.contrasenia}" required/>
 								<div class="input-group-append">
 									<span class="input-group-text"> <i
 										class="fa fa-lock"></i>

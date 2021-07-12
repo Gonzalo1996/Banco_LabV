@@ -18,7 +18,7 @@
       <div class="col-form">
         <div class="row-form">
          <br>
-          <input name="cbu" type="text" placeholder="CBU" required/> 
+          <input name="cbu" type="text" placeholder="CBU" required pattern="^\D*\d{22}$"  title="El CBU debe estar compuesto por 22 digitos"> 
         </div>
         <div class="row-form">
          <br> 

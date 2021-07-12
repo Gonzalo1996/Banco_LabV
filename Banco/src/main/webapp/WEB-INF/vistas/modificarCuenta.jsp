@@ -32,7 +32,7 @@
 					<div class="form-group row">
 						<label class="col-md-1 col-form-label" for="name">Nombre:</label>
 						    <div class="col-sm-10">
-								<input name="nombre" id="name" type="text" class="form-control" value="${cuenta.nombreCuenta}" placeholder="Nombre">
+								<input name="nombre" id="name" type="text" class="form-control" value="${cuenta.nombreCuenta}" placeholder="Nombre" required/>
    							 </div>
 					</div>
 
@@ -40,7 +40,8 @@
 						<label class="col-md-1 col-form-label" for="dni">DNI:</label>
 						    <div class="col-sm-10">
 								<div class="input-group mb-3">
-								  <input name="dni"  id="dni" type="text" class="form-control" value="${cuenta.cliente.dni}" placeholder="DNI" required pattern="^[a-z0-9_-]{7,8}$" title="DNI invalido, no debe contener puntos y debe ir de 7 a 8 digitos" required/>
+								  <input name="dni"  id="dni" type="text" class="form-control" value="${cuenta.cliente.dni}" 
+								  	placeholder="DNI" required pattern="^[a-z0-9_-]{7,8}$" title="DNI invalido, no debe contener puntos y debe ir de 7 a 8 digitos">
 								  <div class="input-group-append">
 								    <span class="input-group-text">
 								    	<i class="fa fa-id-card"></i>
@@ -54,7 +55,7 @@
 						<label class="col-md-1 col-form-label" for="alias">Alias:</label>
 						    <div class="col-sm-10">
 								<div class="input-group mb-3">
-								  <input name="alias"  id="alias" type="text" class="form-control"  value="${cuenta.alias}" placeholder="Alias" >
+								  <input name="alias"  id="alias" type="text" class="form-control"  value="${cuenta.alias}" placeholder="Alias" required/>
 								  <div class="input-group-append">
 								    <span class="input-group-text">
 								    	<i class="fa fa-university"></i>
