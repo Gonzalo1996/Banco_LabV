@@ -120,6 +120,34 @@ public class UsuarioDAOImpl implements UsuarioDAO{
 	}
 	
 	@Override
+	public Usuario obtenerPorCorreo(String correo){
+		Session session = this.sessionFactory.openSession();
+
+		String q = "SELECT u FROM Usuario as u JOIN u.cliente WHERE u.cliente.correo = :correo";
+		Query query = session.createQuery(q);
+		query.setParameter("correo", correo);
+		
+		Usuario u = (Usuario)query.uniqueResult();
+
+		session.close();
+		return u;
+	}
+	
+	@Override
+	public Usuario obtenerPorCuil(String cuil){
+		Session session = this.sessionFactory.openSession();
+
+		String q = "SELECT u FROM Usuario as u JOIN u.cliente WHERE u.cliente.cuil = :cuil";
+		Query query = session.createQuery(q);
+		query.setParameter("cuil", cuil);
+		
+		Usuario u = (Usuario)query.uniqueResult();
+
+		session.close();
+		return u;
+	}
+	
+	@Override
 	public int bajaUsuario(Integer dni) {
 		Session session = this.sessionFactory.openSession();
 		session.beginTransaction();

@@ -50,7 +50,17 @@ public class UsuarioServiceImpl implements UsuarioService{
 	
 	@Override
 	@Transactional
-	public void guardarUsuario(Usuario usuario) {
+	public void guardarUsuario(Usuario usuario, Integer dni, String correo, String cuil) throws Exception {
+		
+		if(obtenerPorDni(dni) != null)
+			throw new Exception("DNI ya registrado");
+		
+		if(obtenerPorCorreo(correo) != null)
+			throw new Exception("Correo ya registrado");
+		
+		if(obtenerPorCuil(cuil) != null)
+			throw new Exception("CUIL ya registrado");
+
 		usuarioDao.guardarUsuario(usuario);	
 	}
 
@@ -75,5 +85,15 @@ public class UsuarioServiceImpl implements UsuarioService{
 	@Override
 	public int actualizarUsuario(int dni, Boolean estado, String contrasenia) {
 		return usuarioDao.actualizarUsuario(dni, estado, contrasenia);
+	}
+
+	@Override
+	public Usuario obtenerPorCorreo(String correo) {
+		return usuarioDao.obtenerPorCorreo(correo);
+	}
+
+	@Override
+	public Usuario obtenerPorCuil(String cuil) {
+		return usuarioDao.obtenerPorCuil(cuil);
 	}
 }

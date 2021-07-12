@@ -121,37 +121,39 @@ public class PersonController {
 	public String guardarUsuario(Model model, String nombre, String apellido, String fechaNacimiento, Integer dni, String cuil, 
 		Integer genero, Integer provincia, Integer localidad, String direccion, String correo, String nombreUsuario, String contrasenia)
 	{	
-		Date fecha = new Date(fechaNacimiento.replace('-', '/'));	
-		if(this.clienteService.obtenerCliente(dni) == null) {
-			
-			this.nuevoCliente.setDni(dni);
-			this.nuevoCliente.setCuil(cuil);
-			this.nuevoCliente.setNombre(nombre);
-			this.nuevoCliente.setApellido(apellido);
-			this.nuevoCliente.setFechaNacimiento(fecha);
-			this.nuevoCliente.setCorreo(correo);
-			this.nuevoCliente.setDireccion(direccion);
-			this.nuevoCliente.setPais(this.paisService.obtenerPais(1));
-			this.nuevoCliente.setLocalidad(this.localidadService.obtenerLocalidad(localidad));
-			this.nuevoCliente.setProvincia(this.provinciaService.obtenerProvincia(provincia));
-			this.nuevoCliente.setGenero(this.generoService.obtenerGenero(genero));
+		try {
+			Date fecha = new Date(fechaNacimiento.replace('-', '/'));					
+				this.nuevoCliente.setDni(dni);
+				this.nuevoCliente.setCuil(cuil);
+				this.nuevoCliente.setNombre(nombre);
+				this.nuevoCliente.setApellido(apellido);
+				this.nuevoCliente.setFechaNacimiento(fecha);
+				this.nuevoCliente.setCorreo(correo);
+				this.nuevoCliente.setDireccion(direccion);
+				this.nuevoCliente.setPais(this.paisService.obtenerPais(1));
+				this.nuevoCliente.setLocalidad(this.localidadService.obtenerLocalidad(localidad));
+				this.nuevoCliente.setProvincia(this.provinciaService.obtenerProvincia(provincia));
+				this.nuevoCliente.setGenero(this.generoService.obtenerGenero(genero));
 
-			this.nuevoUsuario.setContrasenia(contrasenia);
-			this.nuevoUsuario.setNombreUsuario(nombreUsuario);
-			this.nuevoUsuario.setEstado(true);
-			this.nuevoUsuario.setCliente(nuevoCliente);
-			this.nuevoUsuario.setTipoUsuario(this.tipoUsuarioService.obtenerTipoUsuario(2));
-			
-			this.nuevoCliente.setUsuario(nuevoUsuario);
-			
-			this.usuarioService.guardarUsuario(nuevoUsuario);
-			return "redirect:/listadoClientes.html";
-		}
-		else 		
-			return "redirect:/guardarUsuario.html";
+				this.nuevoUsuario.setContrasenia(contrasenia);
+				this.nuevoUsuario.setNombreUsuario(nombreUsuario);
+				this.nuevoUsuario.setEstado(true);
+				this.nuevoUsuario.setCliente(nuevoCliente);
+				this.nuevoUsuario.setTipoUsuario(this.tipoUsuarioService.obtenerTipoUsuario(2));
+				
+				this.nuevoCliente.setUsuario(nuevoUsuario);
+				this.usuarioService.guardarUsuario(nuevoUsuario, dni, correo, cuil);
+
+				return "redirect:/listadoClientes.html";
+			}
+			catch (Exception e) {
+				e.printStackTrace();
+				System.out.println(e.getMessage());
+				model.addAttribute("error", e.getMessage());
+				return "altaCliente";
+			}
 	}
-	
-		
+			
 	@RequestMapping(value="/guardarUsuario.html",method = RequestMethod.GET)
 	public String guardarUsuario(Model model)
 	{	

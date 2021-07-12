@@ -13,6 +13,8 @@ public interface UsuarioDAO
 	public int actualizarUsuario(int dni, Boolean estado, String contrasenia);
 	public Boolean estadoUsuario(Integer dni);
 	public Usuario obtenerPorDni(int dni);
+	public Usuario obtenerPorCorreo(String correo);
+	public Usuario obtenerPorCuil(String cuil);
 	public int bajaUsuario(Integer dni);
 	public void guardarUsuario(Usuario usuario);
 }

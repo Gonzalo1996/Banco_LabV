@@ -50,16 +50,6 @@
       <p class="login-box-msg">Completa tus datos para iniciar sesión</p>
 
       <form method="POST" action="login.html">
-      
-		<div class="input-group mb-3">
-			<input name="nombreUsuario" type="text" class="form-control"
-				placeholder="Usuario">
-			<div class="input-group-append">
-				<div class="input-group-text">
-					<span class="fa fa-user"></span>
-				</div>
-			</div>
-		</div>
 
 		<div class="input-group mb-3">
           <input name="dni" type="number" class="form-control" placeholder="DNI">
@@ -69,6 +59,17 @@
             </div>
           </div>
         </div>
+        
+     	<div class="input-group mb-3">
+			<input name="nombreUsuario" type="password" class="form-control"
+				placeholder="Usuario">
+			<div class="input-group-append">
+				<div class="input-group-text">
+					<span class="fa fa-user"></span>
+				</div>
+			</div>
+		</div>
+        
         <div class="input-group mb-3">
           <input name="contrasenia" type="password" class="form-control" placeholder="Contraseña">
           <div class="input-group-append">

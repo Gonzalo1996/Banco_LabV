@@ -99,9 +99,6 @@ public class CuentaServiceImpl implements CuentaService{
 		
 		if (usuario == null || !usuario.getEstado())
 			throw new Exception("El dni ingresado no corresponde a un usuario activo.");
-		
-		System.out.println("DNI CUENTA: " + cuenta.getCliente().getDni());
-		System.out.println("DNI PARAMETRO: " + dni);
 
 		if(!cuenta.getCliente().getDni().equals(dni)) {
 			Long cantCuentas = this.obtenerCantidadCuentas(dni);
