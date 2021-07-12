@@ -118,4 +118,12 @@ public class CuentaServiceImpl implements CuentaService{
 	public int bajaCuentaPorDni(Integer dni) {
 		return this.cuentaDao.bajaCuentaPorDni(dni);
 	}
+	
+	
+	@Override
+	public List<Cuenta> FiltradoCuentas(Integer dni, Integer tipomoneda) {
+		
+		return cuentaDao.FiltradoCuentas(dni, tipomoneda);
+	}
+	
 }

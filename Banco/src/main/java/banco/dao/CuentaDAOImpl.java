@@ -176,4 +176,18 @@ public class CuentaDAOImpl implements CuentaDAO{
 		session.close();
 		return execute;
 	}
+	
+	@Override
+	public List<Cuenta> FiltradoCuentas(Integer dni, Integer tipomoneda) {
+		Session session = this.sessionFactory.openSession();
+		String hql = "SELECT c FROM Cuenta as c JOIN c.cliente JOIN c.tipoMoneda WHERE c.cliente.dni = :dni AND c.tipoMoneda.id= :tipomoneda";
+		Query query = session.createQuery(hql);
+		query.setParameter("dni", dni);
+		query.setParameter("tipomoneda", tipomoneda);
+
+		List<Cuenta> lista = (List<Cuenta>)query.list();
+		session.close();
+		return lista;
+	}
+	
 }

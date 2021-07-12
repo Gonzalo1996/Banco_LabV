@@ -22,7 +22,7 @@
    	<div class="row">
 		<div class="col-md-12">
 		
-		<form method="get" action="x">
+		<form method="get" action="FiltradoClientes.html">
 			<div class="form-group row">
 					<label class="col-md-1 col-form-label" for="txtLocalidad">Localidad:</label>
 					<div class="col-md-4">
@@ -36,14 +36,14 @@
 			
 				<div class="col-md-4">
 					<button type="submit" class="btn btn-primary">Filtrar <span class="fa fa-filter"></span></button>
-					<button type="submit" class="btn btn-info">Quitar <span class="fa fa-times"></span></button>				
+					<a href="listadoClientes.html" class="btn btn-info">Quitar <span class="fa fa-times"></span></a>				
 				</div>
 			</div>
 			  
 		<div class="form-group row">
 			<label class="col-md-1 col-form-label" for="txtDni" >DNI:</label>
 			<div class="col-md-4">
-			 	<input id="txtDni" type="number" class="form-control" placeholder="DNI">
+			 	<input id="txtDni" type="number" class="form-control" placeholder="DNI" name="dni">
 			</div>
 		</div>
 		</form>

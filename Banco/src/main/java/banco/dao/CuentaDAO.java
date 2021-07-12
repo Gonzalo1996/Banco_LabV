@@ -17,4 +17,5 @@ public interface CuentaDAO
 	public int modificarCuenta(Integer nroCuenta, String alias, String nombre, Integer dni, Boolean estado);
 	public List<Cuenta> obtenerCuentasPorCliente(Integer dni);
 	public Long obtenerCantCuentas_sinContarBajas(Integer dni);
+	public List<Cuenta> FiltradoCuentas(Integer dni, Integer tipomoneda);
 }

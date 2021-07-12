@@ -415,6 +415,23 @@ public class PersonController {
     	request.getSession().removeAttribute("usuario");
 		return "login";
 	}
+    
+    @RequestMapping(value="/FiltradoCuenta.html",method = RequestMethod.GET)
+    public String FiltradoCuentas(Model model, Integer dni,Integer tipomoneda) { 	
+    	model.addAttribute("listCuentas",this.cuentaService.FiltradoCuentas(dni, tipomoneda));
+    	return "listadoCuentas";
+    }
+    
+    @RequestMapping(value="/FiltradoClientes.html",method = RequestMethod.GET)
+    public String FiltradoClientes(Model model, Integer dni,Integer localidad) {
+    	System.out.println(dni + " " +localidad); 	
+    	model.addAttribute("listClientes",this.clienteService.FiltradoClientes(dni, localidad));
+		model.addAttribute("listLocalidades", this.localidadService.listLocalidades());
+
+    	
+    	return "listadoClientes";
+    }
+    
 	
 	/////////EJEMPLOS PERSON///////////
 	@RequestMapping(value = "/persons", method = RequestMethod.GET)

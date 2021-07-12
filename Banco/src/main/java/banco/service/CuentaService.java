@@ -17,4 +17,5 @@ public interface CuentaService
 	public List<Cuenta> obtenerCuentasPorCliente(Integer dni);
 	public Long obtenerCantCuentas_sinContarBajas(Integer dni);
 	public int bajaCuentaPorDni(Integer dni);
+	public List<Cuenta> FiltradoCuentas(Integer dni, Integer tipomoneda);
 }

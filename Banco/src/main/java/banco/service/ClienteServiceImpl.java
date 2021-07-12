@@ -37,4 +37,11 @@ public class ClienteServiceImpl implements ClienteService{
 			Integer pais, Integer provincia, Integer localidad) {
 		return clienteDao.modificarCliente(dni, nombre, apellido, fecha, correo, direccion, pais, provincia, localidad);
 	}
+	
+	@Override
+	public List<Cliente> FiltradoClientes(Integer dni, Integer localidad) {
+		// TODO Auto-generated method stub
+		return clienteDao.FiltradoClientes(dni, localidad);
+	}
+	
 }

@@ -74,4 +74,19 @@ public class ClienteDAOImpl implements ClienteDAO{
 		session.close();
 		return execute;		
 	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Cliente> FiltradoClientes(Integer dni, Integer localidad) {
+		Session session = this.sessionFactory.openSession();
+		String hql = "SELECT c FROM Cliente as c JOIN c.localidad WHERE c.localidad.id = :localidad AND c.dni= :dni";
+		Query query = session.createQuery(hql);
+		query.setParameter("dni", dni);
+		query.setParameter("localidad", localidad);
+
+		List<Cliente> lista = (List<Cliente>)query.list();
+		session.close();
+		return lista;
+	}
+	
 }

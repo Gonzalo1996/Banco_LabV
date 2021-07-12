@@ -22,31 +22,33 @@
 	
 	<div class="row">
 		<div class="col-md-12">
-			<form method="get" action="">
+			
+			<form method="get" action="FiltradoCuenta.html">
 				<div class="form-group row">
-						<label class="col-md-1 col-form-label" for="txtCuil">CUIL:</label>
+						<label class="col-md-1 col-form-label" for="txtDni">DNI:</label>
 						<div class="col-sm-12 col-md-4">
-							<input id="txtCuil" type="text" class="form-control" placeholder="CUIL">
+							<input id="txtDni" type="text" class="form-control" placeholder="DNI" name="dni">
 						</div>
 					
 					<div class="col-md-4">
 						<button type="submit" class="btn btn-primary">Filtrar <span class="fa fa-filter"></span></button>
-						<button type="submit" class="btn btn-info">Quitar <span class="fa fa-times"></span></button>				
+						<a class="btn btn-info" href="listadoCuentas.html">Quitar <span class="fa fa-times"></span></a>				
 					</div>
 				</div>
 					  
 				<div class="form-group row">
-					<label class="col-md-1 col-form-label" >Tipo cuenta:</label>
+					<label class="col-md-1 col-form-label" >Tipo moneda:</label>
 					<div class="col-xs-12 col-md-4">
  						<div class="dropdown ">
- 						<select class="btn btn-outline-info  dropdown-toggle btn-md" style="width: 100%">
- 							<option>Peso</option>
- 							<option>Dolar</option>						
+ 						<select class="btn btn-outline-info  dropdown-toggle btn-md" style="width: 100%" name ="tipomoneda">
+ 							<option value="1">Peso</option>
+ 							<option value="2">Dolar</option>						
  						</select>
 						</div>	 	 		 	 		 	 						
 					</div>
 				</div>
-			</form>			
+			</form>		
+				
 		</div>
 	</div>
 	
