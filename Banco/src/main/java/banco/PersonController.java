@@ -350,6 +350,12 @@ public class PersonController {
 			request.getSession().removeAttribute("error");
     	}
     	
+    	String success = (String)request.getSession().getAttribute("success");
+    	if (success != null && !success.isEmpty()) {
+    		model.addAttribute("success", success);
+			request.getSession().removeAttribute("success");
+    	}
+    	
     	model.addAttribute("listCuentas",listCuentas);
 		return "transferencias";
 	}
@@ -357,14 +363,12 @@ public class PersonController {
     @RequestMapping(value="/transferenciasOtros.html", method=RequestMethod.POST)
     public String transferenciasOtros(Model model, Integer nroCuenta, String cbu, Double montoOtros, String detalle, HttpServletRequest request) {
     	try {
-    		this.movimientoService.guardarTransferenciaOtros(nroCuenta, cbu, montoOtros, detalle);
-    		
-        	return "redirect:/transferencias.html";	
+    		this.movimientoService.guardarTransferenciaOtros(nroCuenta, cbu, montoOtros, detalle);		
+			request.getSession().setAttribute("success", "¡Transferencia realizada!");
+    		return "redirect:/transferencias.html";	
 		} catch (Exception e) {
-			e.printStackTrace();
-			request.setAttribute("error", e.getMessage());
-			model.addAttribute("listCuentas", this.cuentaService.obtenerCuentasPorCliente((Integer)request.getSession().getAttribute("dni")));
-        	return "transferencias";	
+			request.getSession().setAttribute("error", e.getMessage());
+			return "redirect:/transferencias.html";		
 		}
     }
     
@@ -372,13 +376,11 @@ public class PersonController {
     public String transferenciasPropias(Model model, Integer nroCuentaOrigen, Integer nroCuentaDestino, Double montoPropias,String detalle, HttpServletRequest request) {
     	try {
     		this.movimientoService.guardarTransferenciaPropias(nroCuentaOrigen, nroCuentaDestino, montoPropias, detalle);
-    		
-        	return "redirect:/transferencias.html";	
+			request.getSession().setAttribute("success", "¡Transferencia realizada!");
+    		return "redirect:/transferencias.html";	
 		} catch (Exception e) {
-			e.printStackTrace();
 			request.getSession().setAttribute("error", e.getMessage());
-			model.addAttribute("listCuentas", this.cuentaService.obtenerCuentasPorCliente((Integer)request.getSession().getAttribute("dni")));
-        	return "transferencias";	
+			return "redirect:/transferencias.html";		
 		}
     }
     

@@ -58,7 +58,14 @@
 						<div class="form-group row">
 								<label class="col-md-3 col-form-label" for="txtCbu">Ingresá el CBU/CVU destino:</label>
 								<div class="col-md-5">
-									<input id="txtCbu" type="text" name="cbu" class="form-control" placeholder="CBU/CVU">
+									<input id="txtCbu" type="text" name="cbu" class="form-control" placeholder="CBU/CVU" required/>
+								</div>
+						</div>
+						
+						<div class="form-group row">
+								<label class="col-md-3 col-form-label" for="txtDetalle">Detalle:</label>
+								<div class="col-md-5">
+									<input name="detalle" id="txtDetalle" type="text" class="form-control" placeholder="Detalle" required/>
 								</div>
 						</div>
 						
@@ -69,16 +76,9 @@
 									  <div class="input-group-prepend">
 									    <span class="input-group-text">$</span>
 									  </div>
-									  <input id="txtMonto" type="number" step="any" name="montoOtros" class="form-control" placeholder="Monto" aria-describedby="basic-addon1">
+									  <input id="txtMonto" type="number" step="any" name="montoOtros" class="form-control" placeholder="Monto" aria-describedby="basic-addon1" required/>
 									</div>
 								</div>								
-						</div>
-						
-						<div class="form-group row">
-								<label class="col-md-3 col-form-label" for="txtDetalle">Detalle:</label>
-								<div class="col-md-5">
-									<input name="detalle" id="txtDetalle" type="text" class="form-control" placeholder="Detalle">
-								</div>
 						</div>
 						
 						<div class="row">
@@ -136,7 +136,7 @@
 						</div>
 						
 						<div class="form-group row">
-							<label class="col-md-3 col-form-label">Cuenta a trasnferir:</label>
+							<label class="col-md-3 col-form-label">Cuenta a transferir:</label>
 							<div class="col-md-5">
 								<div class="dropdown ">
 									<select class="form-control" name="nroCuentaDestino">
@@ -161,6 +161,13 @@
 						</div>
 						
 						<div class="form-group row">
+								<label class="col-md-3 col-form-label" for="txtDetalle">Detalle:</label>
+								<div class="col-md-5">
+									<input name="detalle" id="txtDetalle" type="text" class="form-control" placeholder="Detalle">
+								</div>
+						</div>
+						
+						<div class="form-group row">
 								<label class="col-md-3 col-form-label" for="txtMonto2">Importe:</label>
 								<div class="col-md-5">
 									<div class="input-group mb-3">
@@ -170,13 +177,6 @@
 									  <input id="txtMonto2" type="number" step="0.01" name="montoPropias" class="form-control" placeholder="Monto" aria-describedby="basic-addon1">
 									</div>
 								</div>								
-						</div>
-						
-						<div class="form-group row">
-								<label class="col-md-3 col-form-label" for="txtDetalle">Detalle:</label>
-								<div class="col-md-5">
-									<input name="detalle" id="txtDetalle" type="text" class="form-control" placeholder="Detalle">
-								</div>
 						</div>
 						
 						<div class="row">
