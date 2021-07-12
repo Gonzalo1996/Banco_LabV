@@ -90,12 +90,13 @@
 						</div>
 					</div>
 
-
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label" for="pais">Nacionalidad:</label>
 						<div class="col-md-10">
-							<select name="pais" class="form-control">
-								<option value="1">Nacionalidad</option>
+							<select id="pais" name="pais" class="form-control" required>
+							        <c:forEach items="${listPaises}" var="pais" varStatus="status">
+							            <option value="${pais.id}"><c:out value="${pais.nombre}"></c:out> </option>
+							        </c:forEach>
 							</select>
 						</div>
 					</div>

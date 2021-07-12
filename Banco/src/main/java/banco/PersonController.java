@@ -119,7 +119,8 @@ public class PersonController {
 	
 	@RequestMapping(value="/guardarUsuario.html",method = RequestMethod.POST)
 	public String guardarUsuario(Model model, String nombre, String apellido, String fechaNacimiento, Integer dni, String cuil, 
-		Integer genero, Integer provincia, Integer localidad, String direccion, String correo, String nombreUsuario, String contrasenia)
+		Integer genero, Integer provincia, Integer localidad, String direccion, String correo, String nombreUsuario, String contrasenia,
+		Integer pais)
 	{	
 		try {
 			Date fecha = new Date(fechaNacimiento.replace('-', '/'));					
@@ -130,7 +131,7 @@ public class PersonController {
 				this.nuevoCliente.setFechaNacimiento(fecha);
 				this.nuevoCliente.setCorreo(correo);
 				this.nuevoCliente.setDireccion(direccion);
-				this.nuevoCliente.setPais(this.paisService.obtenerPais(1));
+				this.nuevoCliente.setPais(this.paisService.obtenerPais(pais));
 				this.nuevoCliente.setLocalidad(this.localidadService.obtenerLocalidad(localidad));
 				this.nuevoCliente.setProvincia(this.provinciaService.obtenerProvincia(provincia));
 				this.nuevoCliente.setGenero(this.generoService.obtenerGenero(genero));
@@ -234,7 +235,7 @@ public class PersonController {
 		model.addAttribute("listGeneros", this.generoService.listGeneros());
 		model.addAttribute("listProvincias", this.provinciaService.listProvincias());
 		model.addAttribute("listLocalidades", this.localidadService.listLocalidades());
-
+		model.addAttribute("listPaises", this.paisService.listPais());
 		return "altaCliente";
 	}
 	
@@ -308,6 +309,7 @@ public class PersonController {
     	model.addAttribute("fecha", fecha.replace('/', '-'));
 		model.addAttribute("listProvincias", this.provinciaService.listProvincias());
 		model.addAttribute("listLocalidades", this.localidadService.listLocalidades());
+		model.addAttribute("listPaises", this.paisService.listPais());
     	return "modificarCliente";
     }
     

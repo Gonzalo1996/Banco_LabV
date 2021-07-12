@@ -51,16 +51,7 @@
           </div>
         </div>
             
-        <!--  AGREGAR SELECT PAIS!!!!!!!!!!!!!!!!!!
-                 <div class="row-form">
-          <br>
-			<select name="genero" class="drop-list">
-			    <option value="" disabled selected>--Seleccione genero--</option>
-			        <c:forEach items="${listGeneros}" var="genero" varStatus="status">
-			            <option value="${genero.id}"><c:out value="${genero.nombre}"></c:out> </option>
-			        </c:forEach>
-			</select>
-          </div> -->
+
         <div class="col-form">
 
 		<div class="row-form">
@@ -86,6 +77,7 @@
             <input name="direccion" type="text" placeholder="Direccion" required/> 
           </div>               
         </div>
+        
         <div class="col-form-correo">
           <div class="row-form">
            <br>
@@ -100,12 +92,26 @@
 			<br> 
 			<input name="contrasenia" type="password" placeholder="Contraseña"  required/>
 		</div>
-          
+		
        </div>
-
-	  <div class="btn-form">
-          <button type="submit" class="btn-register">Registrar</button>
-        </div>
+       
+       <div class="col-form-correo">  
+			<div class="row-form">
+			<select id="pais" name="pais" class="drop-list" required>
+			    <option value="" disabled selected>--Seleccione país--</option>
+			        <c:forEach items="${listPaises}" var="pais" varStatus="status">
+			            <option value="${pais.id}"><c:out value="${pais.nombre}"></c:out> </option>
+			        </c:forEach>
+			</select>
+			</div>
+		</div>
+	
+        <div class="btn-form">
+	        <button type="submit" class="btn btn-primary"> Registrar 
+				<i class="fa fa-user" aria-hidden="true"></i>
+			</button>        
+      </div>
+        
      </form>
       </div>
   </section>
