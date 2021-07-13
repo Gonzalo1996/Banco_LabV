@@ -23,37 +23,38 @@
 		<div class="col-md-12">
 		
 		<form method="get" action="FiltradoClientes.html">
-			<div class="form-group row">
-					<label class="col-md-1 col-form-label" for="txtLocalidad">Localidad:</label>
-					<div class="col-md-4">
-						<select name="localidad" class="btn btn-outline-info  dropdown-toggle btn-md" style="width: 100%">
-						    <option value="" disabled selected>--Seleccione localidad--</option>
-						        <c:forEach items="${listLocalidades}" var="localidad" varStatus="status">
-						            <option value="${localidad.id}"><c:out value="${localidad.nombre}"></c:out> </option>
-						        </c:forEach>
-						</select>				
- 					</div>		
- 					
- 					</div>
- 					<div class="form-group row">
- 					<label class="col-md-1 col-form-label" for="txtProvincia">Provincia:</label>
- 					
- 			<div class="col-md-4">
-						<select name="provincia" class="btn btn-outline-info  dropdown-toggle btn-md" style="width: 100%">
-						    <option value="" disabled selected>--Seleccione provincia--</option>
-						        <c:forEach items="${listProvincias}" var="provincia" varStatus="status">
-						            <option value="${provincia.id}"><c:out value="${provincia.nombre}"></c:out> </option>
-						        </c:forEach>
-						</select>				
- 					</div>			
-			
-				<div class="col-md-4">
-					
+		
+ 			<div class="form-group row">
+	 			<label class="col-md-1 col-form-label" for="txtProvincia">Provincia:</label>
+	 					
+	 			<div class="col-md-4">		
+					<select id="provincia" name="provincia" class="btn btn-outline-info  dropdown-toggle btn-md" style="width: 100%">
+						<c:forEach items="${listProvincias}" var="provincia"
+							varStatus="status">
+							<option value="${provincia.id}"
+								${provincia.id == cliente.provincia.id ? 'selected' : ''}>${provincia.nombre}</option>
+						</c:forEach>
+					</select>									
+	 			</div>
+	 			
+		 		<div class="col-md-4">
 					<button type="submit" class="btn btn-primary">Filtrar <span class="fa fa-filter"></span></button>
 					<a href="listadoClientes.html" class="btn btn-info">Quitar <span class="fa fa-times"></span></a>				
-				</div>
+				</div>			
+			</div>
 			
-			  </div>
+			<div class="form-group row">
+					<label class="col-md-1 col-form-label" for="txtLocalidad">Localidad:</label>
+					<div class="col-md-4">				
+						<select id="localidad" name="localidad" class="btn btn-outline-info  dropdown-toggle btn-md" style="width: 100%">
+							<c:forEach items="${listLocalidades}" var="localidad"
+								varStatus="status">
+								<option value="${localidad.id}"
+									${localidad.id == cliente.localidad.id ? 'selected' : ''}>${localidad.nombre}</option>
+							</c:forEach>
+						</select>	
+ 					</div>		
+ 			</div>
 		
 		</form>
 		</div>
@@ -112,7 +113,40 @@
                     </div>
                 </div>
         </div>  
-    </div>     
+    </div>
+    
+<script>
+$(function(){
+	$('#provincia').change(function(e){
+		var data = {
+			idProvincia: parseInt(this.value)
+		};
+   		
+        $.ajax({
+            url: './getLocalidadesPorProvincia.html',
+            type: 'GET',
+            data: data,
+            dataType: 'json',
+            success: function (response) {                                
+                var options = '';
+                $.each(response, function(key, value) {
+                    options += "<option value='"+value.id+"'>"+value.nombre+"</option>";
+                });
+                
+                $('#localidad')
+                	.empty()
+                	.append(options);
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+            	var errorMsg = 'Error ' + xhr.status + '\r\n' + xhr.responseText;
+                alert(errorMsg);
+            }
+        });
+        
+	});
+});
+</script>
+        
 </t:baseAdmin>
       
     <script src="content/dataTable/jquery/jquery-3.3.1.min.js"></script>
