@@ -25,7 +25,7 @@ public class Cliente implements Serializable{
     @JoinColumn(name = "idLocalidad")
     private Localidad localidad;
     
-    @ManyToOne(cascade= {CascadeType.ALL})
+    @ManyToOne
     @JoinColumn(name = "idGenero")
     private Genero genero;
     

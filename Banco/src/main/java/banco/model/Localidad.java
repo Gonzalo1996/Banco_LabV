@@ -13,7 +13,7 @@ public class Localidad implements Serializable
 	
 	private String nombre;
 	
-    @ManyToOne(cascade= {CascadeType.ALL})
+    @ManyToOne
 	@JoinColumn(name = "idProvincia")
 	private Provincia provincia;
 	

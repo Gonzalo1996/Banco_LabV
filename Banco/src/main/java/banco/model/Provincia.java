@@ -18,8 +18,6 @@ import javax.persistence.*;
     @OneToOne(cascade= {CascadeType.ALL})
 	private Pais pais;
 	
-//	@ManyToOne(cascade = {CascadeType.ALL})
-//	private List<Localidad> localidades;
 	
 	public Provincia() {
 		
