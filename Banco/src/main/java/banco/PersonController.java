@@ -418,7 +418,6 @@ public class PersonController {
     
     @RequestMapping(value="/FiltradoClientes.html",method = RequestMethod.GET)
     public String FiltradoClientes(Model model, Integer provincia,Integer localidad) {
-    	//System.out.println(dni + " " +localidad); 	
     	model.addAttribute("listClientes",this.clienteService.FiltradoClientes(provincia, localidad));
 		model.addAttribute("listLocalidades", this.localidadService.listLocalidades());
 		model.addAttribute("listProvincias",this.provinciaService.listProvincias());
