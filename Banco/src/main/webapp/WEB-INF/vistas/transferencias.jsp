@@ -65,7 +65,7 @@
 						<div class="form-group row">
 								<label class="col-md-3 col-form-label" for="txtDetalle">Detalle:</label>
 								<div class="col-md-5">
-									<input name="detalle" id="txtDetalle" type="text" class="form-control" placeholder="Detalle" required/>
+									<input name="detalle" id="txtDetalle" type="text" class="form-control" placeholder="Detalle"/>
 								</div>
 						</div>
 						

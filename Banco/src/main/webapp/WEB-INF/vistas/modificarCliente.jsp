@@ -168,7 +168,7 @@
 									class="form-control" value="${cliente.usuario.nombreUsuario}" required/>
 								<div class="input-group-append">
 							  		<button class="btn btn-info" type="button" onclick="mostrarPassword2()">
-							  			<span class="fa fa-eye-slash icon"></span>
+							  			<span class="fa fa-eye-slash icon2"></span>
 							  		</button>
 								</div>
 							</div>
@@ -236,10 +236,10 @@ function mostrarPassword2(){
 	var cambio = document.getElementById("user");
 	if(cambio.type == "password"){
 		cambio.type = "text";
-		$('.icon').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
+		$('.icon2').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
 	}else{
 		cambio.type = "password";
-		$('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
+		$('.icon2').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
 	}
 } 
 </script>

@@ -60,13 +60,15 @@ public class MovimientoServiceImpl implements MovimientoService{
 	@Override
 	@Transactional
 	public void guardarTransferenciaOtros(Integer nroCuenta, String cbu, Double monto, String detalle) throws Exception {
+		monto = Math.round(monto * 100.0) / 100.0;
+		
 		Cuenta cuentaOrigen = this.cuentaService.obtenerCuenta(nroCuenta);
 		Cuenta cuentaDestino = this.cuentaService.obtenerPorCbu(cbu);
 		
 		if (cuentaOrigen == null)
 			throw new Exception("La cuenta origen no existe o no se encuentra activa.");
 
-		Double saldoOrigen = cuentaOrigen.getSaldo() - monto;
+		Double saldoOrigen = Math.round((cuentaOrigen.getSaldo() - monto) * 100.0) / 100.0;
 		
 		if (cuentaDestino == null || !cuentaDestino.getEstado())
 			throw new Exception("El CBU ingresado no pertenece a ninguna cuenta activa.");
@@ -77,13 +79,13 @@ public class MovimientoServiceImpl implements MovimientoService{
 		if (cuentaOrigen.getTipoMoneda().getId() != cuentaDestino.getTipoMoneda().getId())
 			throw new Exception("Solo se admiten transferencias del mismo tipo de moneda.");
 
-		Double saldoDestino = cuentaDestino.getSaldo() + monto;
+		Double saldoDestino = Math.round((cuentaDestino.getSaldo() + monto) * 100.0) / 100.0;
 		
 		if (monto <= 0)
 			throw new Exception("El monto ingresado no es válido.");
 		if (saldoOrigen < 0)
 			throw new Exception("La cuenta no posee los fondos suficientes para realizar esta transferencia.");
-
+		
 		movimientoOrigen.setMonto(-monto);
 		movimientoOrigen.setSaldo(saldoOrigen);
 		movimientoOrigen.setFecha(new Date());
@@ -108,6 +110,8 @@ public class MovimientoServiceImpl implements MovimientoService{
 	@Override
 	@Transactional
 	public void guardarTransferenciaPropias(Integer nroCuentaOrigen, Integer nroCuentaDestino, Double monto, String detalle) throws Exception {
+		monto = Math.round(monto * 100.0) / 100.0;
+		
 		Cuenta cuentaOrigen = this.cuentaService.obtenerCuenta(nroCuentaOrigen);
 		Cuenta cuentaDestino = this.cuentaService.obtenerCuenta(nroCuentaDestino);
 		
@@ -117,7 +121,7 @@ public class MovimientoServiceImpl implements MovimientoService{
 		if (cuentaOrigen == null || !cuentaOrigen.getEstado())
 			throw new Exception("La cuenta origen no existe o no se encuentra activa.");
 
-		Double saldoOrigen = cuentaOrigen.getSaldo() - monto;
+		Double saldoOrigen = Math.round((cuentaOrigen.getSaldo() - monto) * 100.0) / 100.0;
 		
 		if (cuentaDestino == null || !cuentaDestino.getEstado())
 			throw new Exception("La cuenta destino no existe o no se encuentra activa.");
@@ -125,7 +129,7 @@ public class MovimientoServiceImpl implements MovimientoService{
 		if (cuentaOrigen.getNroCuenta() == cuentaDestino.getNroCuenta())
 			throw new Exception("No se puede realizar una transferencia a la misma cuenta.");
 
-		Double saldoDestino = cuentaDestino.getSaldo() + monto;
+		Double saldoDestino = Math.round((cuentaDestino.getSaldo() + monto) * 100.0) / 100.0;
 		
 		if (monto <= 0)
 			throw new Exception("El monto ingresado no es válido.");
