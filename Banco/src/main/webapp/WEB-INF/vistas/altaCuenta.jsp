@@ -32,7 +32,7 @@
       <div class="col-form">
         <div class="row-form">
         <br>
-          <input name="dni" type="text" placeholder="DNI cliente" required/> 
+          <input id="dni" name="dni" type="text" placeholder="DNI cliente" required/> 
         </div>
         
         <div class="row-form">
@@ -59,9 +59,7 @@
       </div> 
   
       </form>
-    </div>
-    
-
+    </div>    
     
      <div class="modal fade" id="ventana1">
            <div class="modal-dialog">
@@ -73,7 +71,7 @@
                    <div class="modal-body">
                    
 						<label for="exampleDataList" class="form-label">Buscador de clientes</label>
-						<input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Buscar cliente...">
+						<input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Buscar cliente..." onkeyup="PasarValor()">
 						<datalist id="datalistOptions">
 						        <c:forEach items="${listClientes}" var="c" varStatus="status">
 						            <option value="${c.dni}">
@@ -90,8 +88,13 @@
                    </div>
                </div>
            </div>
-       </div>
-
-
+       </div>         
   </section>
+  
+<script>
+	function PasarValor()
+	{
+	document.getElementById("dni").value = document.getElementById("exampleDataList").value;
+	}
+</script>
 </t:baseAdmin>
