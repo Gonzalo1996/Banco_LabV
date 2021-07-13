@@ -89,16 +89,8 @@
           <!-- /.col -->
         </div>
       </form>
-<br>
-      
-      <!-- /.social-auth-links -->
-
-      <p class="mb-1">
-        <a href="emailpassword.jsp">Olvide mi contraseña</a>
-      </p>
-     
+<br> 
     </div>
-    <!-- /.login-card-body -->
   </div>
 </div>
 

@@ -40,7 +40,6 @@
 		<beans:property name="dataSource" ref="dataSource" />
 		<beans:property name="annotatedClasses">
 			<beans:list>
-				<beans:value>banco.model.Person</beans:value>
 				<beans:value>banco.model.Genero</beans:value>	
 				<beans:value>banco.model.Cuenta</beans:value>
 				<beans:value>banco.model.Movimiento</beans:value>
@@ -63,14 +62,6 @@
 				<beans:prop key="hibernate.current_session_context_class">thread</beans:prop>			
 			</beans:props>
 		</beans:property>
-	</beans:bean>
-	
-	<beans:bean id="personDAO" class="banco.dao.PersonDAOImpl">
-		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
-	</beans:bean>
-	
-	<beans:bean id="personService" class="banco.service.PersonServiceImpl">
-		<beans:property name="personDAO" ref="personDAO"></beans:property>
 	</beans:bean>
 	
 	<beans:bean id="generoDAO" class="banco.dao.GeneroDAOImpl">

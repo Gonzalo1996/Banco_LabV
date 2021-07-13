@@ -22,9 +22,6 @@
 <t:base title="${title}">
 	<jsp:attribute name="menu">
         <li>
-         	<a href=""><i class="fas fa-home"></i>Inicio</a>
-        </li>
-        <li>
           	<a href="altaCliente.html"><i class="fas fa-user-cog"></i>Alta Cliente</a>
         </li>
         <li>
@@ -35,9 +32,6 @@
         </li>
         <li>
           	<a href="listadoClientes.html"><i class="fa fa-address-book"></i>Listado Clientes</a>
-        </li>
-        <li>
-          	<a href=""><i class="fas fa-info"></i>About</a>
         </li>
         <li>
           	<a href="detallecliente.html"><i class="fa fa-user-plus"></i>Vista cliente</a>
