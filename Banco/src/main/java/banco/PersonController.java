@@ -144,7 +144,6 @@ public class PersonController {
 				return "redirect:/listadoClientes.html";
 			}
 			catch (Exception e) {
-				e.printStackTrace();
 				model.addAttribute("error", e.getMessage());
 				model.addAttribute("listGeneros", this.generoService.listGeneros());
 				model.addAttribute("listProvincias", this.provinciaService.listProvincias());
