@@ -145,7 +145,6 @@ public class PersonController {
 			}
 			catch (Exception e) {
 				e.printStackTrace();
-				System.out.println(e.getMessage());
 				model.addAttribute("error", e.getMessage());
 				model.addAttribute("listGeneros", this.generoService.listGeneros());
 				model.addAttribute("listProvincias", this.provinciaService.listProvincias());
