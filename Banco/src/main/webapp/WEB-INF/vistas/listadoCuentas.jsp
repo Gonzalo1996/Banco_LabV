@@ -79,7 +79,6 @@
 								<td>${c.cbu}</td>
 								<td>${c.alias}</td>
 								<td>${c.saldo}</td>
-
  
 								<c:choose>
 									<c:when test="${c.tipoMoneda.id == 1}">

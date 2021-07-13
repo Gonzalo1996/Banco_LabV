@@ -27,12 +27,6 @@ public class ProvinciaServiceImpl implements ProvinciaService{
 
 	@Override
 	@Transactional
-	public List<Provincia> listProvincias_x_Pais(int pais) {
-		return provinciaDao.listProvincias_x_Pais(pais);
-	}
-
-	@Override
-	@Transactional
 	public Provincia obtenerProvincia(int p_id) {
 		return provinciaDao.obtenerProvincia(p_id);
 	}

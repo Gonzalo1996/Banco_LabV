@@ -28,7 +28,7 @@ public class Usuario implements Serializable
 	@JoinColumn(name="dni")
 	private Cliente cliente;
 	
-    @ManyToOne
+    @ManyToOne(cascade= {CascadeType.ALL})
 	@JoinColumn(name="tipoUsuarioId")
 	private TipoUsuario tipoUsuario;
 	

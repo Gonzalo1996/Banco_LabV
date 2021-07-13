@@ -28,8 +28,8 @@ public class ProvinciaDAOImpl implements ProvinciaDAO{
 	public List<Provincia> listProvincias() {
 		Session session = this.sessionFactory.openSession();
 		session.beginTransaction();
-
-		List<Provincia> provinciaList = session.createQuery("FROM Provincia").list();
+		String q = "FROM Provincia p ORDER BY p.nombre";
+		List<Provincia> provinciaList = session.createQuery(q).list();
 
 		for (Provincia p : provinciaList) {
 			logger.info("Provincia List::" + p);
@@ -38,22 +38,6 @@ public class ProvinciaDAOImpl implements ProvinciaDAO{
 		return provinciaList;
 	}
 	
-	//Obtengo las Provincias de un Pais
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<Provincia> listProvincias_x_Pais(int pais) {
-		Session session = this.sessionFactory.openSession();
-		session.beginTransaction();
-
-		List<Provincia> provinciaList = session.createQuery("FROM Provincia WHERE pais_id = " + pais).list();
-
-		for (Provincia p : provinciaList) {
-			logger.info("Provincia List::" + p);
-		}
-		session.close();
-		return provinciaList;
-	}
-
 	//Obtengo una Provincia en particular
 	@Override
 	public Provincia obtenerProvincia(int p_id) {

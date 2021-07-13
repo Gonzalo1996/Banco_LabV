@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 import org.hibernate.Query;
 
+import banco.constants.TipoUsuario;
 import banco.model.Cliente;
 
 @Repository
@@ -28,7 +29,11 @@ public class ClienteDAOImpl implements ClienteDAO{
 	public List<Cliente> listClientes() {
 		Session session = this.sessionFactory.openSession();
 		session.beginTransaction();
-		List<Cliente> clienteList = session.createQuery("FROM Cliente").list();
+		String q = "SELECT c FROM Cliente as c JOIN c.usuario as u JOIN u.tipoUsuario as t WHERE t.id = :tipoUsuario";
+		Query query = session.createQuery(q);
+		query.setParameter("tipoUsuario", TipoUsuario.CLIENTE.getId());
+
+		List<Cliente> clienteList = query.list();
 
 		for (Cliente c : clienteList) {
 			logger.info("Cliente List::" + c);
@@ -79,8 +84,12 @@ public class ClienteDAOImpl implements ClienteDAO{
 	@Override
 	public List<Cliente> FiltradoClientes(Integer provincia, Integer localidad) {
 		Session session = this.sessionFactory.openSession();
-		String hql = "SELECT c FROM Cliente as c JOIN c.localidad JOIN c.provincia WHERE c.localidad.id = :localidad AND c.provincia.id= :provincia";
+		//String q = "SELECT c FROM Cliente as c JOIN c.usuario as u JOIN u.tipoUsuario as t WHERE t.id = :tipoUsuario";
+
+		String hql = "SELECT c FROM Cliente as c JOIN c.localidad JOIN c.provincia JOIN c.usuario.tipoUsuario as t "
+				+ "WHERE c.localidad.id = :localidad AND c.provincia.id= :provincia AND t.id = :tipoUsuario";
 		Query query = session.createQuery(hql);
+		query.setParameter("tipoUsuario", TipoUsuario.CLIENTE.getId());
 		query.setParameter("provincia", provincia);
 		query.setParameter("localidad", localidad);
 		List<Cliente> lista = (List<Cliente>)query.list();

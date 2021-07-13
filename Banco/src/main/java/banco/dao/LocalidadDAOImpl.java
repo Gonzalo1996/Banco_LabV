@@ -27,7 +27,7 @@ public class LocalidadDAOImpl implements LocalidadDAO{
 	public List<Localidad> listLocalidades() {
 		Session session = this.sessionFactory.openSession();
 		session.beginTransaction();
-		List<Localidad> localidadList = session.createQuery("FROM Localidad").list();
+		List<Localidad> localidadList = session.createQuery("FROM Localidad l ORDER BY l.nombre").list();
 
 		for (Localidad l : localidadList) {
 			logger.info("Localidad List::" + l);
@@ -41,7 +41,10 @@ public class LocalidadDAOImpl implements LocalidadDAO{
 	public List<Localidad> listLocalidades_x_Prov(int prov) {
 		Session session = this.sessionFactory.openSession();
 		session.beginTransaction();
-		List<Localidad> LocalidadList = session.createQuery("FROM Localidad WHERE idProvincia = " + prov).list();
+		String q = "FROM Localidad l WHERE l.provincia.id = :prov ORDER BY l.nombre";
+		Query query = session.createQuery(q);
+		query.setParameter("prov", prov);
+		List<Localidad> LocalidadList = query.list();
 
 		for (Localidad l : LocalidadList) {
 			logger.info("Localidad List::" + l);

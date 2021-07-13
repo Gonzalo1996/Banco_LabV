@@ -27,7 +27,7 @@ public class PaisDAOImpl implements PaisDAO{
 	public List<Pais> listPais() {
 		Session session = this.sessionFactory.openSession();
 		session.beginTransaction();
-		List<Pais> paisList = session.createQuery("FROM Pais").list();
+		List<Pais> paisList = session.createQuery("FROM Pais ORDER BY nombre").list();
 
 		for (Pais p : paisList) {
 			logger.info("Pais List::" + p);

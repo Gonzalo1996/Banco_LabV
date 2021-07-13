@@ -149,13 +149,14 @@
 						<label class="col-md-2 col-form-label" for="direccion">Contraseña:</label>
 						<div class="col-sm-10">
 							<div class="input-group">
-								<input name="contrasenia" id="text" type="text"
+								<input name="contrasenia" id="contrasenia" type="password"
 									class="form-control" value="${cliente.usuario.contrasenia}" required/>
 								<div class="input-group-append">
-									<span class="input-group-text"> <i
-										class="fa fa-lock"></i>
-									</span>
+							  		<button class="btn btn-info" type="button" onclick="mostrarPassword()">
+							  			<span class="fa fa-eye-slash icon"></span>
+							  		</button>
 								</div>
+
 							</div>
 						</div>
 					</div>
@@ -204,6 +205,17 @@ $(function(){
         
 	});
 });
+
+function mostrarPassword(){
+	var cambio = document.getElementById("contrasenia");
+	if(cambio.type == "password"){
+		cambio.type = "text";
+		$('.icon').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
+	}else{
+		cambio.type = "password";
+		$('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
+	}
+} 
 </script>
 
 </t:baseAdmin>
