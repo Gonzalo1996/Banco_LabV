@@ -147,6 +147,10 @@ public class PersonController {
 				e.printStackTrace();
 				System.out.println(e.getMessage());
 				model.addAttribute("error", e.getMessage());
+				model.addAttribute("listGeneros", this.generoService.listGeneros());
+				model.addAttribute("listProvincias", this.provinciaService.listProvincias());
+				model.addAttribute("listLocalidades", this.localidadService.listLocalidades());
+				model.addAttribute("listPaises", this.paisService.listPais());
 				return "altaCliente";
 			}
 	}
