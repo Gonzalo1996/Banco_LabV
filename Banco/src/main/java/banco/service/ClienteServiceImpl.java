@@ -39,9 +39,9 @@ public class ClienteServiceImpl implements ClienteService{
 	}
 	
 	@Override
-	public List<Cliente> FiltradoClientes(Integer dni, Integer localidad) {
+	public List<Cliente> FiltradoClientes(Integer provincia, Integer localidad) {
 		// TODO Auto-generated method stub
-		return clienteDao.FiltradoClientes(dni, localidad);
+		return clienteDao.FiltradoClientes(provincia, localidad);
 	}
 	
 }

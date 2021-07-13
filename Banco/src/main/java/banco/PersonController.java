@@ -226,6 +226,7 @@ public class PersonController {
 	public String redireccionarListadoClientes(Model model) {
 		model.addAttribute("listClientes", this.clienteService.listClientes());
 		model.addAttribute("listLocalidades", this.localidadService.listLocalidades());
+		model.addAttribute("listProvincias",this.provinciaService.listProvincias());
 		return "listadoClientes";
 	}
 
@@ -424,10 +425,12 @@ public class PersonController {
     }
     
     @RequestMapping(value="/FiltradoClientes.html",method = RequestMethod.GET)
-    public String FiltradoClientes(Model model, Integer dni,Integer localidad) {
-    	System.out.println(dni + " " +localidad); 	
-    	model.addAttribute("listClientes",this.clienteService.FiltradoClientes(dni, localidad));
+    public String FiltradoClientes(Model model, Integer provincia,Integer localidad) {
+    	//System.out.println(dni + " " +localidad); 	
+    	model.addAttribute("listClientes",this.clienteService.FiltradoClientes(provincia, localidad));
 		model.addAttribute("listLocalidades", this.localidadService.listLocalidades());
+		model.addAttribute("listProvincias",this.provinciaService.listProvincias());
+
 
     	
     	return "listadoClientes";

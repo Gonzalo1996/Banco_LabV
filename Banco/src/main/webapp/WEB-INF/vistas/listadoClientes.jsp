@@ -33,19 +33,29 @@
 						        </c:forEach>
 						</select>				
  					</div>		
+ 					
+ 					</div>
+ 					<div class="form-group row">
+ 					<label class="col-md-1 col-form-label" for="txtProvincia">Provincia:</label>
+ 					
+ 			<div class="col-md-4">
+						<select name="provincia" class="btn btn-outline-info  dropdown-toggle btn-md" style="width: 100%">
+						    <option value="" disabled selected>--Seleccione provincia--</option>
+						        <c:forEach items="${listProvincias}" var="provincia" varStatus="status">
+						            <option value="${provincia.id}"><c:out value="${provincia.nombre}"></c:out> </option>
+						        </c:forEach>
+						</select>				
+ 					</div>			
+			 					
 			
 				<div class="col-md-4">
+					
 					<button type="submit" class="btn btn-primary">Filtrar <span class="fa fa-filter"></span></button>
 					<a href="listadoClientes.html" class="btn btn-info">Quitar <span class="fa fa-times"></span></a>				
 				</div>
-			</div>
-			  
-		<div class="form-group row">
-			<label class="col-md-1 col-form-label" for="txtDni" >DNI:</label>
-			<div class="col-md-4">
-			 	<input id="txtDni" type="number" class="form-control" placeholder="DNI" name="dni">
-			</div>
-		</div>
+			
+			  </div>
+		
 		</form>
 		</div>
 	</div>

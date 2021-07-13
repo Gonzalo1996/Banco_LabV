@@ -77,11 +77,11 @@ public class ClienteDAOImpl implements ClienteDAO{
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Cliente> FiltradoClientes(Integer dni, Integer localidad) {
+	public List<Cliente> FiltradoClientes(Integer provincia, Integer localidad) {
 		Session session = this.sessionFactory.openSession();
-		String hql = "SELECT c FROM Cliente as c JOIN c.localidad WHERE c.localidad.id = :localidad AND c.dni= :dni";
+		String hql = "SELECT c FROM Cliente as c JOIN c.localidad JOIN c.provincia WHERE c.localidad.id = :localidad AND c.provincia.id= :provincia";
 		Query query = session.createQuery(hql);
-		query.setParameter("dni", dni);
+		query.setParameter("provincia", provincia);
 		query.setParameter("localidad", localidad);
 
 		List<Cliente> lista = (List<Cliente>)query.list();
