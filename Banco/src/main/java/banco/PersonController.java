@@ -305,7 +305,7 @@ public class PersonController {
     
     @RequestMapping(value="/guardarClienteModificado.html",method = RequestMethod.POST)
     public String guardarClienteModificado(Model model, Integer dni, String nombre, String apellido, String fecha, String correo, String direccion,
-    										Integer pais, Integer provincia, Integer localidad, Integer estado, String contrasenia) throws Exception{
+    										Integer pais, Integer provincia, Integer localidad, Integer estado, String contrasenia, String nombreUsuario) throws Exception{
 		Date fechaNac = new SimpleDateFormat("yyyy-MM-dd").parse(fecha);
 		Boolean estadoCuenta;
 		
@@ -318,7 +318,7 @@ public class PersonController {
     	}
     		
     	this.clienteService.modificarCliente(dni, nombre, apellido, fechaNac, correo, direccion, pais, provincia, localidad);
-    	this.usuarioService.actualizarUsuario(dni, estadoCuenta, contrasenia);
+    	this.usuarioService.actualizarUsuario(dni, estadoCuenta, contrasenia, nombreUsuario);
     	return "redirect:/listadoClientes.html";
     }
     

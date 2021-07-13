@@ -83,8 +83,8 @@ public class UsuarioServiceImpl implements UsuarioService{
 	}
 
 	@Override
-	public int actualizarUsuario(int dni, Boolean estado, String contrasenia) {
-		return usuarioDao.actualizarUsuario(dni, estado, contrasenia);
+	public int actualizarUsuario(int dni, Boolean estado, String contrasenia, String nombreUsuario) {
+		return usuarioDao.actualizarUsuario(dni, estado, contrasenia, nombreUsuario);
 	}
 
 	@Override

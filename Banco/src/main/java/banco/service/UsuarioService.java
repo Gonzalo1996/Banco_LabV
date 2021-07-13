@@ -10,7 +10,7 @@ public interface UsuarioService
 	public Usuario obtenerUsuario(int idUsuario);
 	public Usuario obtenerUsuarioLogin(String nombreUsuario, Integer dni, String contrasenia) throws Exception;
 	public int actualizarEstado(int idUsuario, Boolean estado);
-	public int actualizarUsuario(int dni, Boolean estado, String contrasenia);
+	public int actualizarUsuario(int dni, Boolean estado, String contrasenia, String nombreUsuario);
 	public Boolean estadoUsuario(Integer dni);
 	public void guardarUsuario(Usuario usuario, Integer dni, String correo, String cuil) throws Exception ;
 	public Usuario obtenerPorDni(int dni);
