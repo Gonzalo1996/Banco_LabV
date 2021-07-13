@@ -156,7 +156,21 @@
 							  			<span class="fa fa-eye-slash icon"></span>
 							  		</button>
 								</div>
-
+							</div>
+						</div>
+					</div>
+					
+					<div class="form-group row">
+						<label class="col-md-2 col-form-label" for="user">Nombre usuario:</label>
+						<div class="col-sm-10">
+							<div class="input-group">
+								<input name="nombreUsuario" id="user" type="password"
+									class="form-control" value="${cliente.usuario.nombreUsuario}" required/>
+								<div class="input-group-append">
+							  		<button class="btn btn-info" type="button" onclick="mostrarPassword2()">
+							  			<span class="fa fa-eye-slash icon"></span>
+							  		</button>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -208,6 +222,18 @@ $(function(){
 
 function mostrarPassword(){
 	var cambio = document.getElementById("contrasenia");
+	if(cambio.type == "password"){
+		cambio.type = "text";
+		$('.icon').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
+	}else{
+		cambio.type = "password";
+		$('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
+	}
+} 
+
+
+function mostrarPassword2(){
+	var cambio = document.getElementById("user");
 	if(cambio.type == "password"){
 		cambio.type = "text";
 		$('.icon').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
