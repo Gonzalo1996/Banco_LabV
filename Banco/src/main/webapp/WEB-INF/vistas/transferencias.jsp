@@ -58,7 +58,7 @@
 						<div class="form-group row">
 								<label class="col-md-3 col-form-label" for="txtCbu">Ingresá el CBU/CVU destino:</label>
 								<div class="col-md-5">
-									<input id="txtCbu" type="text" name="cbu" class="form-control" placeholder="CBU/CVU" required/>
+									<input id="txtCbu" type="number" name="cbu" class="form-control" placeholder="CBU/CVU" required/>
 								</div>
 						</div>
 						
@@ -76,7 +76,7 @@
 									  <div class="input-group-prepend">
 									    <span class="input-group-text">$</span>
 									  </div>
-									  <input id="txtMonto" type="number" step="any" name="montoOtros" class="form-control" placeholder="Monto" aria-describedby="basic-addon1" required/>
+									  <input id="txtMonto" type="number" step="0.01" name="montoOtros" class="form-control" placeholder="Monto" aria-describedby="basic-addon1" required pattern="^\d*(\.\d{0,2})?$" title="El monto debe permitir solo 2 decimales">
 									</div>
 								</div>								
 						</div>
@@ -174,7 +174,7 @@
 									  <div class="input-group-prepend">
 									    <span class="input-group-text">$</span>
 									  </div>
-									  <input id="txtMonto2" type="number" step="0.01" name="montoPropias" class="form-control" placeholder="Monto" aria-describedby="basic-addon1">
+									  <input id="txtMonto2" type="number" step="0.01" name="montoPropias" class="form-control" placeholder="Monto" required pattern="^\d*(\.\d{0,2})?$" title="El monto debe permitir solo 2 decimales" aria-describedby="basic-addon1">
 									</div>
 								</div>								
 						</div>
