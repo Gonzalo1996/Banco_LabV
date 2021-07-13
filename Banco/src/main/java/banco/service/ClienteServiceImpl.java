@@ -43,5 +43,4 @@ public class ClienteServiceImpl implements ClienteService{
 		// TODO Auto-generated method stub
 		return clienteDao.FiltradoClientes(provincia, localidad);
 	}
-	
 }

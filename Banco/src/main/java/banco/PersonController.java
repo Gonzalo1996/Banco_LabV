@@ -430,9 +430,6 @@ public class PersonController {
     	model.addAttribute("listClientes",this.clienteService.FiltradoClientes(provincia, localidad));
 		model.addAttribute("listLocalidades", this.localidadService.listLocalidades());
 		model.addAttribute("listProvincias",this.provinciaService.listProvincias());
-
-
-    	
     	return "listadoClientes";
     }
     

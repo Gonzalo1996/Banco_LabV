@@ -83,7 +83,6 @@ public class ClienteDAOImpl implements ClienteDAO{
 		Query query = session.createQuery(hql);
 		query.setParameter("provincia", provincia);
 		query.setParameter("localidad", localidad);
-
 		List<Cliente> lista = (List<Cliente>)query.list();
 		session.close();
 		return lista;
