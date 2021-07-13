@@ -19,7 +19,7 @@
           <a href="transferencias.html"><i class="fa fa-exchange"></i>Transferencias</a>
         </li>
         <li>
-          <a href=""><i class="fa fa-question"></i>Ayuda</a>
+          <a href="ayudaCliente.html"><i class="fa fa-question"></i>Ayuda</a>
         </li>
         <c:if test="${usuario.tipoUsuario.id == TipoUsuario.ADMIN.id}">
 	        <li>

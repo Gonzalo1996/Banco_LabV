@@ -433,6 +433,11 @@ public class PersonController {
     	return "listadoClientes";
     }
     
+	@RequestMapping(value="/ayudaCliente.html",method = RequestMethod.GET)
+	public String redireccionarAyudaCliente(Model model)
+	{	
+		return "ayudaCliente";
+	}
 	
 	/////////EJEMPLOS PERSON///////////
 	@RequestMapping(value = "/persons", method = RequestMethod.GET)
